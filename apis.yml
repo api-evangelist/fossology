@@ -23,10 +23,10 @@ apis:
       Programmatic access to FOSSology license scanning APIs, compliance reporting tools, and source code analysis resources.
     humanURL: https://www.fossology.org/get-started/
     tags:
-  - Compliance
-  - Licensing
-  - Scanning
-  - Linux Foundation
+      - Compliance
+      - Licensing
+      - Scanning
+      - Linux Foundation
     properties:
       - type: Documentation
         url: https://www.fossology.org/get-started/
