@@ -1,0 +1,9 @@
+{
+  "id": 32,
+  "shortName": "GPL-2.0-only",
+  "fullName": "GNU General Public License v2.0 only",
+  "url": "https://spdx.org/licenses/GPL-2.0-only.html",
+  "risk": 4,
+  "isCandidate": false,
+  "obligations": [12, 17]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json",
+  "title": "FOSSologyUpload",
+  "description": "A FOSSology upload representing a scanned source artifact.",
+  "type": "object",
+  "required": ["id", "foldername", "uploadname"],
+  "properties": {
+    "id": { "type": "integer", "description": "Unique upload identifier." },
+    "folderid": { "type": "integer", "description": "Parent folder identifier." },
+    "foldername": { "type": "string", "description": "Parent folder name." },
+    "description": { "type": "string", "description": "Human description of the upload." },
+    "uploadname": { "type": "string", "description": "Name assigned to the upload (typically the source filename)." },
+    "uploaddate": { "type": "string", "format": "date-time", "description": "When the upload was created." },
+    "assignee": { "type": "integer", "description": "User id the upload is assigned to." },
+    "assigneeDate": { "type": ["string", "null"], "format": "date-time" },
+    "closingDate": { "type": ["string", "null"], "format": "date-time" },
+    "hash": {
+      "type": "object",
+      "properties": {
+        "sha1": { "type": "string" },
+        "md5": { "type": "string" },
+        "sha256": { "type": "string" },
+        "size": { "type": "integer" }
+      }
+    },
+    "filesize": { "type": "integer" },
+    "clearingStatus": {
+      "type": "string",
+      "enum": ["Open", "InProgress", "Closed", "Rejected"]
+    }
+  }
+}

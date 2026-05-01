@@ -1,0 +1,118 @@
+aid: fossology:capabilities
+name: FOSSology API Capabilities
+description: >-
+  Capability map for the FOSSology REST API, summarizing what an integrator
+  can do with uploads, scanning agents, license and copyright analysis, jobs,
+  reports, users, groups, and maintenance.
+modified: '2026-04-28'
+capabilities:
+  - id: authentication
+    name: Authentication
+    description: >-
+      Generate API tokens via /tokens and authenticate subsequent calls with a
+      Bearer token; OAuth is also supported.
+    operations:
+      - POST /tokens
+  - id: instance-info
+    name: Instance Discovery
+    description: >-
+      Inspect server health, version, and OpenAPI document so clients can
+      validate compatibility.
+    operations:
+      - GET /info
+      - GET /health
+      - GET /openapi
+  - id: uploads
+    name: Upload Management
+    description: >-
+      Create, list, inspect, download, and delete source code uploads, the
+      core unit of work in FOSSology.
+    operations:
+      - GET /uploads
+      - POST /uploads
+      - GET /uploads/{id}
+      - DELETE /uploads/{id}
+      - GET /uploads/{id}/download
+      - GET /uploads/{id}/summary
+  - id: jobs-and-agents
+    name: Jobs and Scanning Agents
+    description: >-
+      Schedule scanning agents (nomos, monk, ojo, copyright, ecc, keyword,
+      package, etc.) and monitor job execution.
+    operations:
+      - GET /jobs
+      - POST /jobs
+      - GET /jobs/{id}
+  - id: license-analysis
+    name: License Analysis
+    description: >-
+      List, edit, and explore licenses detected by scanners across uploads
+      and items, including main licenses, histograms, scanned vs edited,
+      and license reuse.
+    operations:
+      - GET /uploads/{id}/licenses
+      - GET /uploads/{id}/licenses/main
+      - PUT /uploads/{id}/licenses/{shortName}/main
+      - GET /uploads/{id}/licenses/histogram
+      - GET /uploads/{id}/licenses/edited
+      - GET /uploads/{id}/licenses/scanned
+      - PUT /uploads/{id}/licenses/reuse
+  - id: copyright-analysis
+    name: Copyright Analysis
+    description: >-
+      Retrieve copyright statements and author/email findings discovered
+      during scanning.
+    operations:
+      - GET /uploads/{id}/copyrights
+  - id: clearing-workflow
+    name: Clearing Workflow
+    description: >-
+      Drive the human clearing workflow: bulk scans, clearing decisions,
+      clearing history, clearing progress, and item-level highlighting.
+    operations:
+      - POST /uploads/{id}/item/{itemId}/bulk-scan
+      - GET /uploads/{id}/item/{itemId}/bulk-history
+      - PUT /uploads/{id}/item/{itemId}/clearing-decision
+      - GET /uploads/{id}/item/{itemId}/clearing-history
+      - GET /uploads/{id}/clearing-progress
+      - GET /uploads/{id}/item/{itemId}/highlight
+  - id: reports
+    name: SPDX and Compliance Reports
+    description: >-
+      Generate and download SPDX, ReadmeOSS, DEP5, and unified compliance
+      reports for cleared uploads.
+    operations:
+      - GET /report
+      - GET /report/{id}
+  - id: obligations
+    name: License Obligations
+    description: >-
+      Manage obligations associated with licenses, including CSV/JSON
+      import and export.
+    operations:
+      - GET /obligations
+      - GET /obligations/list
+      - GET /obligations/{id}
+      - POST /obligations/import-csv
+      - GET /obligations/export-csv
+      - POST /obligations/import-json
+      - GET /obligations/export-json
+  - id: users-and-groups
+    name: Users and Groups
+    description: >-
+      Manage users and groups for permission scoping and tenancy.
+    operations:
+      - GET /users
+      - GET /groups
+  - id: search
+    name: Search
+    description: >-
+      Search across uploaded files for filenames, license findings, and
+      copyrights.
+    operations:
+      - GET /search
+  - id: maintenance
+    name: Maintenance
+    description: Admin-only operations to maintain the FOSSology instance.
+    operations:
+      - POST /maintenance

@@ -1,0 +1,77 @@
+aid: fossology:rules
+name: FOSSology API Operational Rules
+description: >-
+  Operational rules and constraints for working with the FOSSology REST API,
+  covering authentication, scanning agents, uploads, jobs, clearing decisions,
+  and SPDX/license reporting.
+modified: '2026-04-28'
+rules:
+  - id: auth-bearer-token
+    title: Bearer Token Authentication
+    description: >-
+      All API requests require a Bearer token. Tokens are generated through the
+      FOSSology UI under the Admin menu Edit User page, scoped read or write,
+      and bound to a user account.
+    severity: required
+  - id: server-self-hosted
+    title: Self-Hosted Server URL
+    description: >-
+      FOSSology is self-hosted; the server URL must be configured to the local
+      or organizational FOSSology instance (e.g., http://localhost/repo/api/v1)
+      rather than a public SaaS endpoint.
+    severity: required
+  - id: api-version-v1-v2
+    title: Version Negotiation
+    description: >-
+      The API exposes both /api/v1 and /api/v2. Prefer v2 where supported,
+      and check the /info endpoint to confirm the running version before
+      depending on newer endpoints.
+    severity: recommended
+  - id: upload-then-job
+    title: Upload Before Scheduling Jobs
+    description: >-
+      Triggering analyses with POST /jobs requires an existing upload id. Always
+      complete POST /uploads (and confirm upload status) before scheduling
+      scanning agents.
+    severity: required
+  - id: agent-selection
+    title: Scanning Agent Selection
+    description: >-
+      Scheduling jobs accepts an analysis object selecting agents
+      (nomos, monk, ojo, copyright_email_author, ecc, keyword, mimetype,
+      package, reso, heritage, ipra). Choose the minimum agent set needed to
+      keep scan times manageable.
+    severity: recommended
+  - id: report-async
+    title: Asynchronous Report Generation
+    description: >-
+      GET /report schedules a report job and returns a report id. Clients must
+      poll GET /report/{id} until the report is ready before attempting to
+      download.
+    severity: required
+  - id: spdx-formats
+    title: SPDX Report Formats
+    description: >-
+      Reports can be generated as DEP5, SPDX2, SPDX2tv, ReadmeOSS, or
+      Unified. Pick the format aligned to downstream compliance tooling.
+    severity: recommended
+  - id: clearing-decisions
+    title: Clearing Decisions Are Authoritative
+    description: >-
+      License clearing decisions made through /uploads/{id}/item/{itemId}/clearing-decision
+      override scanner findings for SPDX export and reuse. Treat them as the
+      source of truth for compliance reporting.
+    severity: required
+  - id: maintenance-restricted
+    title: Maintenance Endpoint Restricted
+    description: >-
+      POST /maintenance is admin-only and intended for housekeeping such as
+      reindexing or cleanup. Do not call it from CI integrations.
+    severity: required
+  - id: groups-and-permissions
+    title: Group-Scoped Uploads
+    description: >-
+      Uploads are scoped to FOSSology groups. Set the groupName parameter or
+      header on uploads and queries to ensure visibility, and use
+      /uploads/{id}/permissions to manage access.
+    severity: recommended

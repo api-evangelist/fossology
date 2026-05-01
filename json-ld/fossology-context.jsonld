@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@vocab": "https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml#",
+    "spdx": "http://spdx.org/rdf/terms#",
+    "schema": "https://schema.org/",
+    "Upload": "FOSSologyUpload",
+    "License": "spdx:License",
+    "Job": "FOSSologyJob",
+    "shortName": "spdx:licenseId",
+    "fullName": "spdx:name",
+    "text": "spdx:licenseText",
+    "url": "schema:url",
+    "uploaddate": "schema:dateCreated",
+    "uploadname": "schema:name",
+    "filesize": "schema:contentSize",
+    "hash": "spdx:checksum"
+  }
+}

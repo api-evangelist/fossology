@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json",
+  "title": "FOSSologyLicense",
+  "description": "A license record as represented inside FOSSology.",
+  "type": "object",
+  "required": ["shortName"],
+  "properties": {
+    "id": { "type": "integer" },
+    "shortName": { "type": "string", "description": "SPDX-style short identifier (e.g., GPL-2.0-only)." },
+    "fullName": { "type": "string" },
+    "text": { "type": "string", "description": "Full license text." },
+    "url": { "type": "string", "format": "uri" },
+    "risk": { "type": "integer", "minimum": 0, "maximum": 5 },
+    "isCandidate": { "type": "boolean" },
+    "obligations": {
+      "type": "array",
+      "items": { "type": "integer" },
+      "description": "References to obligation ids."
+    }
+  }
+}

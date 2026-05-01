@@ -1,0 +1,19 @@
+{
+  "id": 14,
+  "folderid": 1,
+  "foldername": "Software Repository",
+  "description": "Sample upload for compliance review",
+  "uploadname": "myproject-1.0.0.tar.gz",
+  "uploaddate": "2026-04-21T14:32:11Z",
+  "assignee": 3,
+  "assigneeDate": "2026-04-21T14:32:11Z",
+  "closingDate": null,
+  "hash": {
+    "sha1": "0e2a8c2f1b3c4d5e6f7081928374a5b6c7d8e9f0",
+    "md5": "5d41402abc4b2a76b9719d911017c592",
+    "sha256": "9b74c9897bac770ffc029102a200c5de1fdfb0b1cb3d69b6c9c59f4e43c64b21",
+    "size": 1048576
+  },
+  "filesize": 1048576,
+  "clearingStatus": "InProgress"
+}

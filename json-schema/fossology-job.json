@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json",
+  "title": "FOSSologyJob",
+  "description": "A FOSSology scanning or report job.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "name": { "type": "string" },
+    "queueDate": { "type": "string", "format": "date-time" },
+    "uploadId": { "type": "integer" },
+    "userId": { "type": "integer" },
+    "groupId": { "type": "integer" },
+    "eta": { "type": "integer", "description": "Estimated remaining seconds." },
+    "status": {
+      "type": "string",
+      "enum": ["Completed", "Processing", "Queued", "Failed"]
+    }
+  }
+}

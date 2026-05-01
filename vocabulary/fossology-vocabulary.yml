@@ -1,0 +1,74 @@
+aid: fossology:vocabulary
+name: FOSSology Vocabulary
+description: >-
+  Domain vocabulary for the FOSSology open source license compliance platform,
+  covering uploads, scanning agents, licenses, copyrights, clearing decisions,
+  jobs, and reports.
+modified: '2026-04-28'
+terms:
+  - term: Upload
+    definition: >-
+      A source artifact ingested into FOSSology (archive, repository, or file
+      tree) which is the unit of scanning, clearing, and reporting.
+  - term: Folder
+    definition: >-
+      A container that organizes uploads in a hierarchy, supporting browsing
+      and group-scoped access.
+  - term: Item
+    definition: >-
+      A single file or directory inside an upload, addressed by itemId for
+      detailed license, copyright, and clearing operations.
+  - term: Agent
+    definition: >-
+      A scanning module that analyzes uploads. Examples include nomos and
+      monk for license detection, ojo for SPDX expressions, copyright for
+      copyright statements, ecc for export control, and keyword/package
+      heuristics.
+  - term: License
+    definition: >-
+      A software license identified inside an upload, typically aligned to an
+      SPDX identifier such as MIT, Apache-2.0, or GPL-2.0-only.
+  - term: Main License
+    definition: >-
+      The license assigned to an upload as its overall declared license,
+      distinct from per-file findings.
+  - term: Candidate License
+    definition: >-
+      A license added by an organization but not yet part of the canonical
+      list, used to capture custom or in-house licensing.
+  - term: Copyright
+    definition: >-
+      A copyright statement detected in source code, usually referencing an
+      author or organization and year.
+  - term: Clearing Decision
+    definition: >-
+      A reviewer's authoritative determination of which licenses apply to an
+      item, overriding raw scanner findings for compliance reports.
+  - term: Bulk Scan
+    definition: >-
+      An operation that applies a license rule across many items at once
+      based on text patterns.
+  - term: Job
+    definition: >-
+      A scheduled unit of work, such as a scan run or report generation,
+      tracked by status (Queued, Processing, Completed, Failed).
+  - term: Report
+    definition: >-
+      A generated compliance artifact (SPDX, DEP5, ReadmeOSS, Unified)
+      derived from clearing decisions and scanner findings.
+  - term: SPDX
+    definition: >-
+      The Software Package Data Exchange standard, the primary export format
+      for FOSSology compliance reports.
+  - term: Obligation
+    definition: >-
+      A duty associated with a license (e.g., notice retention, source
+      disclosure) that downstream users must satisfy.
+  - term: Token
+    definition: >-
+      A bearer credential generated through the FOSSology UI used to
+      authenticate REST API calls, with read or read-write scope.
+  - term: Group
+    definition: >-
+      A tenancy boundary that scopes uploads, permissions, and clearing
+      decisions across multiple users.
