@@ -1,0 +1,370 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FOSSology API — Organize
+  description: 'FOSSology API — Organize. 8 operations. Lead operation: Create a new folder. Self-contained Naftiko capability
+    covering one Fossology business surface.'
+  tags:
+  - Fossology
+  - Organize
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FOSSOLOGY_API_KEY: FOSSOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fossology-organize
+    baseUri: http://localhost/repo/api/v1
+    description: FOSSology API — Organize business capability. Self-contained, no shared references.
+    resources:
+    - name: folders
+      path: /folders
+      operations:
+      - name: createfolder
+        method: POST
+        description: Create a new folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: parentFolder
+          in: header
+          type: integer
+          description: Parent folder for the new folder
+          required: true
+        - name: folderName
+          in: header
+          type: string
+          description: Name of the new folder
+          required: true
+        - name: folderDescription
+          in: header
+          type: string
+          description: Description of the new folder
+    - name: folders-id
+      path: /folders/{id}
+      operations:
+      - name: deletefolderbyid
+        method: DELETE
+        description: Delete a folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patchfolderbyid
+        method: PATCH
+        description: Edit a folder's description
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: header
+          type: string
+          description: New name of the folder
+        - name: description
+          in: header
+          type: string
+          description: New description of the folder
+      - name: movefolderbyid
+        method: PUT
+        description: Copy/Move a folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: parent
+          in: header
+          type: integer
+          description: New parent folder id
+          required: true
+        - name: action
+          in: header
+          type: string
+          description: Action to be performed
+          required: true
+    - name: groups
+      path: /groups
+      operations:
+      - name: creategroup
+        method: POST
+        description: Create a new group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: header
+          type: string
+          description: Name of the new group
+          required: true
+    - name: uploads-id
+      path: /uploads/{id}
+      operations:
+      - name: deleteuploadbyid
+        method: DELETE
+        description: Delete upload by id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateuploadbyid
+        method: PATCH
+        description: Update an upload information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: New status of the upload
+        - name: assignee
+          in: query
+          type: integer
+          description: New assignee for the project
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: moveuploadbyid
+        method: PUT
+        description: Copy/Move an upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folderId
+          in: header
+          type: integer
+          description: Folder Id, where upload should be copied to
+          required: true
+        - name: action
+          in: header
+          type: string
+          description: Action to be performed
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FOSSOLOGY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fossology-organize-rest
+    port: 8080
+    description: REST adapter for FOSSology API — Organize. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/folders
+      name: folders
+      description: REST surface for folders.
+      operations:
+      - method: POST
+        name: createfolder
+        description: Create a new folder
+        call: fossology-organize.createfolder
+        with:
+          parentFolder: rest.parentFolder
+          folderName: rest.folderName
+          folderDescription: rest.folderDescription
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/folders/{id}
+      name: folders-id
+      description: REST surface for folders-id.
+      operations:
+      - method: DELETE
+        name: deletefolderbyid
+        description: Delete a folder
+        call: fossology-organize.deletefolderbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchfolderbyid
+        description: Edit a folder's description
+        call: fossology-organize.patchfolderbyid
+        with:
+          name: rest.name
+          description: rest.description
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: movefolderbyid
+        description: Copy/Move a folder
+        call: fossology-organize.movefolderbyid
+        with:
+          parent: rest.parent
+          action: rest.action
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/groups
+      name: groups
+      description: REST surface for groups.
+      operations:
+      - method: POST
+        name: creategroup
+        description: Create a new group
+        call: fossology-organize.creategroup
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}
+      name: uploads-id
+      description: REST surface for uploads-id.
+      operations:
+      - method: DELETE
+        name: deleteuploadbyid
+        description: Delete upload by id
+        call: fossology-organize.deleteuploadbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateuploadbyid
+        description: Update an upload information
+        call: fossology-organize.updateuploadbyid
+        with:
+          status: rest.status
+          assignee: rest.assignee
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: moveuploadbyid
+        description: Copy/Move an upload
+        call: fossology-organize.moveuploadbyid
+        with:
+          folderId: rest.folderId
+          action: rest.action
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fossology-organize-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FOSSology API — Organize. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-new-folder
+      description: Create a new folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-organize.createfolder
+      with:
+        parentFolder: tools.parentFolder
+        folderName: tools.folderName
+        folderDescription: tools.folderDescription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-folder
+      description: Delete a folder
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fossology-organize.deletefolderbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: edit-folder-s-description
+      description: Edit a folder's description
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-organize.patchfolderbyid
+      with:
+        name: tools.name
+        description: tools.description
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copy-move-folder
+      description: Copy/Move a folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-organize.movefolderbyid
+      with:
+        parent: tools.parent
+        action: tools.action
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-group
+      description: Create a new group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-organize.creategroup
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-upload-id
+      description: Delete upload by id
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fossology-organize.deleteuploadbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-upload-information
+      description: Update an upload information
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-organize.updateuploadbyid
+      with:
+        status: tools.status
+        assignee: tools.assignee
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copy-move-upload
+      description: Copy/Move an upload
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-organize.moveuploadbyid
+      with:
+        folderId: tools.folderId
+        action: tools.action
+      outputParameters:
+      - type: object
+        mapping: $.

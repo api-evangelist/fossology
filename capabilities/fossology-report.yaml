@@ -1,0 +1,167 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FOSSology API — Report
+  description: 'FOSSology API — Report. 3 operations. Lead operation: Get the reports for a given upload. Self-contained Naftiko
+    capability covering one Fossology business surface.'
+  tags:
+  - Fossology
+  - Report
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FOSSOLOGY_API_KEY: FOSSOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fossology-report
+    baseUri: http://localhost/repo/api/v1
+    description: FOSSology API — Report business capability. Self-contained, no shared references.
+    resources:
+    - name: report
+      path: /report
+      operations:
+      - name: getreportsbyupload
+        method: GET
+        description: Get the reports for a given upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: uploadId
+          in: header
+          type: integer
+          description: Id of the upload to generate the report for
+          required: true
+        - name: reportFormat
+          in: header
+          type: string
+          description: Which report to be genereated
+          required: true
+        - name: groupName
+          in: header
+          type: string
+          description: The group name to chose while generating a report
+    - name: report-import
+      path: /report/import
+      operations:
+      - name: uploadreport
+        method: POST
+        description: Import a report to an existing upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: report-id
+      path: /report/{id}
+      operations:
+      - name: getreportbyid
+        method: GET
+        description: Download the report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FOSSOLOGY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fossology-report-rest
+    port: 8080
+    description: REST adapter for FOSSology API — Report. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/report
+      name: report
+      description: REST surface for report.
+      operations:
+      - method: GET
+        name: getreportsbyupload
+        description: Get the reports for a given upload
+        call: fossology-report.getreportsbyupload
+        with:
+          uploadId: rest.uploadId
+          reportFormat: rest.reportFormat
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/report/import
+      name: report-import
+      description: REST surface for report-import.
+      operations:
+      - method: POST
+        name: uploadreport
+        description: Import a report to an existing upload
+        call: fossology-report.uploadreport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/report/{id}
+      name: report-id
+      description: REST surface for report-id.
+      operations:
+      - method: GET
+        name: getreportbyid
+        description: Download the report
+        call: fossology-report.getreportbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fossology-report-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FOSSology API — Report. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-reports-given-upload
+      description: Get the reports for a given upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-report.getreportsbyupload
+      with:
+        uploadId: tools.uploadId
+        reportFormat: tools.reportFormat
+        groupName: tools.groupName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-report-existing-upload
+      description: Import a report to an existing upload
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-report.uploadreport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-report
+      description: Download the report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-report.getreportbyid
+      outputParameters:
+      - type: object
+        mapping: $.

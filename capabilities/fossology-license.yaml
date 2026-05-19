@@ -1,0 +1,887 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FOSSology API — License
+  description: 'FOSSology API — License. 22 operations. Lead operation: Get all license from the database. Self-contained
+    Naftiko capability covering one Fossology business surface.'
+  tags:
+  - Fossology
+  - License
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FOSSOLOGY_API_KEY: FOSSOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fossology-license
+    baseUri: http://localhost/repo/api/v1
+    description: FOSSology API — License business capability. Self-contained, no shared references.
+    resources:
+    - name: license
+      path: /license
+      operations:
+      - name: getlicenses
+        method: GET
+        description: Get all license from the database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: header
+          type: integer
+          description: Page number to fetch
+        - name: limit
+          in: header
+          type: integer
+          description: Limits of responses per request
+        - name: active
+          in: header
+          type: boolean
+          description: Get only active licenses
+        - name: kind
+          in: query
+          type: string
+          description: Which kind of licenses to get.
+      - name: createlicense
+        method: POST
+        description: Create a new license
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-adminacknowledgements
+      path: /license/adminacknowledgements
+      operations:
+      - name: getadminlicenseacknowledgements
+        method: GET
+        description: Get all admin license acknowledgements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: mutateadminlicenseacknowledgement
+        method: PUT
+        description: Add, Edit, Enable & Disable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-admincandidates
+      path: /license/admincandidates
+      operations:
+      - name: getadminlicensecandidates
+        method: GET
+        description: Get license Candidates for admin view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: license-admincandidates-id
+      path: /license/admincandidates/{id}
+      operations:
+      - name: deletebylicensecandidateid
+        method: DELETE
+        description: Delete license candidate by id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: license-export-csv
+      path: /license/export-csv
+      operations:
+      - name: exportlicense
+        method: GET
+        description: Export a csv license
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: integer
+          description: License id to export, 0 for all
+    - name: license-export-json
+      path: /license/export-json
+      operations:
+      - name: exportadminlicensetojson
+        method: GET
+        description: Export a json license
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: integer
+          description: License id to export, 0 for all
+    - name: license-import-csv
+      path: /license/import-csv
+      operations:
+      - name: importlicense
+        method: POST
+        description: Import a csv license
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-import-json
+      path: /license/import-json
+      operations:
+      - name: handleimportlicense
+        method: POST
+        description: Import a json license
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-merge-shortname
+      path: /license/merge/{shortname}
+      operations:
+      - name: mergelicense
+        method: PUT
+        description: Merge a license with another
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-stdcomments
+      path: /license/stdcomments
+      operations:
+      - name: getallstandardlicensecomments
+        method: GET
+        description: Get all standard license comments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: mutatestdcomments
+        method: PUT
+        description: Add, Edit, Enable & Disable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-suggest
+      path: /license/suggest
+      operations:
+      - name: getsuggestedlicense
+        method: POST
+        description: Get suggested license by reference text.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-verify-shortname
+      path: /license/verify/{shortname}
+      operations:
+      - name: verifylicense
+        method: PUT
+        description: Verify a license as new or variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: license-shortname
+      path: /license/{shortname}
+      operations:
+      - name: getlicensebyshortname
+        method: GET
+        description: Get a specific license
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatelicensebyshortname
+        method: PATCH
+        description: Update a license
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: obligations-export-csv
+      path: /obligations/export-csv
+      operations:
+      - name: exportlicenseobligations
+        method: GET
+        description: Export a csv obligation list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: integer
+          description: Obligation id to export, 0 for all
+    - name: obligations-export-json
+      path: /obligations/export-json
+      operations:
+      - name: exportobligationstojson
+        method: GET
+        description: Export a json obligation list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: integer
+          description: Obligation id to export, 0 for all
+    - name: obligations-import-csv
+      path: /obligations/import-csv
+      operations:
+      - name: importobligationcsv
+        method: POST
+        description: Import an obligation csv file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: obligations-import-json
+      path: /obligations/import-json
+      operations:
+      - name: importobligationsfromjson
+        method: POST
+        description: Import an obligation json file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-id-item-itemId-view
+      path: /uploads/{id}/item/{itemId}/view
+      operations:
+      - name: viewthecontentofthefile
+        method: GET
+        description: Get the contents of the file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FOSSOLOGY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fossology-license-rest
+    port: 8080
+    description: REST adapter for FOSSology API — License. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/license
+      name: license
+      description: REST surface for license.
+      operations:
+      - method: GET
+        name: getlicenses
+        description: Get all license from the database
+        call: fossology-license.getlicenses
+        with:
+          page: rest.page
+          limit: rest.limit
+          active: rest.active
+          kind: rest.kind
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlicense
+        description: Create a new license
+        call: fossology-license.createlicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/adminacknowledgements
+      name: license-adminacknowledgements
+      description: REST surface for license-adminacknowledgements.
+      operations:
+      - method: GET
+        name: getadminlicenseacknowledgements
+        description: Get all admin license acknowledgements
+        call: fossology-license.getadminlicenseacknowledgements
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: mutateadminlicenseacknowledgement
+        description: Add, Edit, Enable & Disable
+        call: fossology-license.mutateadminlicenseacknowledgement
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/admincandidates
+      name: license-admincandidates
+      description: REST surface for license-admincandidates.
+      operations:
+      - method: GET
+        name: getadminlicensecandidates
+        description: Get license Candidates for admin view
+        call: fossology-license.getadminlicensecandidates
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/admincandidates/{id}
+      name: license-admincandidates-id
+      description: REST surface for license-admincandidates-id.
+      operations:
+      - method: DELETE
+        name: deletebylicensecandidateid
+        description: Delete license candidate by id.
+        call: fossology-license.deletebylicensecandidateid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/export-csv
+      name: license-export-csv
+      description: REST surface for license-export-csv.
+      operations:
+      - method: GET
+        name: exportlicense
+        description: Export a csv license
+        call: fossology-license.exportlicense
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/export-json
+      name: license-export-json
+      description: REST surface for license-export-json.
+      operations:
+      - method: GET
+        name: exportadminlicensetojson
+        description: Export a json license
+        call: fossology-license.exportadminlicensetojson
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/import-csv
+      name: license-import-csv
+      description: REST surface for license-import-csv.
+      operations:
+      - method: POST
+        name: importlicense
+        description: Import a csv license
+        call: fossology-license.importlicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/import-json
+      name: license-import-json
+      description: REST surface for license-import-json.
+      operations:
+      - method: POST
+        name: handleimportlicense
+        description: Import a json license
+        call: fossology-license.handleimportlicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/merge/{shortname}
+      name: license-merge-shortname
+      description: REST surface for license-merge-shortname.
+      operations:
+      - method: PUT
+        name: mergelicense
+        description: Merge a license with another
+        call: fossology-license.mergelicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/stdcomments
+      name: license-stdcomments
+      description: REST surface for license-stdcomments.
+      operations:
+      - method: GET
+        name: getallstandardlicensecomments
+        description: Get all standard license comments
+        call: fossology-license.getallstandardlicensecomments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: mutatestdcomments
+        description: Add, Edit, Enable & Disable
+        call: fossology-license.mutatestdcomments
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/suggest
+      name: license-suggest
+      description: REST surface for license-suggest.
+      operations:
+      - method: POST
+        name: getsuggestedlicense
+        description: Get suggested license by reference text.
+        call: fossology-license.getsuggestedlicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/verify/{shortname}
+      name: license-verify-shortname
+      description: REST surface for license-verify-shortname.
+      operations:
+      - method: PUT
+        name: verifylicense
+        description: Verify a license as new or variant
+        call: fossology-license.verifylicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/license/{shortname}
+      name: license-shortname
+      description: REST surface for license-shortname.
+      operations:
+      - method: GET
+        name: getlicensebyshortname
+        description: Get a specific license
+        call: fossology-license.getlicensebyshortname
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatelicensebyshortname
+        description: Update a license
+        call: fossology-license.updatelicensebyshortname
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/obligations/export-csv
+      name: obligations-export-csv
+      description: REST surface for obligations-export-csv.
+      operations:
+      - method: GET
+        name: exportlicenseobligations
+        description: Export a csv obligation list
+        call: fossology-license.exportlicenseobligations
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/obligations/export-json
+      name: obligations-export-json
+      description: REST surface for obligations-export-json.
+      operations:
+      - method: GET
+        name: exportobligationstojson
+        description: Export a json obligation list
+        call: fossology-license.exportobligationstojson
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/obligations/import-csv
+      name: obligations-import-csv
+      description: REST surface for obligations-import-csv.
+      operations:
+      - method: POST
+        name: importobligationcsv
+        description: Import an obligation csv file
+        call: fossology-license.importobligationcsv
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/obligations/import-json
+      name: obligations-import-json
+      description: REST surface for obligations-import-json.
+      operations:
+      - method: POST
+        name: importobligationsfromjson
+        description: Import an obligation json file
+        call: fossology-license.importobligationsfromjson
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/view
+      name: uploads-id-item-itemid-view
+      description: REST surface for uploads-id-item-itemId-view.
+      operations:
+      - method: GET
+        name: viewthecontentofthefile
+        description: Get the contents of the file
+        call: fossology-license.viewthecontentofthefile
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fossology-license-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FOSSology API — License. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-all-license-database
+      description: Get all license from the database
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.getlicenses
+      with:
+        page: tools.page
+        limit: tools.limit
+        active: tools.active
+        kind: tools.kind
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-license
+      description: Create a new license
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-license.createlicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-admin-license-acknowledgements
+      description: Get all admin license acknowledgements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.getadminlicenseacknowledgements
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-edit-enable-disable
+      description: Add, Edit, Enable & Disable
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-license.mutateadminlicenseacknowledgement
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-license-candidates-admin-view
+      description: Get license Candidates for admin view
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.getadminlicensecandidates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-license-candidate-id
+      description: Delete license candidate by id.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fossology-license.deletebylicensecandidateid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-csv-license
+      description: Export a csv license
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.exportlicense
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-json-license
+      description: Export a json license
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.exportadminlicensetojson
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-csv-license
+      description: Import a csv license
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-license.importlicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-json-license
+      description: Import a json license
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-license.handleimportlicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: merge-license-another
+      description: Merge a license with another
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-license.mergelicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-standard-license-comments
+      description: Get all standard license comments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.getallstandardlicensecomments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-edit-enable-disable-2
+      description: Add, Edit, Enable & Disable
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-license.mutatestdcomments
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-suggested-license-reference-text
+      description: Get suggested license by reference text.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: fossology-license.getsuggestedlicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: verify-license-new-variant
+      description: Verify a license as new or variant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-license.verifylicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-specific-license
+      description: Get a specific license
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.getlicensebyshortname
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-license
+      description: Update a license
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-license.updatelicensebyshortname
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-csv-obligation-list
+      description: Export a csv obligation list
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.exportlicenseobligations
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-json-obligation-list
+      description: Export a json obligation list
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.exportobligationstojson
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-obligation-csv-file
+      description: Import an obligation csv file
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-license.importobligationcsv
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-obligation-json-file
+      description: Import an obligation json file
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-license.importobligationsfromjson
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-contents-file
+      description: Get the contents of the file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-license.viewthecontentofthefile
+      outputParameters:
+      - type: object
+        mapping: $.

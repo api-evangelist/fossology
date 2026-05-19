@@ -1,0 +1,1507 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FOSSology API — Upload
+  description: 'FOSSology API — Upload. 40 operations. Lead operation: Get the information of files matching the provided
+    hashes. Self-contained Naftiko capability covering one Fossology business surface.'
+  tags:
+  - Fossology
+  - Upload
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FOSSOLOGY_API_KEY: FOSSOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fossology-upload
+    baseUri: http://localhost/repo/api/v1
+    description: FOSSology API — Upload business capability. Self-contained, no shared references.
+    resources:
+    - name: filesearch
+      path: /filesearch
+      operations:
+      - name: getfiles
+        method: POST
+        description: Get the information of files matching the provided hashes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads
+      path: /uploads
+      operations:
+      - name: getuploads
+        method: GET
+        description: Uploads
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folderId
+          in: query
+          type: integer
+          description: Folder ID to limit the uploads to
+        - name: recursive
+          in: query
+          type: boolean
+          description: Load uploads from child folders as well
+        - name: name
+          in: query
+          type: string
+          description: Filter pattern for name and description
+        - name: status
+          in: query
+          type: string
+          description: Status of uploads
+        - name: assignee
+          in: query
+          type: string
+          description: User name to which uploads are assigned to or -me- or -unassigned-
+        - name: since
+          in: query
+          type: string
+          description: Uploads since given date in YYYY-MM-DD format
+        - name: page
+          in: header
+          type: integer
+          description: Page number to fetch
+        - name: limit
+          in: header
+          type: integer
+          description: Limits of responses per request
+      - name: createupload
+        method: POST
+        description: Post new upload to FOSSology
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folderId
+          in: header
+          type: integer
+          description: Folder Id, where upload should be created
+          required: true
+        - name: uploadDescription
+          in: header
+          type: string
+          description: Visible description of the file
+        - name: public
+          in: header
+          type: string
+          description: The access level to the upload
+        - name: applyGlobal
+          in: header
+          type: boolean
+          description: Apply global decisions for current upload
+        - name: ignoreScm
+          in: header
+          type: boolean
+          description: Ignore SCM files (Git, SVN, TFS) and files with particular Mimetype
+        - name: uploadType
+          in: header
+          type: string
+          description: Type of upload done. Choose `file` if uploading a file.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-oneshot-ceu
+      path: /uploads/oneshot/ceu
+      operations:
+      - name: runoneshotceu
+        method: POST
+        description: Run one-shot Copyright/Email/URL analysis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-oneshot-monk
+      path: /uploads/oneshot/monk
+      operations:
+      - name: runoneshotmonk
+        method: POST
+        description: Run one-shot monk analysis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-oneshot-nomos
+      path: /uploads/oneshot/nomos
+      operations:
+      - name: runoneshotnomos
+        method: POST
+        description: Run one-shot nomos analysis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-id
+      path: /uploads/{id}
+      operations:
+      - name: getuploadbyid
+        method: GET
+        description: Get single upload by id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteuploadbyid
+        method: DELETE
+        description: Delete upload by id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateuploadbyid
+        method: PATCH
+        description: Update an upload information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: New status of the upload
+        - name: assignee
+          in: query
+          type: integer
+          description: New assignee for the project
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: moveuploadbyid
+        method: PUT
+        description: Copy/Move an upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folderId
+          in: header
+          type: integer
+          description: Folder Id, where upload should be copied to
+          required: true
+        - name: action
+          in: header
+          type: string
+          description: Action to be performed
+          required: true
+    - name: uploads-id-agents
+      path: /uploads/{id}/agents
+      operations:
+      - name: getagentsbyuploadid
+        method: GET
+        description: Get agents for a upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-agents-revision
+      path: /uploads/{id}/agents/revision
+      operations:
+      - name: getrevisionsforagents
+        method: GET
+        description: Get revisions for successful agents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-clearing-progress
+      path: /uploads/{id}/clearing-progress
+      operations:
+      - name: getclearingprogressinfo
+        method: GET
+        description: Get the clearing progress info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-conf
+      path: /uploads/{id}/conf
+      operations:
+      - name: getconfinfo
+        method: GET
+        description: Get the conf information of a particular upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateconfdata
+        method: PUT
+        description: Update the Conf page data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-id-copyrights
+      path: /uploads/{id}/copyrights
+      operations:
+      - name: getcopyrightsbyuploadid
+        method: GET
+        description: Get copyrights found on the upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-download
+      path: /uploads/{id}/download
+      operations:
+      - name: getuploadfilebyid
+        method: GET
+        description: Download the file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-item-itemId-bulk-history
+      path: /uploads/{id}/item/{itemId}/bulk-history
+      operations:
+      - name: getbulkhistory
+        method: GET
+        description: Get the bulk history
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-item-itemId-bulk-scan
+      path: /uploads/{id}/item/{itemId}/bulk-scan
+      operations:
+      - name: schedulebulkscan
+        method: POST
+        description: Schedule the bulk scan for the item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-id-item-itemId-clearing-decision
+      path: /uploads/{id}/item/{itemId}/clearing-decision
+      operations:
+      - name: setclearingdecision
+        method: PUT
+        description: Set the clearing decision for a particular upload tree item.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-id-item-itemId-clearing-history
+      path: /uploads/{id}/item/{itemId}/clearing-history
+      operations:
+      - name: getclearinghistory
+        method: GET
+        description: Get the clearing history
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-item-itemId-highlight
+      path: /uploads/{id}/item/{itemId}/highlight
+      operations:
+      - name: gethighlightentries
+        method: GET
+        description: Get highlight entries of the content.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-item-itemId-info
+      path: /uploads/{id}/item/{itemId}/info
+      operations:
+      - name: getiteminfo
+        method: GET
+        description: Get single file info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-item-itemId-licenses
+      path: /uploads/{id}/item/{itemId}/licenses
+      operations:
+      - name: getlicensedecisions
+        method: GET
+        description: Get the license decisions list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addeditdeletelicensedecision
+        method: PUT
+        description: Add, update or delete a license decision.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-id-item-itemId-prev-next
+      path: /uploads/{id}/item/{itemId}/prev-next
+      operations:
+      - name: getpreviousandnextitem
+        method: GET
+        description: Get previous and next item for an upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-item-itemId-tree-view
+      path: /uploads/{id}/item/{itemId}/tree/view
+      operations:
+      - name: getitemtreeview
+        method: GET
+        description: Get the tree view for the given upload and item id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-item-itemId-view
+      path: /uploads/{id}/item/{itemId}/view
+      operations:
+      - name: viewthecontentofthefile
+        method: GET
+        description: Get the contents of the file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-licenses
+      path: /uploads/{id}/licenses
+      operations:
+      - name: getlicensesbyuploadid
+        method: GET
+        description: Get licenses found by agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-licenses-edited
+      path: /uploads/{id}/licenses/edited
+      operations:
+      - name: getalleditedlicenses
+        method: GET
+        description: Get the edited licenses list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-licenses-histogram
+      path: /uploads/{id}/licenses/histogram
+      operations:
+      - name: getlicenseshistogram
+        method: GET
+        description: Get the licenses histogram
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-licenses-main
+      path: /uploads/{id}/licenses/main
+      operations:
+      - name: getmainlicenses
+        method: GET
+        description: Get main licenses on the upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setmainlicense
+        method: POST
+        description: Set the main license for the upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: uploads-id-licenses-reuse
+      path: /uploads/{id}/licenses/reuse
+      operations:
+      - name: getlicensesreusesummary
+        method: GET
+        description: Get the overall licenses reuse summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-licenses-scanned
+      path: /uploads/{id}/licenses/scanned
+      operations:
+      - name: getallscannedlicenses
+        method: GET
+        description: Get the scanned licenses list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-licenses-shortName-main
+      path: /uploads/{id}/licenses/{shortName}/main
+      operations:
+      - name: deletemainlicense
+        method: DELETE
+        description: Delete a main license from an upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-perm-groups
+      path: /uploads/{id}/perm-groups
+      operations:
+      - name: getgroupswithpermissions
+        method: GET
+        description: Get all the groups with their respective permissions for a upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-permissions
+      path: /uploads/{id}/permissions
+      operations:
+      - name: setuploadpermissions
+        method: PUT
+        description: Set permissions for a upload in a folder for different groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: uploads-id-summary
+      path: /uploads/{id}/summary
+      operations:
+      - name: getsummarybyuploadid
+        method: GET
+        description: Get single upload summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: uploads-id-topitem
+      path: /uploads/{id}/topitem
+      operations:
+      - name: gettopitemid
+        method: GET
+        description: Get the top level item id for a given upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FOSSOLOGY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fossology-upload-rest
+    port: 8080
+    description: REST adapter for FOSSology API — Upload. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/filesearch
+      name: filesearch
+      description: REST surface for filesearch.
+      operations:
+      - method: POST
+        name: getfiles
+        description: Get the information of files matching the provided hashes
+        call: fossology-upload.getfiles
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads
+      name: uploads
+      description: REST surface for uploads.
+      operations:
+      - method: GET
+        name: getuploads
+        description: Uploads
+        call: fossology-upload.getuploads
+        with:
+          folderId: rest.folderId
+          recursive: rest.recursive
+          name: rest.name
+          status: rest.status
+          assignee: rest.assignee
+          since: rest.since
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createupload
+        description: Post new upload to FOSSology
+        call: fossology-upload.createupload
+        with:
+          folderId: rest.folderId
+          uploadDescription: rest.uploadDescription
+          public: rest.public
+          applyGlobal: rest.applyGlobal
+          ignoreScm: rest.ignoreScm
+          uploadType: rest.uploadType
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/oneshot/ceu
+      name: uploads-oneshot-ceu
+      description: REST surface for uploads-oneshot-ceu.
+      operations:
+      - method: POST
+        name: runoneshotceu
+        description: Run one-shot Copyright/Email/URL analysis
+        call: fossology-upload.runoneshotceu
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/oneshot/monk
+      name: uploads-oneshot-monk
+      description: REST surface for uploads-oneshot-monk.
+      operations:
+      - method: POST
+        name: runoneshotmonk
+        description: Run one-shot monk analysis
+        call: fossology-upload.runoneshotmonk
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/oneshot/nomos
+      name: uploads-oneshot-nomos
+      description: REST surface for uploads-oneshot-nomos.
+      operations:
+      - method: POST
+        name: runoneshotnomos
+        description: Run one-shot nomos analysis
+        call: fossology-upload.runoneshotnomos
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}
+      name: uploads-id
+      description: REST surface for uploads-id.
+      operations:
+      - method: GET
+        name: getuploadbyid
+        description: Get single upload by id
+        call: fossology-upload.getuploadbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteuploadbyid
+        description: Delete upload by id
+        call: fossology-upload.deleteuploadbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateuploadbyid
+        description: Update an upload information
+        call: fossology-upload.updateuploadbyid
+        with:
+          status: rest.status
+          assignee: rest.assignee
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: moveuploadbyid
+        description: Copy/Move an upload
+        call: fossology-upload.moveuploadbyid
+        with:
+          folderId: rest.folderId
+          action: rest.action
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/agents
+      name: uploads-id-agents
+      description: REST surface for uploads-id-agents.
+      operations:
+      - method: GET
+        name: getagentsbyuploadid
+        description: Get agents for a upload
+        call: fossology-upload.getagentsbyuploadid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/agents/revision
+      name: uploads-id-agents-revision
+      description: REST surface for uploads-id-agents-revision.
+      operations:
+      - method: GET
+        name: getrevisionsforagents
+        description: Get revisions for successful agents
+        call: fossology-upload.getrevisionsforagents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/clearing-progress
+      name: uploads-id-clearing-progress
+      description: REST surface for uploads-id-clearing-progress.
+      operations:
+      - method: GET
+        name: getclearingprogressinfo
+        description: Get the clearing progress info
+        call: fossology-upload.getclearingprogressinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/conf
+      name: uploads-id-conf
+      description: REST surface for uploads-id-conf.
+      operations:
+      - method: GET
+        name: getconfinfo
+        description: Get the conf information of a particular upload
+        call: fossology-upload.getconfinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateconfdata
+        description: Update the Conf page data
+        call: fossology-upload.updateconfdata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/copyrights
+      name: uploads-id-copyrights
+      description: REST surface for uploads-id-copyrights.
+      operations:
+      - method: GET
+        name: getcopyrightsbyuploadid
+        description: Get copyrights found on the upload
+        call: fossology-upload.getcopyrightsbyuploadid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/download
+      name: uploads-id-download
+      description: REST surface for uploads-id-download.
+      operations:
+      - method: GET
+        name: getuploadfilebyid
+        description: Download the file
+        call: fossology-upload.getuploadfilebyid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/bulk-history
+      name: uploads-id-item-itemid-bulk-history
+      description: REST surface for uploads-id-item-itemId-bulk-history.
+      operations:
+      - method: GET
+        name: getbulkhistory
+        description: Get the bulk history
+        call: fossology-upload.getbulkhistory
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/bulk-scan
+      name: uploads-id-item-itemid-bulk-scan
+      description: REST surface for uploads-id-item-itemId-bulk-scan.
+      operations:
+      - method: POST
+        name: schedulebulkscan
+        description: Schedule the bulk scan for the item
+        call: fossology-upload.schedulebulkscan
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/clearing-decision
+      name: uploads-id-item-itemid-clearing-decision
+      description: REST surface for uploads-id-item-itemId-clearing-decision.
+      operations:
+      - method: PUT
+        name: setclearingdecision
+        description: Set the clearing decision for a particular upload tree item.
+        call: fossology-upload.setclearingdecision
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/clearing-history
+      name: uploads-id-item-itemid-clearing-history
+      description: REST surface for uploads-id-item-itemId-clearing-history.
+      operations:
+      - method: GET
+        name: getclearinghistory
+        description: Get the clearing history
+        call: fossology-upload.getclearinghistory
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/highlight
+      name: uploads-id-item-itemid-highlight
+      description: REST surface for uploads-id-item-itemId-highlight.
+      operations:
+      - method: GET
+        name: gethighlightentries
+        description: Get highlight entries of the content.
+        call: fossology-upload.gethighlightentries
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/info
+      name: uploads-id-item-itemid-info
+      description: REST surface for uploads-id-item-itemId-info.
+      operations:
+      - method: GET
+        name: getiteminfo
+        description: Get single file info
+        call: fossology-upload.getiteminfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/licenses
+      name: uploads-id-item-itemid-licenses
+      description: REST surface for uploads-id-item-itemId-licenses.
+      operations:
+      - method: GET
+        name: getlicensedecisions
+        description: Get the license decisions list
+        call: fossology-upload.getlicensedecisions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: addeditdeletelicensedecision
+        description: Add, update or delete a license decision.
+        call: fossology-upload.addeditdeletelicensedecision
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/prev-next
+      name: uploads-id-item-itemid-prev-next
+      description: REST surface for uploads-id-item-itemId-prev-next.
+      operations:
+      - method: GET
+        name: getpreviousandnextitem
+        description: Get previous and next item for an upload
+        call: fossology-upload.getpreviousandnextitem
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/tree/view
+      name: uploads-id-item-itemid-tree-view
+      description: REST surface for uploads-id-item-itemId-tree-view.
+      operations:
+      - method: GET
+        name: getitemtreeview
+        description: Get the tree view for the given upload and item id
+        call: fossology-upload.getitemtreeview
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/item/{itemid}/view
+      name: uploads-id-item-itemid-view
+      description: REST surface for uploads-id-item-itemId-view.
+      operations:
+      - method: GET
+        name: viewthecontentofthefile
+        description: Get the contents of the file
+        call: fossology-upload.viewthecontentofthefile
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/licenses
+      name: uploads-id-licenses
+      description: REST surface for uploads-id-licenses.
+      operations:
+      - method: GET
+        name: getlicensesbyuploadid
+        description: Get licenses found by agent
+        call: fossology-upload.getlicensesbyuploadid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/licenses/edited
+      name: uploads-id-licenses-edited
+      description: REST surface for uploads-id-licenses-edited.
+      operations:
+      - method: GET
+        name: getalleditedlicenses
+        description: Get the edited licenses list
+        call: fossology-upload.getalleditedlicenses
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/licenses/histogram
+      name: uploads-id-licenses-histogram
+      description: REST surface for uploads-id-licenses-histogram.
+      operations:
+      - method: GET
+        name: getlicenseshistogram
+        description: Get the licenses histogram
+        call: fossology-upload.getlicenseshistogram
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/licenses/main
+      name: uploads-id-licenses-main
+      description: REST surface for uploads-id-licenses-main.
+      operations:
+      - method: GET
+        name: getmainlicenses
+        description: Get main licenses on the upload
+        call: fossology-upload.getmainlicenses
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: setmainlicense
+        description: Set the main license for the upload
+        call: fossology-upload.setmainlicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/licenses/reuse
+      name: uploads-id-licenses-reuse
+      description: REST surface for uploads-id-licenses-reuse.
+      operations:
+      - method: GET
+        name: getlicensesreusesummary
+        description: Get the overall licenses reuse summary
+        call: fossology-upload.getlicensesreusesummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/licenses/scanned
+      name: uploads-id-licenses-scanned
+      description: REST surface for uploads-id-licenses-scanned.
+      operations:
+      - method: GET
+        name: getallscannedlicenses
+        description: Get the scanned licenses list
+        call: fossology-upload.getallscannedlicenses
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/licenses/{shortname}/main
+      name: uploads-id-licenses-shortname-main
+      description: REST surface for uploads-id-licenses-shortName-main.
+      operations:
+      - method: DELETE
+        name: deletemainlicense
+        description: Delete a main license from an upload
+        call: fossology-upload.deletemainlicense
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/perm-groups
+      name: uploads-id-perm-groups
+      description: REST surface for uploads-id-perm-groups.
+      operations:
+      - method: GET
+        name: getgroupswithpermissions
+        description: Get all the groups with their respective permissions for a upload
+        call: fossology-upload.getgroupswithpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/permissions
+      name: uploads-id-permissions
+      description: REST surface for uploads-id-permissions.
+      operations:
+      - method: PUT
+        name: setuploadpermissions
+        description: Set permissions for a upload in a folder for different groups
+        call: fossology-upload.setuploadpermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/summary
+      name: uploads-id-summary
+      description: REST surface for uploads-id-summary.
+      operations:
+      - method: GET
+        name: getsummarybyuploadid
+        description: Get single upload summary
+        call: fossology-upload.getsummarybyuploadid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/uploads/{id}/topitem
+      name: uploads-id-topitem
+      description: REST surface for uploads-id-topitem.
+      operations:
+      - method: GET
+        name: gettopitemid
+        description: Get the top level item id for a given upload
+        call: fossology-upload.gettopitemid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fossology-upload-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FOSSology API — Upload. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-information-files-matching-provided
+      description: Get the information of files matching the provided hashes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: fossology-upload.getfiles
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uploads
+      description: Uploads
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getuploads
+      with:
+        folderId: tools.folderId
+        recursive: tools.recursive
+        name: tools.name
+        status: tools.status
+        assignee: tools.assignee
+        since: tools.since
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-new-upload-fossology
+      description: Post new upload to FOSSology
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-upload.createupload
+      with:
+        folderId: tools.folderId
+        uploadDescription: tools.uploadDescription
+        public: tools.public
+        applyGlobal: tools.applyGlobal
+        ignoreScm: tools.ignoreScm
+        uploadType: tools.uploadType
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-one-shot-copyright-email
+      description: Run one-shot Copyright/Email/URL analysis
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-upload.runoneshotceu
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-one-shot-monk-analysis
+      description: Run one-shot monk analysis
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-upload.runoneshotmonk
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-one-shot-nomos-analysis
+      description: Run one-shot nomos analysis
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-upload.runoneshotnomos
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-upload-id
+      description: Get single upload by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getuploadbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-upload-id
+      description: Delete upload by id
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fossology-upload.deleteuploadbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-upload-information
+      description: Update an upload information
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-upload.updateuploadbyid
+      with:
+        status: tools.status
+        assignee: tools.assignee
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copy-move-upload
+      description: Copy/Move an upload
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-upload.moveuploadbyid
+      with:
+        folderId: tools.folderId
+        action: tools.action
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agents-upload
+      description: Get agents for a upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getagentsbyuploadid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-revisions-successful-agents
+      description: Get revisions for successful agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getrevisionsforagents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-clearing-progress-info
+      description: Get the clearing progress info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getclearingprogressinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-conf-information-particular-upload
+      description: Get the conf information of a particular upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getconfinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-conf-page-data
+      description: Update the Conf page data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-upload.updateconfdata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-copyrights-found-upload
+      description: Get copyrights found on the upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getcopyrightsbyuploadid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-file
+      description: Download the file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getuploadfilebyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bulk-history
+      description: Get the bulk history
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getbulkhistory
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: schedule-bulk-scan-item
+      description: Schedule the bulk scan for the item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-upload.schedulebulkscan
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-clearing-decision-particular-upload
+      description: Set the clearing decision for a particular upload tree item.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-upload.setclearingdecision
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-clearing-history
+      description: Get the clearing history
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getclearinghistory
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-highlight-entries-content
+      description: Get highlight entries of the content.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.gethighlightentries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-file-info
+      description: Get single file info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getiteminfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-license-decisions-list
+      description: Get the license decisions list
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getlicensedecisions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-update-delete-license-decision
+      description: Add, update or delete a license decision.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-upload.addeditdeletelicensedecision
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-previous-and-next-item
+      description: Get previous and next item for an upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getpreviousandnextitem
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tree-view-given-upload
+      description: Get the tree view for the given upload and item id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getitemtreeview
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-contents-file
+      description: Get the contents of the file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.viewthecontentofthefile
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-licenses-found-agent
+      description: Get licenses found by agent
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getlicensesbyuploadid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-edited-licenses-list
+      description: Get the edited licenses list
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getalleditedlicenses
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-licenses-histogram
+      description: Get the licenses histogram
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getlicenseshistogram
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-main-licenses-upload
+      description: Get main licenses on the upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getmainlicenses
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-main-license-upload
+      description: Set the main license for the upload
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: fossology-upload.setmainlicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-overall-licenses-reuse-summary
+      description: Get the overall licenses reuse summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getlicensesreusesummary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-scanned-licenses-list
+      description: Get the scanned licenses list
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getallscannedlicenses
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-main-license-upload
+      description: Delete a main license from an upload
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: fossology-upload.deletemainlicense
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-groups-their-respective
+      description: Get all the groups with their respective permissions for a upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getgroupswithpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-permissions-upload-folder-different
+      description: Set permissions for a upload in a folder for different groups
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: fossology-upload.setuploadpermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-upload-summary
+      description: Get single upload summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.getsummarybyuploadid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-level-item-id
+      description: Get the top level item id for a given upload
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-upload.gettopitemid
+      outputParameters:
+      - type: object
+        mapping: $.

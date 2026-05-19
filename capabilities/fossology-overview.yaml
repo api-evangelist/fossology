@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FOSSology API — Overview
+  description: 'FOSSology API — Overview. 5 operations. Lead operation: Get database contents. Self-contained Naftiko capability
+    covering one Fossology business surface.'
+  tags:
+  - Fossology
+  - Overview
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FOSSOLOGY_API_KEY: FOSSOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fossology-overview
+    baseUri: http://localhost/repo/api/v1
+    description: FOSSology API — Overview business capability. Self-contained, no shared references.
+    resources:
+    - name: overview-database-contents
+      path: /overview/database/contents
+      operations:
+      - name: getdatabasecontents
+        method: GET
+        description: Get database contents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: overview-database-metrics
+      path: /overview/database/metrics
+      operations:
+      - name: getdatabasemetrics
+        method: GET
+        description: Get database metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: overview-disk-usage
+      path: /overview/disk/usage
+      operations:
+      - name: getdiskusage
+        method: GET
+        description: Get disk usage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: overview-info-php
+      path: /overview/info/php
+      operations:
+      - name: getphpinfo
+        method: GET
+        description: Get PHP info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: overview-queries-active
+      path: /overview/queries/active
+      operations:
+      - name: getactivequeries
+        method: GET
+        description: Get active queries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FOSSOLOGY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fossology-overview-rest
+    port: 8080
+    description: REST adapter for FOSSology API — Overview. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/overview/database/contents
+      name: overview-database-contents
+      description: REST surface for overview-database-contents.
+      operations:
+      - method: GET
+        name: getdatabasecontents
+        description: Get database contents
+        call: fossology-overview.getdatabasecontents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/overview/database/metrics
+      name: overview-database-metrics
+      description: REST surface for overview-database-metrics.
+      operations:
+      - method: GET
+        name: getdatabasemetrics
+        description: Get database metrics
+        call: fossology-overview.getdatabasemetrics
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/overview/disk/usage
+      name: overview-disk-usage
+      description: REST surface for overview-disk-usage.
+      operations:
+      - method: GET
+        name: getdiskusage
+        description: Get disk usage
+        call: fossology-overview.getdiskusage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/overview/info/php
+      name: overview-info-php
+      description: REST surface for overview-info-php.
+      operations:
+      - method: GET
+        name: getphpinfo
+        description: Get PHP info
+        call: fossology-overview.getphpinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/overview/queries/active
+      name: overview-queries-active
+      description: REST surface for overview-queries-active.
+      operations:
+      - method: GET
+        name: getactivequeries
+        description: Get active queries
+        call: fossology-overview.getactivequeries
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fossology-overview-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FOSSology API — Overview. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-database-contents
+      description: Get database contents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-overview.getdatabasecontents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-database-metrics
+      description: Get database metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-overview.getdatabasemetrics
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-disk-usage
+      description: Get disk usage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-overview.getdiskusage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-php-info
+      description: Get PHP info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-overview.getphpinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-active-queries
+      description: Get active queries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-overview.getactivequeries
+      outputParameters:
+      - type: object
+        mapping: $.

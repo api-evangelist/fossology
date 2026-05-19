@@ -1,0 +1,181 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FOSSology API — Search
+  description: 'FOSSology API — Search. 2 operations. Lead operation: Get the information of files matching the provided hashes.
+    Self-contained Naftiko capability covering one Fossology business surface.'
+  tags:
+  - Fossology
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FOSSOLOGY_API_KEY: FOSSOLOGY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: fossology-search
+    baseUri: http://localhost/repo/api/v1
+    description: FOSSology API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: filesearch
+      path: /filesearch
+      operations:
+      - name: getfiles
+        method: POST
+        description: Get the information of files matching the provided hashes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: search
+      path: /search
+      operations:
+      - name: searchfile
+        method: GET
+        description: Search the FOSSology for a specific file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupName
+          in: header
+          type: string
+          description: The group name to chose while performing search
+        - name: searchType
+          in: header
+          type: string
+          description: Limit search to
+        - name: uploadId
+          in: header
+          type: integer
+          description: Id of the upload to search files into
+        - name: filename
+          in: header
+          type: string
+          description: Filename to find, can contain % as wild-card
+        - name: tag
+          in: header
+          type: string
+          description: Tag to find
+        - name: page
+          in: header
+          type: integer
+          description: Page number (starts from 1)
+        - name: limit
+          in: header
+          type: integer
+          description: Limits of responses per request
+        - name: filesizemin
+          in: header
+          type: integer
+          description: Min filesize in bytes
+        - name: filesizemax
+          in: header
+          type: integer
+          description: Max filesize in bytes
+        - name: license
+          in: header
+          type: string
+          description: License search filter
+        - name: copyright
+          in: header
+          type: string
+          description: Copyright search filter
+    authentication:
+      type: bearer
+      token: '{{env.FOSSOLOGY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: fossology-search-rest
+    port: 8080
+    description: REST adapter for FOSSology API — Search. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/filesearch
+      name: filesearch
+      description: REST surface for filesearch.
+      operations:
+      - method: POST
+        name: getfiles
+        description: Get the information of files matching the provided hashes
+        call: fossology-search.getfiles
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/search
+      name: search
+      description: REST surface for search.
+      operations:
+      - method: GET
+        name: searchfile
+        description: Search the FOSSology for a specific file
+        call: fossology-search.searchfile
+        with:
+          groupName: rest.groupName
+          searchType: rest.searchType
+          uploadId: rest.uploadId
+          filename: rest.filename
+          tag: rest.tag
+          page: rest.page
+          limit: rest.limit
+          filesizemin: rest.filesizemin
+          filesizemax: rest.filesizemax
+          license: rest.license
+          copyright: rest.copyright
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: fossology-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FOSSology API — Search. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-information-files-matching-provided
+      description: Get the information of files matching the provided hashes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: fossology-search.getfiles
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-fossology-specific-file
+      description: Search the FOSSology for a specific file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: fossology-search.searchfile
+      with:
+        groupName: tools.groupName
+        searchType: tools.searchType
+        uploadId: tools.uploadId
+        filename: tools.filename
+        tag: tools.tag
+        page: tools.page
+        limit: tools.limit
+        filesizemin: tools.filesizemin
+        filesizemax: tools.filesizemax
+        license: tools.license
+        copyright: tools.copyright
+      outputParameters:
+      - type: object
+        mapping: $.
