@@ -62,11 +62,11 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
       - type: Vocabulary
         url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
-      - type: Example
+      - type: Examples
         name: Upload Example
         url: >-
           https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
-      - type: Example
+      - type: Examples
         name: License Example
         url: >-
           https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
