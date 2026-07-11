@@ -73,6 +73,8 @@ apis:
       - type: SourceCode
         url: https://github.com/fossology/fossology
 common:
+  - type: OAuthScopes
+    url: scopes/fossology-scopes.yml
   - type: Documentation
     name: FOSSology Documentation
     description: Official documentation for FOSSology.
@@ -87,6 +89,8 @@ common:
   - type: License
     name: GPL-2.0-only
     url: https://github.com/fossology/fossology/blob/master/LICENSE
+  - url: https://www.fossology.org/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
