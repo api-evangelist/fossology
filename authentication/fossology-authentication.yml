@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/fossology-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Token from FOSSology
+  sources:
+  - openapi/fossology-openapi.yml
+- name: oauth
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.example.com/oauth2/authorize
+    scopes: 0
+  description: Machine-2-Machine communication from oauth
+  sources:
+  - openapi/fossology-openapi.yml

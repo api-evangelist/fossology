@@ -73,6 +73,10 @@ apis:
       - type: SourceCode
         url: https://github.com/fossology/fossology
 common:
+  - type: DomainSecurity
+    url: security/fossology-domain-security.yml
+  - type: Authentication
+    url: authentication/fossology-authentication.yml
   - type: OAuthScopes
     url: scopes/fossology-scopes.yml
   - type: Documentation
