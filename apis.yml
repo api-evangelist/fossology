@@ -73,6 +73,8 @@ apis:
       - type: SourceCode
         url: https://github.com/fossology/fossology
 common:
+  - type: AgenticAccess
+    url: agentic-access/fossology-agentic-access.yml
   - type: DomainSecurity
     url: security/fossology-domain-security.yml
   - type: Authentication
