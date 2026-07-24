@@ -1,0 +1,430 @@
+openapi: 3.1.0
+info:
+  title: FOSSology Admin Search API
+  description: Automate your fossology instance using REST API
+  version: 1.6.2
+  contact:
+    email: fossology@fossology.org
+  license:
+    name: GPL-2.0-only
+    url: https://github.com/fossology/fossology/blob/master/LICENSE
+servers:
+- url: http://localhost/repo/api/v1
+  description: Localhost instance
+- url: http://localhost/repo/api/v2
+  description: Localhost instance (Version 2)
+security:
+- bearerAuth: []
+- oauth: []
+tags:
+- name: Search
+  description: Searching data on FOSSology
+paths:
+  /search:
+    get:
+      operationId: searchFile
+      tags:
+      - Search
+      description: Search the FOSSology for a specific file
+      parameters:
+      - name: groupName
+        description: The group name to chose while performing search
+        in: header
+        required: false
+        schema:
+          type: string
+          description: Group name, from last login if not provided
+      - name: searchType
+        required: false
+        description: Limit search to
+        in: header
+        schema:
+          type: string
+          enum:
+          - directory
+          - containers
+          - allfiles
+          default: allfiles
+      - name: uploadId
+        in: header
+        required: false
+        description: Id of the upload to search files into
+        schema:
+          type: integer
+      - name: filename
+        description: Filename to find, can contain % as wild-card
+        required: false
+        in: header
+        schema:
+          type: string
+      - name: tag
+        description: Tag to find
+        required: false
+        in: header
+        schema:
+          type: string
+      - name: page
+        description: Page number (starts from 1)
+        required: false
+        in: header
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: limit
+        description: Limits of responses per request
+        required: false
+        in: header
+        schema:
+          type: integer
+          default: 50
+          minimum: 1
+          maximum: 100
+      - name: filesizemin
+        description: Min filesize in bytes
+        required: false
+        in: header
+        schema:
+          type: integer
+          minimum: 0
+      - name: filesizemax
+        description: Max filesize in bytes
+        required: false
+        in: header
+        schema:
+          type: integer
+          minimum: 0
+      - name: license
+        description: License search filter
+        required: false
+        in: header
+        schema:
+          type: string
+      - name: copyright
+        description: Copyright search filter
+        required: false
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Total-Pages:
+              description: Total number of pages which can be generated based on limit
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchResults'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /filesearch:
+    parameters:
+    - name: groupName
+      description: The group name to chose while downloading specific report
+      in: header
+      required: false
+      schema:
+        type: string
+        description: Group name, from last login if not provided
+    post:
+      operationId: getFiles
+      tags:
+      - Search
+      summary: Get the information of files matching the provided hashes
+      description: 'Get a list of files by hashes
+
+        '
+      requestBody:
+        description: List of file hashes to fetch
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Hash'
+      responses:
+        '200':
+          description: List of matching files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/File'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+components:
+  schemas:
+    Upload:
+      type: object
+      properties:
+        folderid:
+          type: integer
+          description: The folder id, where the upload is located
+        foldername:
+          type: string
+          description: The name of the folder where the upload is located
+        id:
+          type: integer
+          description: Upload id of the upload.
+        description:
+          type: string
+          description: Description of the upload.
+        uploadname:
+          type: string
+          description: Display name of the upload.
+        uploaddate:
+          type: string
+          description: Date, when the file was uploaded.
+        assignee:
+          type: integer
+          description: assignee id of the upload.
+          nullable: true
+        assigneeDate:
+          type: string
+          format: date-time
+          description: Date, when a user was assigned to the upload.
+          nullable: true
+        closingDate:
+          type: string
+          format: date-time
+          description: Date, when the upload was closed or rejected.
+          nullable: true
+        hash:
+          $ref: '#/components/schemas/Hash'
+    Findings:
+      description: License findings and conclusions of file
+      type: object
+      properties:
+        scanner:
+          description: Licenses finding by scanner
+          type: array
+          items:
+            type: string
+            description: Name of license found
+            nullable: true
+          example:
+          - MIT
+          - BSD-3-Clause
+        conclusion:
+          description: 'Licenses concluded by user or main license in case of package
+
+            '
+          type: array
+          items:
+            type: string
+            description: Name of license concluded
+            nullable: true
+          example:
+          - MIT
+          - GPL-2.0
+        copyright:
+          description: 'Copyright findings for the file
+
+            '
+          type: array
+          items:
+            type: string
+            description: Copyright finding
+            nullable: true
+          example:
+          - Copyright (C) 2017-2020 Free Software Foundation, Inc.
+          - Copyright (C) 1991-2020 Free Software Foundation, Inc.
+    Hash:
+      description: Hash information of a file
+      type: object
+      properties:
+        sha1:
+          description: SHA1 checksum of the file
+          type: string
+          example: 81fe8bfe87576c3ecb22426f8e57847382917acf
+        md5:
+          description: MD5 checksum of the file
+          type: string
+          example: e2fc714c4727ee9395f324cd2e7f331f
+        sha256:
+          description: SHA256 checksum of the file
+          type: string
+          example: 88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+        size:
+          description: Size of the file in bytes
+          type: integer
+    SearchResults:
+      type: object
+      properties:
+        upload:
+          $ref: '#/components/schemas/Upload'
+        uploadTreeId:
+          type: integer
+          description: Upload tree ID
+        filename:
+          type: string
+          description: Filename of the treeItem
+    File:
+      description: Meta information about file in FOSSology
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/Hash'
+        findings:
+          $ref: '#/components/schemas/Findings'
+        uploads:
+          description: Upload ID if the file was uploaded as a package
+          type: array
+          items:
+            type: integer
+            description: Upload IDs where the given file was found
+          nullable: true
+        message:
+          description: Message in case provided hash not found or error
+          type: string
+          enum:
+          - Not found
+          - Invalid keys
+          example: Not found
+          nullable: true
+      required:
+      - hash
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token from FOSSology
+    oauth:
+      description: Machine-2-Machine communication from oauth
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.example.com/oauth2/authorize
+          scopes: {}
+externalDocs:
+  description: Basic guide
+  url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+x-reuse:
+- - name: id
+    required: true
+    description: Upload Id
+    in: path
+    schema:
+      type: integer
+  - name: itemId
+    required: true
+    description: UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)
+    in: path
+    schema:
+      type: integer
+  - name: status
+    required: true
+    in: query
+    description: Status of the CX
+    schema:
+      type: string
+      enum:
+      - active
+      - inactive
+  - name: limit
+    description: Limits of responses per request
+    required: false
+    in: header
+    schema:
+      type: integer
+      default: 100
+      minimum: 1
+      maximum: 1000
+  - name: page
+    description: Page number for responses
+    required: false
+    in: header
+    schema:
+      type: integer
+      default: 1
+      minimum: 1
+- - name: id
+    required: true
+    description: Upload ID
+    in: path
+    schema:
+      type: integer
+  - name: itemId
+    required: true
+    description: Upload tree ID
+    in: path
+    schema:
+      type: integer
+  - name: hash
+    required: true
+    description: CX hash
+    in: path
+    schema:
+      type: string
+- '200':
+    description: OK
+    headers:
+      X-Total-Pages:
+        description: Total number of pages which can be generated based on limit
+        schema:
+          type: integer
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetFileCopyrights'
+  '400':
+    description: Bad Request. 'upload' is a required query param
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  default:
+    $ref: '#/components/responses/defaultResponse'
+- '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  '403':
+    description: Access denied
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  default:
+    $ref: '#/components/responses/defaultResponse'
+- description: Updated text
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/SetCopyrightInfo'

@@ -1,0 +1,369 @@
+openapi: 3.1.0
+info:
+  title: FOSSology Admin info API
+  description: Automate your fossology instance using REST API
+  version: 1.6.2
+  contact:
+    email: fossology@fossology.org
+  license:
+    name: GPL-2.0-only
+    url: https://github.com/fossology/fossology/blob/master/LICENSE
+servers:
+- url: http://localhost/repo/api/v1
+  description: Localhost instance
+- url: http://localhost/repo/api/v2
+  description: Localhost instance (Version 2)
+security:
+- bearerAuth: []
+- oauth: []
+tags:
+- name: info
+  description: Basic info about API
+paths:
+  /info:
+    get:
+      operationId: getInfo
+      tags:
+      - info
+      security: []
+      summary: Get the current API information
+      description: 'Get the current API version, supported authentication methods and description
+
+        '
+      responses:
+        '200':
+          description: The API information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiInfo'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /openapi:
+    get:
+      operationId: getOpenApi
+      tags:
+      - info
+      security: []
+      summary: Get the current openapi.yaml file
+      description: 'Get the current API documentation as a response with content negotiation.
+
+        '
+      responses:
+        '200':
+          description: The API documentation
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                $ref: '#/components/schemas/APIinfo'
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/APIinfo'
+            application/vnd.oai.openapi+json:
+              schema:
+                $ref: '#/components/schemas/APIinfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIinfo'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /health:
+    get:
+      operationId: getHealth
+      tags:
+      - info
+      security: []
+      summary: Get the status of API service
+      description: 'Check if API is ready to accept requests or not
+
+        '
+      responses:
+        '200':
+          description: The API information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthInfo'
+        '503':
+          description: The API is not unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthInfo'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /customise/banner:
+    get:
+      operationId: getBannerMessage
+      tags:
+      - info
+      summary: Get the Banner message
+      description: 'Returns the Banner message from the server
+
+        '
+      responses:
+        '200':
+          description: Banner message
+          content:
+            application/json:
+              schema:
+                type: string
+                example: This is a banner message
+        default:
+          $ref: '#/components/responses/defaultResponse'
+components:
+  schemas:
+    APIinfo:
+      description: Api Documentation
+      type: object
+      properties:
+        openapi:
+          type: string
+          description: version
+        info:
+          type: string
+          description: version info
+        servers:
+          type: string
+          description: server info
+        security:
+          type: string
+          description: security info
+        tags:
+          type: string
+          description: API tags
+        paths:
+          type: string
+          description: API endpoints
+    HealthInfo:
+      description: Health status of server
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - OK
+          - WARN
+          - ERROR
+          description: Status of service
+        scheduler:
+          type: object
+          description: Scheduler information
+          properties:
+            status:
+              type: string
+              description: Health status of scheduler
+              enum:
+              - OK
+              - ERROR
+        db:
+          type: object
+          description: DB connection status
+          properties:
+            status:
+              type: string
+              description: Health status of DB connection
+              enum:
+              - OK
+              - ERROR
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    ApiInfo:
+      description: Info about the API
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the API service
+        description:
+          type: string
+          description: Additional information
+        version:
+          type: string
+          description: Current API version as per documentation
+        security:
+          type: array
+          description: Security methods allowed
+          items:
+            type: string
+        contact:
+          type: string
+          description: Contact email from API docs
+        license:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of license
+            url:
+              type: string
+              description: Link to license
+          description: Licensing of API
+        fossology:
+          type: object
+          description: Information about FOSSology server. Values can be null.
+          properties:
+            version:
+              type: string
+              description: Version of the FOSSology server
+              nullable: true
+              example: 4.0.0
+            branchName:
+              type: string
+              description: Branch deployed on the FOSSology server
+              nullable: true
+              example: master
+            commitHash:
+              type: string
+              description: Hash of commit deployed on the FOSSology server
+              nullable: true
+              example: '306260'
+            commitDate:
+              type: string
+              description: 'Date of commit deployed on the FOSSology server in
+
+                ISO8601 format
+
+                '
+              nullable: true
+              example: '2022-01-05T22:03:00+05:30'
+            buildDate:
+              type: string
+              description: Date on which packages were built in ISO8601 format
+              nullable: true
+              example: '2022-01-07T11:13:00+05:30'
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token from FOSSology
+    oauth:
+      description: Machine-2-Machine communication from oauth
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.example.com/oauth2/authorize
+          scopes: {}
+externalDocs:
+  description: Basic guide
+  url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+x-reuse:
+- - name: id
+    required: true
+    description: Upload Id
+    in: path
+    schema:
+      type: integer
+  - name: itemId
+    required: true
+    description: UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)
+    in: path
+    schema:
+      type: integer
+  - name: status
+    required: true
+    in: query
+    description: Status of the CX
+    schema:
+      type: string
+      enum:
+      - active
+      - inactive
+  - name: limit
+    description: Limits of responses per request
+    required: false
+    in: header
+    schema:
+      type: integer
+      default: 100
+      minimum: 1
+      maximum: 1000
+  - name: page
+    description: Page number for responses
+    required: false
+    in: header
+    schema:
+      type: integer
+      default: 1
+      minimum: 1
+- - name: id
+    required: true
+    description: Upload ID
+    in: path
+    schema:
+      type: integer
+  - name: itemId
+    required: true
+    description: Upload tree ID
+    in: path
+    schema:
+      type: integer
+  - name: hash
+    required: true
+    description: CX hash
+    in: path
+    schema:
+      type: string
+- '200':
+    description: OK
+    headers:
+      X-Total-Pages:
+        description: Total number of pages which can be generated based on limit
+        schema:
+          type: integer
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetFileCopyrights'
+  '400':
+    description: Bad Request. 'upload' is a required query param
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  default:
+    $ref: '#/components/responses/defaultResponse'
+- '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  '403':
+    description: Access denied
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  default:
+    $ref: '#/components/responses/defaultResponse'
+- description: Updated text
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/SetCopyrightInfo'

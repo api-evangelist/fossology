@@ -1,0 +1,436 @@
+openapi: 3.1.0
+info:
+  title: FOSSology Admin Overview API
+  description: Automate your fossology instance using REST API
+  version: 1.6.2
+  contact:
+    email: fossology@fossology.org
+  license:
+    name: GPL-2.0-only
+    url: https://github.com/fossology/fossology/blob/master/LICENSE
+servers:
+- url: http://localhost/repo/api/v1
+  description: Localhost instance
+- url: http://localhost/repo/api/v2
+  description: Localhost instance (Version 2)
+security:
+- bearerAuth: []
+- oauth: []
+tags:
+- name: Overview
+  description: Overview of FOSSology operations
+paths:
+  /overview/database/contents:
+    get:
+      operationId: getDatabaseContents
+      tags:
+      - Overview
+      summary: Get database contents
+      description: 'Get database contents for the dashboard display.
+
+        '
+      responses:
+        '200':
+          description: List of the database contents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetDatabaseContent'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /overview/info/php:
+    get:
+      operationId: getPhpInfo
+      tags:
+      - Overview
+      summary: Get PHP info
+      description: 'Get PHP info
+
+        '
+      responses:
+        '200':
+          description: PHP info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPHPInfo'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /overview/disk/usage:
+    get:
+      operationId: getDiskUsage
+      tags:
+      - Overview
+      summary: Get disk usage
+      description: 'Get disk usage
+
+        '
+      responses:
+        '200':
+          description: Disk usage response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiskUsage'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /overview/database/metrics:
+    get:
+      operationId: getDatabaseMetrics
+      tags:
+      - Overview
+      summary: Get database metrics
+      description: 'Get database metrics for the dashboard display.
+
+        '
+      responses:
+        '200':
+          description: List of the database metrics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetDatabaseMetric'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+  /overview/queries/active:
+    get:
+      operationId: getActiveQueries
+      tags:
+      - Overview
+      summary: Get active queries
+      description: 'Get a list of active queries from the database.
+
+        '
+      responses:
+        '200':
+          description: List of active queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetActiveQuery'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+        default:
+          $ref: '#/components/responses/defaultResponse'
+components:
+  schemas:
+    GetDatabaseMetric:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: FOSSology database size
+        total:
+          type: string
+          description: The total count associated with the metric.
+          example: '36'
+    GetDatabaseContent:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: Users
+        total:
+          type: integer
+          description: The total count associated with the metric.
+          example: 2
+        lastVacuum:
+          type: string
+          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
+          example: 'null'
+        lastAnalyze:
+          type: string
+          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
+          example: 'null'
+    DiskUsage:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of filesystem information
+          items:
+            type: object
+            properties:
+              filesystem:
+                type: string
+                description: Filesystem path
+                example: /dev/nvme0n1p6
+              capacity:
+                type: string
+                description: Total capacity of the filesystem
+                example: 192G
+              used:
+                type: string
+                description: Used space in the filesystem
+                example: 173G
+              available:
+                type: string
+                description: Available space in the filesystem
+                example: 8.8G
+              percentFull:
+                type: string
+                description: Percentage of the filesystem used
+                example: 96%
+              mountPoint:
+                type: string
+                description: Mount point of the filesystem
+                example: /
+        notes:
+          type: object
+          description: Additional notes
+          properties:
+            database:
+              type: string
+              description: Database location
+              example: /var/lib/postgresql/12/main
+            repository:
+              type: string
+              description: Repository location
+              example: /srv/fossology/repository
+            fossologyConfig:
+              type: string
+              description: Fossology configuration location
+              example: /usr/local/etc/fossology
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    GetPHPInfo:
+      type: object
+      properties:
+        phpVersion:
+          type: string
+          description: Version of PHP
+          example: 7.4.3-4ubuntu2.18
+        loadedExtensions:
+          type: array
+          description: List of loaded extensions in PHP
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the loaded extension
+                example: Core
+              version:
+                type: string
+                description: Version of the loaded extension
+                example: 7.4.3-4ubuntu2.18
+    GetActiveQuery:
+      properties:
+        pid:
+          type: integer
+          example: 1831
+        query:
+          type: string
+          enum:
+          - idle
+          - active
+        startTime:
+          type: string
+          format: date-time
+          example: '2023-09-28T05:15:05.227Z'
+        elapsed:
+          type: string
+          example: '00:01:06.961334'
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token from FOSSology
+    oauth:
+      description: Machine-2-Machine communication from oauth
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.example.com/oauth2/authorize
+          scopes: {}
+externalDocs:
+  description: Basic guide
+  url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+x-reuse:
+- - name: id
+    required: true
+    description: Upload Id
+    in: path
+    schema:
+      type: integer
+  - name: itemId
+    required: true
+    description: UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)
+    in: path
+    schema:
+      type: integer
+  - name: status
+    required: true
+    in: query
+    description: Status of the CX
+    schema:
+      type: string
+      enum:
+      - active
+      - inactive
+  - name: limit
+    description: Limits of responses per request
+    required: false
+    in: header
+    schema:
+      type: integer
+      default: 100
+      minimum: 1
+      maximum: 1000
+  - name: page
+    description: Page number for responses
+    required: false
+    in: header
+    schema:
+      type: integer
+      default: 1
+      minimum: 1
+- - name: id
+    required: true
+    description: Upload ID
+    in: path
+    schema:
+      type: integer
+  - name: itemId
+    required: true
+    description: Upload tree ID
+    in: path
+    schema:
+      type: integer
+  - name: hash
+    required: true
+    description: CX hash
+    in: path
+    schema:
+      type: string
+- '200':
+    description: OK
+    headers:
+      X-Total-Pages:
+        description: Total number of pages which can be generated based on limit
+        schema:
+          type: integer
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetFileCopyrights'
+  '400':
+    description: Bad Request. 'upload' is a required query param
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  default:
+    $ref: '#/components/responses/defaultResponse'
+- '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  '403':
+    description: Access denied
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Info'
+  default:
+    $ref: '#/components/responses/defaultResponse'
+- description: Updated text
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/SetCopyrightInfo'
