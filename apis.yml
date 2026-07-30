@@ -6,9 +6,22 @@ description: >-
   obligations through automated scanning, human clearing workflows, and SPDX/compliance reporting via a self-hosted REST
   API.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fossology.png
 tags:
   - Compliance
   - Licensing
@@ -21,57 +34,681 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: fossology:fossology-api
-    name: FOSSology API
-    description: >-
-      Programmatic access to FOSSology license scanning, copyright analysis, clearing workflow, SPDX/compliance report
-      generation, obligations, users, groups, and instance maintenance via a self-hosted REST API.
-    humanURL: https://www.fossology.org/get-started/
-    baseURL: http://localhost/repo/api/v1
-    tags:
-      - Compliance
-      - Licensing
-      - Scanning
-      - SPDX
-    properties:
-      - type: Documentation
-        url: https://www.fossology.org/get-started/
-      - type: Documentation
-        name: Basic REST API Calls
-        url: https://www.fossology.org/get-started/basic-rest-api-calls/
-      - type: Documentation
-        name: REST API Wiki
-        url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/openapi/fossology-openapi.yml
-      - type: Rules
-        url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
-      - type: Capabilities
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
-      - type: JSONSchema
-        name: Upload Schema
-        url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
-      - type: JSONSchema
-        name: License Schema
-        url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
-      - type: JSONSchema
-        name: Job Schema
-        url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
-      - type: JSONLD
-        url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
-      - type: Examples
-        name: Upload Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
-      - type: Examples
-        name: License Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
-      - type: SourceCode
-        url: https://github.com/fossology/fossology
+- aid: fossology:fossology-admin-api
+  name: FOSSology Admin API
+  description: Administrator tasks
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-admin-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-auth-api
+  name: FOSSology auth API
+  description: Authentication endpoints
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - auth
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-auth-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-copyrights-api
+  name: FOSSology Copyrights API
+  description: Copyright information
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Copyrights
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-copyrights-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-folders-api
+  name: FOSSology Folders API
+  description: Folder management
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-folders-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-groups-api
+  name: FOSSology Groups API
+  description: User group management
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-groups-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-info-api
+  name: FOSSology info API
+  description: Basic info about API
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - info
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-info-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-job-api
+  name: FOSSology Job API
+  description: FOSSology jobs
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Job
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-job-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-license-api
+  name: FOSSology License API
+  description: License and obligation management
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - License
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-license-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-maintenance-api
+  name: FOSSology Maintenance API
+  description: Maintenance operations
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Maintenance
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-maintenance-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-organize-api
+  name: FOSSology Organize API
+  description: Endpoints for organization of data
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Organize
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-organize-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-overview-api
+  name: FOSSology Overview API
+  description: Overview of FOSSology operations
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Overview
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-overview-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-report-api
+  name: FOSSology Report API
+  description: Upload's report
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-report-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-search-api
+  name: FOSSology Search API
+  description: Searching data on FOSSology
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-search-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-upload-api
+  name: FOSSology Upload API
+  description: Endpoints related to uploads
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-upload-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
+- aid: fossology:fossology-user-api
+  name: FOSSology User API
+  description: User management
+  humanURL: https://www.fossology.org/get-started/
+  baseURL: http://localhost/repo/api/v1
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/fossology-user-api-openapi.yml
+  - type: Documentation
+    url: https://www.fossology.org/get-started/
+  - type: Documentation
+    url: https://www.fossology.org/get-started/basic-rest-api-calls/
+  - type: Documentation
+    url: https://github.com/fossology/fossology/wiki/FOSSology-REST-API
+  - type: Rules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/rules/fossology-rules.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/capabilities/fossology-capabilities.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-upload.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-license.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-schema/fossology-job.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/json-ld/fossology-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/vocabulary/fossology-vocabulary.yml
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-upload-example.json
+  - type: Examples
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/examples/fossology-license-example.json
+  - type: SourceCode
+    url: https://github.com/fossology/fossology
 common:
   - type: AgenticAccess
     url: agentic-access/fossology-agentic-access.yml
