@@ -1,0 +1,42 @@
+{
+  "provider": "fossology",
+  "sources": [
+    "fossology-admin-api-openapi.yml",
+    "fossology-auth-api-openapi.yml",
+    "fossology-copyrights-api-openapi.yml",
+    "fossology-folders-api-openapi.yml",
+    "fossology-groups-api-openapi.yml",
+    "fossology-info-api-openapi.yml",
+    "fossology-job-api-openapi.yml",
+    "fossology-license-api-openapi.yml",
+    "fossology-maintenance-api-openapi.yml",
+    "fossology-organize-api-openapi.yml",
+    "fossology-overview-api-openapi.yml",
+    "fossology-report-api-openapi.yml",
+    "fossology-search-api-openapi.yml",
+    "fossology-upload-api-openapi.yml",
+    "fossology-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "fossology-admin-api-openapi.yml",
+    "fossology-auth-api-openapi.yml",
+    "fossology-copyrights-api-openapi.yml",
+    "fossology-folders-api-openapi.yml",
+    "fossology-groups-api-openapi.yml",
+    "fossology-info-api-openapi.yml",
+    "fossology-job-api-openapi.yml",
+    "fossology-license-api-openapi.yml",
+    "fossology-maintenance-api-openapi.yml",
+    "fossology-organize-api-openapi.yml",
+    "fossology-overview-api-openapi.yml",
+    "fossology-report-api-openapi.yml",
+    "fossology-search-api-openapi.yml",
+    "fossology-upload-api-openapi.yml",
+    "fossology-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
