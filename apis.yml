@@ -710,6 +710,12 @@ apis:
   - type: SourceCode
     url: https://github.com/fossology/fossology
 common:
+  - type: IssueTracker
+    url: https://github.com/fossology/fossology/issues
+  - type: Releases
+    url: https://github.com/fossology/fossology/releases
+  - type: ContributionGuide
+    url: https://github.com/fossology/fossology/blob/master/CONTRIBUTING.md
   - type: AgenticAccess
     url: agentic-access/fossology-agentic-access.yml
   - type: DomainSecurity
