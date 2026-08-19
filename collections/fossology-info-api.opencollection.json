@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin info API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the current API information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/info"
+          },
+          "docs": "Get the current API version, supported authentication methods and description\n"
+        },
+        {
+          "info": {
+            "name": "Get the current openapi.yaml file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/openapi"
+          },
+          "docs": "Get the current API documentation as a response with content negotiation.\n"
+        },
+        {
+          "info": {
+            "name": "Get the status of API service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/health"
+          },
+          "docs": "Check if API is ready to accept requests or not\n"
+        },
+        {
+          "info": {
+            "name": "Get the Banner message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/customise/banner"
+          },
+          "docs": "Returns the Banner message from the server\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

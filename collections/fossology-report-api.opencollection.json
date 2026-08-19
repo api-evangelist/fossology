@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Report API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the reports for a given upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/report",
+            "headers": [
+              {
+                "name": "uploadId",
+                "value": ""
+              },
+              {
+                "name": "reportFormat",
+                "value": ""
+              },
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all reports available for a given upload\n"
+        },
+        {
+          "info": {
+            "name": "Download the report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/report/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id the report to download"
+              }
+            ]
+          },
+          "docs": "Get a report by id\n"
+        },
+        {
+          "info": {
+            "name": "Import a report to an existing upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/report/import",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "upload",
+                "value": "",
+                "type": "query",
+                "description": "Upload ID"
+              },
+              {
+                "name": "reportFormat",
+                "value": "",
+                "type": "query",
+                "description": "Type of report being uploaded"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "report",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import a report to an existing upload\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

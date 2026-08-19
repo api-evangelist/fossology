@@ -1,0 +1,1742 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Copyrights API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Copyrights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the copyrights of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/copyrights",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of copyrights associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates a copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores a copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores a copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes a copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes a copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the user copyright findings of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/user-copyrights",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of user copyright findings associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates user copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/user-copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates user copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores user copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/user-copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores user copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes user copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/user-copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes user copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the scancode copyright findings of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-copyrights",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of scancode copyright findings associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates scancode copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates scancode copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores scancode copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores scancode copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes scancode copyright for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-copyrights/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes scancode copyright statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the emails of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/emails",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of emails associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates an email for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/emails/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an email statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores an email for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/emails/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores an email statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes an email for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/emails/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes an email statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the scancode email findings of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-emails",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of scancode email findings associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates scancode email finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-emails/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates scancode email finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores scancode email finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-emails/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores scancode email finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes scancode email finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-emails/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes scancode email finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the URLs of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/urls",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of URLs associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates an URL for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/urls/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an URL statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores an URL for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/urls/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores an URL statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes an URL for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/urls/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes an URL statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the scancode url findings of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-urls",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of scancode url findings associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates scancode url finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-urls/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates scancode url finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores scancode url finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-urls/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores scancode url finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes scancode url finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-urls/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes scancode url finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the authors of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/authors",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of authors associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates an author for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/authors/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an author statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores an author for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/authors/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores an author statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes an author for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/authors/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes an author statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the scancode author findings of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-authors",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of scancode author findings associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates scancode author finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-authors/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates scancode author finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores scancode author finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-authors/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores scancode author finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes scancode author finding for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/scancode-authors/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes scancode author finding for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the ECCs of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/eccs",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of ECCs associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates an ECC for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/eccs/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an ECC statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores an ECC for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/eccs/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores an ECC statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes an ECC for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/eccs/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes an ECC statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the keywords of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/keywords",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of keywords associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates a keyword for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/keywords/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a keyword statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores a keyword for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/keywords/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores a keyword statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes a keyword for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/keywords/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes a keyword statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the IPRAs of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/ipras",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UploadTree ID (available via /uploads/{id}/topitem & /uploads/{id}/item/{itemId}/tree/view)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the CX"
+              }
+            ]
+          },
+          "docs": "Returns the list of IPRAs associated with the file"
+        },
+        {
+          "info": {
+            "name": "Updates an IPRA for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/ipras/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an IPRA statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Restores an IPRA for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/ipras/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Restores an IPRA statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Deletes an IPRA for a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/ipras/:hash",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload ID"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree ID"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "CX hash"
+              }
+            ]
+          },
+          "docs": "Deletes an IPRA statement for a particular file"
+        },
+        {
+          "info": {
+            "name": "Get the total copyrights of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:ItemId/totalcopyrights",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "ItemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload Tree ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "status of the copyright"
+              }
+            ]
+          },
+          "docs": "Returns the total number of copyrights associated with the file"
+        },
+        {
+          "info": {
+            "name": "Get the total user copyright findings of the mentioned upload tree ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:ItemId/totalusercopyrights",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              },
+              {
+                "name": "ItemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload Tree ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "status of the copyright"
+              }
+            ]
+          },
+          "docs": "Returns the total number of user copyright findings associated with the file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

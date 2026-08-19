@@ -1,0 +1,256 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Organize API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organize",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Copy/Move an upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "folderId",
+                "value": ""
+              },
+              {
+                "name": "action",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Copy or move an upload by id"
+        },
+        {
+          "info": {
+            "name": "updateUploadById",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "status",
+                "value": "Closed",
+                "type": "query",
+                "description": "New status of the upload"
+              },
+              {
+                "name": "assignee",
+                "value": "",
+                "type": "query",
+                "description": "New assignee for the project"
+              }
+            ]
+          },
+          "docs": "Update an upload information"
+        },
+        {
+          "info": {
+            "name": "Delete upload by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Delete a single upload by id\n"
+        },
+        {
+          "info": {
+            "name": "Create a new folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/folders",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "parentFolder",
+                "value": ""
+              },
+              {
+                "name": "folderName",
+                "value": ""
+              },
+              {
+                "name": "folderDescription",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Create a new child folder with optional description\n"
+        },
+        {
+          "info": {
+            "name": "Copy/Move a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/folders/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "parent",
+                "value": ""
+              },
+              {
+                "name": "action",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the folder"
+              }
+            ]
+          },
+          "docs": "Copy or move a folder by id\n"
+        },
+        {
+          "info": {
+            "name": "Edit a folder's description",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/folders/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "name",
+                "value": ""
+              },
+              {
+                "name": "description",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the folder"
+              }
+            ]
+          },
+          "docs": "Change a folder's name and/or description\n"
+        },
+        {
+          "info": {
+            "name": "Delete a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/folders/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the folder"
+              }
+            ]
+          },
+          "docs": "Schedule a folder deletion\n"
+        },
+        {
+          "info": {
+            "name": "Create a new group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/groups",
+            "headers": [
+              {
+                "name": "name",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Create a new user group\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

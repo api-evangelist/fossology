@@ -1,0 +1,3493 @@
+{
+  "item": [
+    {
+      "id": "23b0f51d-0204-4847-b91a-43e996cc24d4",
+      "name": "User",
+      "description": {
+        "content": "User management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "523461d5-f097-4c3f-a36d-d047933427dd",
+          "name": "Create a new user",
+          "request": {
+            "name": "Create a new user",
+            "description": {
+              "content": "Create a new user\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rootFolderId",
+                  "value": "<int>"
+                },
+                {
+                  "disabled": false,
+                  "key": "emailNotification",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultGroup",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "copyright_email_author",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecc",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "patent",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mime",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "monk",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nomos",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ojo",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "package",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reso",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "heritage",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "compatibility",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultBucketpool",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_pass",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultVisibility",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "39675212-901f-401b-b49b-9699b00473e3",
+              "name": "User created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "1711"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "none"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8661.830956229785"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "1439"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "1264"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b969799-1f38-444b-bfc5-436dec210f45",
+              "name": "User with the same email or username already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "1711"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "none"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8661.830956229785"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "1439"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "1264"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4138505-70f8-42a9-b09c-3b35853c4ce3",
+              "name": "Internal server error with details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "1711"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "none"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8661.830956229785"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "1439"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "1264"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6258f899-c086-45da-a965-00bd54564354",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "1711"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "none"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8661.830956229785"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "1439"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "1264"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "452d16b3-676f-4d47-a344-4cf251578313",
+          "name": "get Users",
+          "request": {
+            "name": "get Users",
+            "description": {
+              "content": "Get the registered users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48ea435d-0961-40de-9add-7ea338d5d63d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1053,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"email\": \"string\",\n    \"accessLevel\": \"admin\",\n    \"rootFolderId\": 6909.99615846893,\n    \"emailNotification\": false,\n    \"defaultGroup\": 365,\n    \"agents\": {\n      \"bucket\": true,\n      \"copyright_email_author\": false,\n      \"ecc\": false,\n      \"patent\": false,\n      \"keyword\": true,\n      \"mime\": true,\n      \"monk\": true,\n      \"nomos\": true,\n      \"ojo\": false,\n      \"package\": true,\n      \"reso\": true,\n      \"heritage\": false,\n      \"compatibility\": false\n    },\n    \"defaultBucketpool\": 8584\n  },\n  {\n    \"id\": 2424,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"email\": \"string\",\n    \"accessLevel\": \"read_only\",\n    \"rootFolderId\": 4441.272482761311,\n    \"emailNotification\": true,\n    \"defaultGroup\": 7984,\n    \"agents\": {\n      \"bucket\": false,\n      \"copyright_email_author\": true,\n      \"ecc\": false,\n      \"patent\": false,\n      \"keyword\": false,\n      \"mime\": true,\n      \"monk\": false,\n      \"nomos\": true,\n      \"ojo\": false,\n      \"package\": true,\n      \"reso\": true,\n      \"heritage\": false,\n      \"compatibility\": true\n    },\n    \"defaultBucketpool\": 867\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "209d4c2e-1c31-4e67-b307-e461e5754fa4",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1620761-44b1-4176-adb8-9d92f8e384c8",
+          "name": "Get user by id",
+          "request": {
+            "name": "Get user by id",
+            "description": {
+              "content": "Get one single user by id\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ed828bf-13cb-4fd9-9c08-6c01330c9ff5",
+              "name": "User with the given id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2474,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"email\": \"string\",\n  \"accessLevel\": \"read_write\",\n  \"rootFolderId\": 8182.4558294907365,\n  \"emailNotification\": false,\n  \"defaultGroup\": 5191,\n  \"agents\": {\n    \"bucket\": true,\n    \"copyright_email_author\": false,\n    \"ecc\": true,\n    \"patent\": false,\n    \"keyword\": false,\n    \"mime\": false,\n    \"monk\": false,\n    \"nomos\": true,\n    \"ojo\": true,\n    \"package\": false,\n    \"reso\": false,\n    \"heritage\": false,\n    \"compatibility\": true\n  },\n  \"defaultBucketpool\": 7605\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b66b8087-ab27-4107-95e0-4ad50de15a37",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a410064d-44dd-4945-91a7-32ee739412b5",
+          "name": "Edit user details by id",
+          "request": {
+            "name": "Edit user details by id",
+            "description": {
+              "content": "Edit user details by id\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "rootFolderId",
+                  "value": "<int>"
+                },
+                {
+                  "disabled": false,
+                  "key": "emailNotification",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultGroup",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bucket",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "copyright_email_author",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ecc",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "patent",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mime",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "monk",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nomos",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ojo",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "package",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reso",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "heritage",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "compatibility",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultBucketpool",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_pass",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultFolderId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "defaultVisibility",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "71cf795d-c078-4872-8dd0-7b3bc3090306",
+              "name": "User updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "6245"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "clearing_admin"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8256.66000243649"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "6980"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "5655"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultFolderId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abc0724f-b467-4876-bc34-07d0a5a212ad",
+              "name": "Missing or wrong parameters in request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "6245"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "clearing_admin"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8256.66000243649"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "6980"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "5655"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultFolderId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5580fac6-22b3-40c2-a8c8-aa2d1009d332",
+              "name": "The session owner is not an admin",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "6245"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "clearing_admin"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8256.66000243649"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "6980"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "5655"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultFolderId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68863c45-d97f-41ef-b869-377a795bb638",
+              "name": "UserId doesn't exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "6245"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "clearing_admin"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8256.66000243649"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "6980"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "5655"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultFolderId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd7d5d33-8a6d-40e1-a1fd-111f7aaea759",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "id",
+                      "value": "6245"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "accessLevel",
+                      "value": "clearing_admin"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "rootFolderId",
+                      "value": "8256.66000243649"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "emailNotification",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultGroup",
+                      "value": "6980"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "bucket",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "copyright_email_author",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ecc",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "patent",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mime",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "monk",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nomos",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ojo",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "package",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reso",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "heritage",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "compatibility",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultBucketpool",
+                      "value": "5655"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "user_pass",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultFolderId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "defaultVisibility",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbbf7294-bdeb-4db3-b068-b453b36a42eb",
+          "name": "Delete user by id",
+          "request": {
+            "name": "Delete user by id",
+            "description": {
+              "content": "Delete a single user by id\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3bc338d0-1a9e-47e4-a33c-0e9d940fef4c",
+              "name": "User will be deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd767cda-ee73-4dc7-8311-64fe452d8ea2",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "842fed6f-f002-40d7-acba-72ee785c33b8",
+          "name": "get Self",
+          "request": {
+            "name": "get Self",
+            "description": {
+              "content": "Get the information about logged in user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "self"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85bf704b-9d4f-4fd7-aeca-7b357bab2ac9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "self"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7331,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"email\": \"string\",\n  \"accessLevel\": \"none\",\n  \"rootFolderId\": 940.5582072133667,\n  \"emailNotification\": true,\n  \"defaultGroup\": 2485,\n  \"agents\": {\n    \"bucket\": true,\n    \"copyright_email_author\": true,\n    \"ecc\": true,\n    \"patent\": false,\n    \"keyword\": true,\n    \"mime\": true,\n    \"monk\": true,\n    \"nomos\": true,\n    \"ojo\": true,\n    \"package\": true,\n    \"reso\": true,\n    \"heritage\": true,\n    \"compatibility\": true\n  },\n  \"defaultBucketpool\": 8216,\n  \"default_group\": \"fossy\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69d1c460-84b7-479b-b8ab-43e0d6f0f650",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "self"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "161a789e-5026-48c2-a10a-4a0478922a27",
+          "name": "Create a new REST API Token",
+          "request": {
+            "name": "Create a new REST API Token",
+            "description": {
+              "content": "Create a new REST API Token\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token_name",
+                  "value": "<string>",
+                  "description": "(Required) Friendly name of the token"
+                },
+                {
+                  "disabled": false,
+                  "key": "token_scope",
+                  "value": "<string>",
+                  "description": "(Required) The scope of the token."
+                },
+                {
+                  "disabled": false,
+                  "key": "token_expire",
+                  "value": "<date>",
+                  "description": "(Required) Date when the token must expire (default max 30 days)."
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "string",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "4433.982962350539",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d7f42ec-ccdf-424a-b34d-8446212b28a5",
+              "name": "Token created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Friendly name of the token",
+                        "type": "text/plain"
+                      },
+                      "key": "token_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The scope of the token.",
+                        "type": "text/plain"
+                      },
+                      "key": "token_scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Date when the token must expire (default max 30 days).",
+                        "type": "text/plain"
+                      },
+                      "key": "token_expire",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"ERROR\",\n  \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTgwODI1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTXk0eiIsInNjb3BlIjoid3JpdGUifQ.Sl1acvN0GlCe7VUZJQX00u_vpfWrtfJlVYQ63FBkzP4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2132a831-503f-4c55-8b72-2d6a1e9ec014",
+              "name": "Following parameters are required in the request body -- token_name,token_scope,token_expire",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Friendly name of the token",
+                        "type": "text/plain"
+                      },
+                      "key": "token_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The scope of the token.",
+                        "type": "text/plain"
+                      },
+                      "key": "token_scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Date when the token must expire (default max 30 days).",
+                        "type": "text/plain"
+                      },
+                      "key": "token_expire",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f30da8e0-de65-4d90-bd0c-8c852f4c5ba8",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Friendly name of the token",
+                        "type": "text/plain"
+                      },
+                      "key": "token_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The scope of the token.",
+                        "type": "text/plain"
+                      },
+                      "key": "token_scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Date when the token must expire (default max 30 days).",
+                        "type": "text/plain"
+                      },
+                      "key": "token_expire",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19552548-675e-4c5c-9ad7-64da9c80334b",
+          "name": "Get all the REST API tokens (active | expired)",
+          "request": {
+            "name": "Get all the REST API tokens (active | expired)",
+            "description": {
+              "content": "Get all the REST API tokens (active | expired)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "tokens",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cb70ced-9dab-4de8-bbdb-587b42d8a68c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "tokens",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"ERROR\",\n  \"active_tokens\": {\n    \"id\": \"string\",\n    \"token_name\": \"string\",\n    \"created\": \"2022-07-11\",\n    \"token_expire\": \"2022-07-11\",\n    \"scope\": \"read\",\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76c05c8e-28a6-44e0-a1d9-de446d0e9e22",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "tokens",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4b663f4-28c0-4c0d-96fd-bae00f852911",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "tokens",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "062d2870-d5b7-40bd-96f1-70632b0cf1be",
+          "name": "Update Permission",
+          "request": {
+            "name": "Update Permission",
+            "description": {
+              "content": "Update User's permission in group.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":id",
+                "user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Id of the group"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) user id of the member"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "perm",
+                  "value": "<integer>",
+                  "description": "New user permission in the group.\n0: User\n1: Admin\n2: Advisor\n"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "86a73772-b182-45d4-ac60-aceaf7659f0e",
+              "name": "User's permission will be updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) user id of the member"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "New user permission in the group.\n0: User\n1: Admin\n2: Advisor\n",
+                        "type": "text/plain"
+                      },
+                      "key": "perm",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef1b8d97-c78d-4328-90b8-df35bb9d253b",
+              "name": "Validation Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) user id of the member"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "New user permission in the group.\n0: User\n1: Admin\n2: Advisor\n",
+                        "type": "text/plain"
+                      },
+                      "key": "perm",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d05fc128-28c1-46e6-b9c4-449f214df77d",
+              "name": "Group or user doesn't exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) user id of the member"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "New user permission in the group.\n0: User\n1: Admin\n2: Advisor\n",
+                        "type": "text/plain"
+                      },
+                      "key": "perm",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b178ecb-1bb6-4c99-b321-f974e426388e",
+              "name": "Internal server error with details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) user id of the member"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "New user permission in the group.\n0: User\n1: Admin\n2: Advisor\n",
+                        "type": "text/plain"
+                      },
+                      "key": "perm",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac525153-c1c1-46e6-a06a-0ea4a432db75",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":id",
+                    "user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) user id of the member"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "New user permission in the group.\n0: User\n1: Admin\n2: Advisor\n",
+                        "type": "text/plain"
+                      },
+                      "key": "perm",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"INFO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/repo/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "238b4eab-1af9-4017-887f-b6d3a72c98a3",
+    "name": "FOSSology Admin User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Automate your fossology instance using REST API\n\nContact Support:\n Email: fossology@fossology.org",
+      "type": "text/plain"
+    }
+  }
+}

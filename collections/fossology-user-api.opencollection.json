@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin User API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/users"
+          },
+          "docs": "Get the registered users"
+        },
+        {
+          "info": {
+            "name": "Create a new user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user\n"
+        },
+        {
+          "info": {
+            "name": "Get user by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get one single user by id\n"
+        },
+        {
+          "info": {
+            "name": "Edit user details by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit user details by id\n"
+        },
+        {
+          "info": {
+            "name": "Delete user by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a single user by id\n"
+        },
+        {
+          "info": {
+            "name": "getSelf",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/users/self"
+          },
+          "docs": "Get the information about logged in user"
+        },
+        {
+          "info": {
+            "name": "Create a new REST API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/users/tokens",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Create a new REST API Token\n"
+        },
+        {
+          "info": {
+            "name": "Get all the REST API tokens (active | expired)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/users/tokens/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get all the REST API tokens (active | expired)\n"
+        },
+        {
+          "info": {
+            "name": "Update Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/groups/:id/user/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the group"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user id of the member"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update User's permission in group.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

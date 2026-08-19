@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Maintenance API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Maintenance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate maintenance operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/maintenance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform maintenance operations corresponding to the user options.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

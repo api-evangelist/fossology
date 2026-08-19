@@ -1,0 +1,320 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Job API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all jobs created by the logged in user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/jobs",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Returns only jobs with the selected status."
+              },
+              {
+                "name": "upload",
+                "value": "",
+                "type": "query",
+                "description": "Return jobs for the given upload id only"
+              }
+            ]
+          },
+          "docs": "Returns all jobs with their status created by the logged in user"
+        },
+        {
+          "info": {
+            "name": "Schedule an Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/jobs",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "folderId",
+                "value": ""
+              },
+              {
+                "name": "uploadId",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedule an Analysis of an existing upload"
+        },
+        {
+          "info": {
+            "name": "Gets all jobs created by all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/jobs/all",
+            "headers": [
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Returns only jobs with the selected status."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all jobs with their status created by every user. This API returns a response only if the requesting user is an Admin."
+        },
+        {
+          "info": {
+            "name": "get scheduler options by operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/jobs/scheduler/operation/:operationName",
+            "params": [
+              {
+                "name": "operationName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the operation"
+              }
+            ]
+          },
+          "docs": "Returns the scheduler options for a specific operation"
+        },
+        {
+          "info": {
+            "name": "Run the scheduler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/jobs/scheduler/operation/run",
+            "params": [
+              {
+                "name": "job",
+                "value": "",
+                "type": "query",
+                "description": "Name of the selected job"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Level of the selected verbose"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query",
+                "description": "Priority option selected"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run the scheduler with the selected options from a specific operation"
+        },
+        {
+          "info": {
+            "name": "Gets single job by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/jobs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the job"
+              }
+            ]
+          },
+          "docs": "Returns job with the status"
+        },
+        {
+          "info": {
+            "name": "Get the history of all the jobs queued based on an upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/jobs/history",
+            "params": [
+              {
+                "name": "upload",
+                "value": "",
+                "type": "query",
+                "description": "Return jobs for the given upload id"
+              }
+            ]
+          },
+          "docs": "Returns the history of all the jobs queued based on an upload"
+        },
+        {
+          "info": {
+            "name": "Get the statistics of all the jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/jobs/dashboard/statistics"
+          },
+          "docs": "Returns the statistics of all the jobs for the Admin Dashboard"
+        },
+        {
+          "info": {
+            "name": "Gets all jobs server jobs with scheduler status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/jobs/dashboard"
+          },
+          "docs": "Returns all jobs with the scheduler status for the Admin Dashboard. This API returns a response only if the requesting user is an Admin."
+        },
+        {
+          "info": {
+            "name": "Deletes a job using its Id and Queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/jobs/:id/:queue",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Job"
+              },
+              {
+                "name": "queue",
+                "value": "",
+                "type": "path",
+                "description": "Id of the job queue to be deleted"
+              }
+            ]
+          },
+          "docs": "Deletes a job queue and all the other job queues depending on it"
+        },
+        {
+          "info": {
+            "name": "Get the reports for a given upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/report",
+            "headers": [
+              {
+                "name": "uploadId",
+                "value": ""
+              },
+              {
+                "name": "reportFormat",
+                "value": ""
+              },
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all reports available for a given upload\n"
+        },
+        {
+          "info": {
+            "name": "Download the report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/report/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id the report to download"
+              }
+            ]
+          },
+          "docs": "Get a report by id\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

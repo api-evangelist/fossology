@@ -1,0 +1,1158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Upload API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get single upload by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Returns a single upload"
+        },
+        {
+          "info": {
+            "name": "Copy/Move an upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "folderId",
+                "value": ""
+              },
+              {
+                "name": "action",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Copy or move an upload by id"
+        },
+        {
+          "info": {
+            "name": "updateUploadById",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/uploads/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "status",
+                "value": "Closed",
+                "type": "query",
+                "description": "New status of the upload"
+              },
+              {
+                "name": "assignee",
+                "value": "",
+                "type": "query",
+                "description": "New assignee for the project"
+              }
+            ]
+          },
+          "docs": "Update an upload information"
+        },
+        {
+          "info": {
+            "name": "Delete upload by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Delete a single upload by id\n"
+        },
+        {
+          "info": {
+            "name": "Uploads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              },
+              {
+                "name": "limit",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Folder ID to limit the uploads to"
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Load uploads from child folders as well"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter pattern for name and description"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of uploads"
+              },
+              {
+                "name": "assignee",
+                "value": "",
+                "type": "query",
+                "description": "User name to which uploads are assigned to or -me- or -unassigned-\n"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Uploads since given date in YYYY-MM-DD format"
+              }
+            ]
+          },
+          "docs": "The uploads endpoint returns all uploads\n"
+        },
+        {
+          "info": {
+            "name": "Post new upload to FOSSology",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/uploads",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "folderId",
+                "value": ""
+              },
+              {
+                "name": "uploadDescription",
+                "value": ""
+              },
+              {
+                "name": "public",
+                "value": ""
+              },
+              {
+                "name": "applyGlobal",
+                "value": ""
+              },
+              {
+                "name": "ignoreScm",
+                "value": ""
+              },
+              {
+                "name": "uploadType",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint to create a new upload in FOSSology\n"
+        },
+        {
+          "info": {
+            "name": "Download the file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Download file using Upload ID"
+              }
+            ]
+          },
+          "docs": "Get a file by upload id\n"
+        },
+        {
+          "info": {
+            "name": "Get single upload summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/summary",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the agent"
+              }
+            ]
+          },
+          "docs": "Returns summary for single upload"
+        },
+        {
+          "info": {
+            "name": "Get single file info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Upload tree Id of the file"
+              }
+            ]
+          },
+          "docs": "Returns info for single file"
+        },
+        {
+          "info": {
+            "name": "Get licenses found by agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses",
+            "headers": [
+              {
+                "name": "page",
+                "value": ""
+              },
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "agent",
+                "value": "",
+                "type": "query",
+                "description": "Name of the agent"
+              },
+              {
+                "name": "containers",
+                "value": "",
+                "type": "query",
+                "description": "Show directories and containers"
+              },
+              {
+                "name": "license",
+                "value": "",
+                "type": "query",
+                "description": "Show license in response"
+              },
+              {
+                "name": "copyright",
+                "value": "",
+                "type": "query",
+                "description": "Show copyrights in response"
+              }
+            ]
+          },
+          "docs": "Returns the list of licenses found by requested agent"
+        },
+        {
+          "info": {
+            "name": "Get copyrights found on the upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/copyrights",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Returns the list of copyrights found on the requested upload."
+        },
+        {
+          "info": {
+            "name": "Set permissions for a upload in a folder for different groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/permissions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Enter any upload id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set permissions for a upload in a folder for different groups\n"
+        },
+        {
+          "info": {
+            "name": "Get all the groups with their respective permissions for a upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/perm-groups",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Returns the list of all the groups with their respective permissions for a upload"
+        },
+        {
+          "info": {
+            "name": "Get highlight entries of the content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/highlight",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the item"
+              },
+              {
+                "name": "clearingId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the clearing event"
+              },
+              {
+                "name": "licenseId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the license"
+              },
+              {
+                "name": "highlightId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the highlight"
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the agent"
+              }
+            ]
+          },
+          "docs": "Get highlight entries of the content for the given upload and item id.\n"
+        },
+        {
+          "info": {
+            "name": "Get the contents of the file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/view",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the item"
+              }
+            ]
+          },
+          "docs": "Returns the contents of a specific file"
+        },
+        {
+          "info": {
+            "name": "Set the clearing decision for a particular upload tree item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/clearing-decision",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the clearing decision for a particular upload tree item.\n"
+        },
+        {
+          "info": {
+            "name": "Schedule the bulk scan for the item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/bulk-scan",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedule the bulk scan for the item\n"
+        },
+        {
+          "info": {
+            "name": "Get the bulk history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/bulk-history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              }
+            ]
+          },
+          "docs": "Get the bulk history for a specific upload item\n"
+        },
+        {
+          "info": {
+            "name": "Get the license decisions list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/licenses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              }
+            ]
+          },
+          "docs": "Get the license decisions list for the given upload and item id\n"
+        },
+        {
+          "info": {
+            "name": "Add, update or delete a license decision.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/licenses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add, update or delete a license decision for a particular upload tree item.\n"
+        },
+        {
+          "info": {
+            "name": "Get main licenses on the upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses/main",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Get main licenses assigned on a particular upload\n"
+        },
+        {
+          "info": {
+            "name": "Set the main license for the upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses/main",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the main license for a particular upload.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a main license from an upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses/:shortName/main",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "shortName",
+                "value": "",
+                "type": "path",
+                "description": "shortName of the main license to be deleted"
+              }
+            ]
+          },
+          "docs": "Delete a main license from an upload.\n"
+        },
+        {
+          "info": {
+            "name": "Get previous and next item for an upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/prev-next",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              },
+              {
+                "name": "selection",
+                "value": "",
+                "type": "query",
+                "description": "Return jobs for the given upload id only"
+              }
+            ]
+          },
+          "docs": "Get the index of the previous and the next time for an upload\n"
+        },
+        {
+          "info": {
+            "name": "Get the clearing history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/clearing-history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              }
+            ]
+          },
+          "docs": "Get the clearing history for a specific upload item\n"
+        },
+        {
+          "info": {
+            "name": "Get the clearing progress info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/clearing-progress",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Get the clearing progress information for an upload\n"
+        },
+        {
+          "info": {
+            "name": "Get the licenses histogram",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses/histogram",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the agent"
+              }
+            ]
+          },
+          "docs": "Get the licenses histogram for a specific upload\n"
+        },
+        {
+          "info": {
+            "name": "Get agents for a upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/agents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Returns the list of agents for a upload.\n"
+        },
+        {
+          "info": {
+            "name": "Get the edited licenses list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses/edited",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Get the edited licenses list for a specific upload\n"
+        },
+        {
+          "info": {
+            "name": "Get the scanned licenses list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses/scanned",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the agent"
+              }
+            ]
+          },
+          "docs": "Get the scanned licenses list for a specific upload\n"
+        },
+        {
+          "info": {
+            "name": "Get the tree view for the given upload and item id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/tree/view",
+            "headers": [
+              {
+                "name": "page",
+                "value": ""
+              },
+              {
+                "name": "limit",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the itemId"
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the agent"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the tag"
+              },
+              {
+                "name": "scanLicenseFilter",
+                "value": "",
+                "type": "query",
+                "description": "ShortName of the selected scan license filter"
+              },
+              {
+                "name": "editedLicenseFilter",
+                "value": "",
+                "type": "query",
+                "description": "ShortName of the selected edited license filter"
+              },
+              {
+                "name": "flatten",
+                "value": "",
+                "type": "query",
+                "description": "Flatten the tree"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort the tree"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list according to the search string"
+              },
+              {
+                "name": "showQuick",
+                "value": "",
+                "type": "query",
+                "description": "Show all the items of the current container"
+              },
+              {
+                "name": "filterOpen",
+                "value": "",
+                "type": "query",
+                "description": "openCBox Filter is checked"
+              }
+            ]
+          },
+          "docs": "Get the tree view for the given upload and item id\n"
+        },
+        {
+          "info": {
+            "name": "Get the top level item id for a given upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/topitem",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Get the item id for the top level item in a given upload.\n"
+        },
+        {
+          "info": {
+            "name": "Get the overall licenses reuse summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/licenses/reuse",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Get the overall licenses reuse summary for an upload\n"
+        },
+        {
+          "info": {
+            "name": "Get revisions for successful agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/agents/revision",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              }
+            ]
+          },
+          "docs": "Returns the list of revisions for the successful agents for the upload\n"
+        },
+        {
+          "info": {
+            "name": "Run one-shot nomos analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/uploads/oneshot/nomos",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileInput",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Run one-shot nomos analysis on the upload without storing the results.\n"
+        },
+        {
+          "info": {
+            "name": "Run one-shot monk analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/uploads/oneshot/monk",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileInput",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Run one-shot monk analysis on the upload without storing the results.\n"
+        },
+        {
+          "info": {
+            "name": "Run one-shot Copyright/Email/URL analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/uploads/oneshot/ceu",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileInput",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Run one-shot Copyright/Email/URL analysis on the upload without storing the results.\n"
+        },
+        {
+          "info": {
+            "name": "Get the information of files matching the provided hashes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/filesearch",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of files by hashes\n"
+        },
+        {
+          "info": {
+            "name": "Get the conf information of a particular upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/conf",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              }
+            ]
+          },
+          "docs": "Get conf information\n"
+        },
+        {
+          "info": {
+            "name": "Update the Conf page data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/uploads/:id/conf",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Upload Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the conf page data from the server\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

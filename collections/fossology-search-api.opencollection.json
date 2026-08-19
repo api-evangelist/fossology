@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Search API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "searchFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/search",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "searchType",
+                "value": ""
+              },
+              {
+                "name": "uploadId",
+                "value": ""
+              },
+              {
+                "name": "filename",
+                "value": ""
+              },
+              {
+                "name": "tag",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              },
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "filesizemin",
+                "value": ""
+              },
+              {
+                "name": "filesizemax",
+                "value": ""
+              },
+              {
+                "name": "license",
+                "value": ""
+              },
+              {
+                "name": "copyright",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Search the FOSSology for a specific file"
+        },
+        {
+          "info": {
+            "name": "Get the information of files matching the provided hashes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/filesearch",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of files by hashes\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

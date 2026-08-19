@@ -1,0 +1,184 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Groups API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the list of groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/groups"
+          },
+          "docs": "Returns accessible groups for a user, all groups for an admin\n"
+        },
+        {
+          "info": {
+            "name": "Create a new group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/groups",
+            "headers": [
+              {
+                "name": "name",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Create a new user group\n"
+        },
+        {
+          "info": {
+            "name": "Delete group by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the group"
+              }
+            ]
+          },
+          "docs": "Deletes a single group by id.\n"
+        },
+        {
+          "info": {
+            "name": "Add user to a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/groups/:id/user/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the group"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user id of the member"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "add a new user to group\n"
+        },
+        {
+          "info": {
+            "name": "Update Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/groups/:id/user/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the group"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user id of the member"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update User's permission in group.\n"
+        },
+        {
+          "info": {
+            "name": "Delete group member by groupId and userId",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/groups/:id/user/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the group"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "user id of the member"
+              }
+            ]
+          },
+          "docs": "Deletes a single group member by groupId and userId\n"
+        },
+        {
+          "info": {
+            "name": "Give a list of deletable groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/groups/deletable"
+          },
+          "docs": "Return a list of the groups which it is possible to delete.\n"
+        },
+        {
+          "info": {
+            "name": "Get the users with their roles from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/groups/:id/members",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group"
+              }
+            ]
+          },
+          "docs": "Returns accessible objects of users with roles from the group\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

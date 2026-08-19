@@ -1,0 +1,534 @@
+{
+  "item": [
+    {
+      "id": "2ea58a8a-fc3e-492f-b480-373d8a47ee6d",
+      "name": "Search",
+      "description": {
+        "content": "Searching data on FOSSology",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aed52608-178b-4fab-b482-b6595699c8c0",
+          "name": "search File",
+          "request": {
+            "name": "search File",
+            "description": {
+              "content": "Search the FOSSology for a specific file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The group name to chose while performing search",
+                "key": "groupName",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Limit search to",
+                "key": "searchType",
+                "value": "allfiles"
+              },
+              {
+                "disabled": false,
+                "description": "Id of the upload to search files into",
+                "key": "uploadId",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Filename to find, can contain % as wild-card",
+                "key": "filename",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Tag to find",
+                "key": "tag",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Page number (starts from 1)",
+                "key": "page",
+                "value": "1"
+              },
+              {
+                "disabled": false,
+                "description": "Limits of responses per request",
+                "key": "limit",
+                "value": "50"
+              },
+              {
+                "disabled": false,
+                "description": "Min filesize in bytes",
+                "key": "filesizemin",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Max filesize in bytes",
+                "key": "filesizemax",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "License search filter",
+                "key": "license",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Copyright search filter",
+                "key": "copyright",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2043fb5-a826-495b-b0c0-49b67c94a91e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The group name to chose while performing search",
+                    "key": "groupName",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Limit search to",
+                    "key": "searchType",
+                    "value": "allfiles"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Id of the upload to search files into",
+                    "key": "uploadId",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Filename to find, can contain % as wild-card",
+                    "key": "filename",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Tag to find",
+                    "key": "tag",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Page number (starts from 1)",
+                    "key": "page",
+                    "value": "1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Limits of responses per request",
+                    "key": "limit",
+                    "value": "50"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Min filesize in bytes",
+                    "key": "filesizemin",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Max filesize in bytes",
+                    "key": "filesizemax",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "License search filter",
+                    "key": "license",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Copyright search filter",
+                    "key": "copyright",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of pages which can be generated based on limit",
+                  "key": "X-Total-Pages",
+                  "value": "7733"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"upload\": {\n      \"folderid\": 2134,\n      \"foldername\": \"string\",\n      \"id\": 2852,\n      \"description\": \"string\",\n      \"uploadname\": \"string\",\n      \"uploaddate\": \"string\",\n      \"assignee\": 2215,\n      \"assigneeDate\": \"1993-03-30T05:32:37.841Z\",\n      \"closingDate\": \"2007-05-07T23:04:39.051Z\",\n      \"hash\": {\n        \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n        \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n        \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n        \"size\": 2829\n      }\n    },\n    \"uploadTreeId\": 1538,\n    \"filename\": \"string\"\n  },\n  {\n    \"upload\": {\n      \"folderid\": 172,\n      \"foldername\": \"string\",\n      \"id\": 5241,\n      \"description\": \"string\",\n      \"uploadname\": \"string\",\n      \"uploaddate\": \"string\",\n      \"assignee\": 1322,\n      \"assigneeDate\": \"1985-09-29T14:19:40.550Z\",\n      \"closingDate\": \"1947-10-18T11:27:41.404Z\",\n      \"hash\": {\n        \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n        \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n        \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n        \"size\": 8290\n      }\n    },\n    \"uploadTreeId\": 2898,\n    \"filename\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6eda2898-9307-4b4a-bb77-be9b09787ee1",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The group name to chose while performing search",
+                    "key": "groupName",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Limit search to",
+                    "key": "searchType",
+                    "value": "allfiles"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Id of the upload to search files into",
+                    "key": "uploadId",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Filename to find, can contain % as wild-card",
+                    "key": "filename",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Tag to find",
+                    "key": "tag",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Page number (starts from 1)",
+                    "key": "page",
+                    "value": "1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Limits of responses per request",
+                    "key": "limit",
+                    "value": "50"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Min filesize in bytes",
+                    "key": "filesizemin",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Max filesize in bytes",
+                    "key": "filesizemax",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "License search filter",
+                    "key": "license",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Copyright search filter",
+                    "key": "copyright",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eeeedeba-4f78-45d3-b759-5c8bd28eb814",
+          "name": "Get the information of files matching the provided hashes",
+          "request": {
+            "name": "Get the information of files matching the provided hashes",
+            "description": {
+              "content": "Get a list of files by hashes\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesearch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The group name to chose while downloading specific report",
+                "key": "groupName",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"sha1\": \"<string>\",\n    \"md5\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"size\": \"<integer>\"\n  },\n  {\n    \"sha1\": \"<string>\",\n    \"md5\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"size\": \"<integer>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0de77808-68c5-4003-b50d-6e4533d126ed",
+              "name": "List of matching files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The group name to chose while downloading specific report",
+                    "key": "groupName",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n    \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n    \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n    \"size\": 6263\n  },\n  {\n    \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n    \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n    \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n    \"size\": 7370\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"hash\": {\n      \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n      \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n      \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n      \"size\": 2008\n    },\n    \"findings\": {\n      \"scanner\": [\n        \"MIT\",\n        \"BSD-3-Clause\"\n      ],\n      \"conclusion\": [\n        \"MIT\",\n        \"GPL-2.0\"\n      ],\n      \"copyright\": [\n        \"Copyright (C) 2017-2020 Free Software Foundation, Inc.\",\n        \"Copyright (C) 1991-2020 Free Software Foundation, Inc.\"\n      ]\n    },\n    \"uploads\": [\n      4204,\n      4448\n    ],\n    \"message\": \"Not found\"\n  },\n  {\n    \"hash\": {\n      \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n      \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n      \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n      \"size\": 1556\n    },\n    \"findings\": {\n      \"scanner\": [\n        \"MIT\",\n        \"BSD-3-Clause\"\n      ],\n      \"conclusion\": [\n        \"MIT\",\n        \"GPL-2.0\"\n      ],\n      \"copyright\": [\n        \"Copyright (C) 2017-2020 Free Software Foundation, Inc.\",\n        \"Copyright (C) 1991-2020 Free Software Foundation, Inc.\"\n      ]\n    },\n    \"uploads\": [\n      2779,\n      6278\n    ],\n    \"message\": \"Not found\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e66f2843-e2bb-4b6f-a82e-cafdf524d4c6",
+              "name": "Some error occurred. Check the \"message\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The group name to chose while downloading specific report",
+                    "key": "groupName",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n    \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n    \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n    \"size\": 6263\n  },\n  {\n    \"sha1\": \"81fe8bfe87576c3ecb22426f8e57847382917acf\",\n    \"md5\": \"e2fc714c4727ee9395f324cd2e7f331f\",\n    \"sha256\": \"88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589\",\n    \"size\": 7370\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"message\": \"string\",\n  \"type\": \"ERROR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/repo/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ea18a86-cc23-4214-9b4e-d98cec4a77c2",
+    "name": "FOSSology Admin Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Automate your fossology instance using REST API\n\nContact Support:\n Email: fossology@fossology.org",
+      "type": "text/plain"
+    }
+  }
+}

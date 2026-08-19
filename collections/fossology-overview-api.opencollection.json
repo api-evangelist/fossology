@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin Overview API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Overview",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get database contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/overview/database/contents"
+          },
+          "docs": "Get database contents for the dashboard display.\n"
+        },
+        {
+          "info": {
+            "name": "Get PHP info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/overview/info/php"
+          },
+          "docs": "Get PHP info\n"
+        },
+        {
+          "info": {
+            "name": "Get disk usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/overview/disk/usage"
+          },
+          "docs": "Get disk usage\n"
+        },
+        {
+          "info": {
+            "name": "Get database metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/overview/database/metrics"
+          },
+          "docs": "Get database metrics for the dashboard display.\n"
+        },
+        {
+          "info": {
+            "name": "Get active queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/overview/queries/active"
+          },
+          "docs": "Get a list of active queries from the database.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,484 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOSSology Admin License API",
+    "version": "1.6.2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "License",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import an obligation csv file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/obligations/import-csv",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "enclosure",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "delimiter",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_input",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import an obligation csv file\n"
+        },
+        {
+          "info": {
+            "name": "Export a csv obligation list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/obligations/export-csv",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Obligation id to export, 0 for all"
+              }
+            ]
+          },
+          "docs": "Export a csv license obligation list\n"
+        },
+        {
+          "info": {
+            "name": "Import an obligation json file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/obligations/import-json",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileInput",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import an obligation json file\n"
+        },
+        {
+          "info": {
+            "name": "Export a json obligation list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/obligations/export-json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Obligation id to export, 0 for all"
+              }
+            ]
+          },
+          "docs": "Export a json license obligation list\n"
+        },
+        {
+          "info": {
+            "name": "Get the contents of the file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/uploads/:id/item/:itemId/view",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the upload"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the item"
+              }
+            ]
+          },
+          "docs": "Returns the contents of a specific file"
+        },
+        {
+          "info": {
+            "name": "Get all license from the database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/license",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              },
+              {
+                "name": "page",
+                "value": ""
+              },
+              {
+                "name": "limit",
+                "value": ""
+              },
+              {
+                "name": "active",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "kind",
+                "value": "",
+                "type": "query",
+                "description": "Which kind of licenses to get."
+              }
+            ]
+          },
+          "docs": "Get a list of available licenses (filtered by kind or status)\n"
+        },
+        {
+          "info": {
+            "name": "Create a new license",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/license",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new license to the database\n"
+        },
+        {
+          "info": {
+            "name": "Import a csv license",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/license/import-csv",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "enclosure",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "delimiter",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_input",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import a csv license to the database\n"
+        },
+        {
+          "info": {
+            "name": "Export a csv license",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/license/export-csv",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "License id to export, 0 for all"
+              }
+            ]
+          },
+          "docs": "Export a csv license\n"
+        },
+        {
+          "info": {
+            "name": "Import a json license",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/license/import-json",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileInput",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import a json license to the database\n"
+        },
+        {
+          "info": {
+            "name": "Export a json license",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/license/export-json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "License id to export, 0 for all"
+              }
+            ]
+          },
+          "docs": "Export a json license\n"
+        },
+        {
+          "info": {
+            "name": "Get a specific license",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/license/:shortname",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "shortname",
+                "value": "",
+                "type": "path",
+                "description": "Shortname of the license"
+              }
+            ]
+          },
+          "docs": "Get information about a specific license\n"
+        },
+        {
+          "info": {
+            "name": "Update a license",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/repo/api/v1/license/:shortname",
+            "headers": [
+              {
+                "name": "groupName",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "shortname",
+                "value": "",
+                "type": "path",
+                "description": "Shortname of the license"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update information about a given license\n"
+        },
+        {
+          "info": {
+            "name": "Get license Candidates for admin view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/license/admincandidates"
+          },
+          "docs": "Get a list of license candidates from the database.\n"
+        },
+        {
+          "info": {
+            "name": "Delete license candidate by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/repo/api/v1/license/admincandidates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the license-candidate"
+              }
+            ]
+          },
+          "docs": "Delete a single admin-license-candidate by the given id.\n"
+        },
+        {
+          "info": {
+            "name": "Get all admin license acknowledgements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/license/adminacknowledgements"
+          },
+          "docs": "Get a list of the admin license acknowledgements\n"
+        },
+        {
+          "info": {
+            "name": "Add, Edit, Enable & Disable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/license/adminacknowledgements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add, edit and toggle admin-license acknowledgement\n"
+        },
+        {
+          "info": {
+            "name": "Get all standard license comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/repo/api/v1/license/stdcomments"
+          },
+          "docs": "Get a list of all standard license comments.\n"
+        },
+        {
+          "info": {
+            "name": "Add, Edit, Enable & Disable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/license/stdcomments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add, edit and toggle standard comments\n"
+        },
+        {
+          "info": {
+            "name": "Verify a license as new or variant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/license/verify/:shortname",
+            "params": [
+              {
+                "name": "shortname",
+                "value": "",
+                "type": "path",
+                "description": "Shortname of the license to be verified"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verify a license as new or variant of another license\n"
+        },
+        {
+          "info": {
+            "name": "Merge a license with another",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/repo/api/v1/license/merge/:shortname",
+            "params": [
+              {
+                "name": "shortname",
+                "value": "",
+                "type": "path",
+                "description": "Shortname of the license to be merged"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Merge a license to another existing license\n"
+        },
+        {
+          "info": {
+            "name": "Get suggested license by reference text.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/repo/api/v1/license/suggest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a single suggested license by the given reference text.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
