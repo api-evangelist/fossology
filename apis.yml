@@ -28,6 +28,13 @@ tags:
   - Linux Foundation
   - Scanning
   - SPDX
+  - Open-Source
+tags_raw:
+  - Compliance
+  - Licensing
+  - Linux Foundation
+  - Scanning
+  - SPDX
   - Open Source
 created: '2026-03-16'
 modified: '2026-05-19'
@@ -85,6 +92,8 @@ apis:
   humanURL: https://www.fossology.org/get-started/
   baseURL: http://localhost/repo/api/v1
   tags:
+  - Authentication
+  tags_raw:
   - auth
   properties:
   - type: OpenAPI
@@ -220,6 +229,8 @@ apis:
   humanURL: https://www.fossology.org/get-started/
   baseURL: http://localhost/repo/api/v1
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -265,6 +276,8 @@ apis:
   humanURL: https://www.fossology.org/get-started/
   baseURL: http://localhost/repo/api/v1
   tags:
+  - Info
+  tags_raw:
   - info
   properties:
   - type: OpenAPI
