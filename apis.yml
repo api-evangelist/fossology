@@ -739,6 +739,8 @@ apis:
   - type: SourceCode
     url: https://github.com/fossology/fossology
 common:
+  - type: Website
+    url: https://www.fossology.org/
   - type: IssueTracker
     url: https://github.com/fossology/fossology/issues
   - type: Releases
