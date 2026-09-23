@@ -1,29 +1,13 @@
 {
   "provider": "fossology",
   "sources": [
-    "fossology-admin-api-openapi.yml",
-    "fossology-auth-api-openapi.yml",
-    "fossology-copyrights-api-openapi.yml",
-    "fossology-folders-api-openapi.yml",
-    "fossology-groups-api-openapi.yml",
-    "fossology-info-api-openapi.yml",
-    "fossology-job-api-openapi.yml",
-    "fossology-license-api-openapi.yml",
-    "fossology-maintenance-api-openapi.yml",
-    "fossology-organize-api-openapi.yml",
-    "fossology-overview-api-openapi.yml",
-    "fossology-report-api-openapi.yml",
-    "fossology-search-api-openapi.yml",
-    "fossology-upload-api-openapi.yml",
-    "fossology-user-api-openapi.yml"
+    "_original/fossology-openapi.yml"
   ],
   "outputs": [
     "fossology-admin-api-openapi.yml",
-    "fossology-auth-api-openapi.yml",
     "fossology-copyrights-api-openapi.yml",
     "fossology-folders-api-openapi.yml",
     "fossology-groups-api-openapi.yml",
-    "fossology-info-api-openapi.yml",
     "fossology-job-api-openapi.yml",
     "fossology-license-api-openapi.yml",
     "fossology-maintenance-api-openapi.yml",
@@ -32,11 +16,33 @@
     "fossology-report-api-openapi.yml",
     "fossology-search-api-openapi.yml",
     "fossology-upload-api-openapi.yml",
-    "fossology-user-api-openapi.yml"
+    "fossology-user-api-openapi.yml",
+    "fossology-auth-api-openapi.yml",
+    "fossology-info-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fossology-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "fossology-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-copyrights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-job-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-license-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-maintenance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-organize-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-overview-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "fossology-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

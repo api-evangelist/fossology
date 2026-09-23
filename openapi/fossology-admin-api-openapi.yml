@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: FOSSology Admin API
   description: Automate your fossology instance using REST API
@@ -26,9 +26,7 @@ paths:
       tags:
       - Admin
       summary: Get the list of obligations
-      description: 'Get the list of obligations in the server.
-
-        '
+      description: Get the list of obligations in the server.
       responses:
         '200':
           description: The API information
@@ -51,9 +49,7 @@ paths:
       tags:
       - Admin
       summary: Get details of a particular obligation
-      description: 'Get the details of a particular obligation from the server.
-
-        '
+      description: Get the details of a particular obligation from the server.
       responses:
         '200':
           description: The API information
@@ -68,9 +64,7 @@ paths:
       tags:
       - Admin
       summary: Delete a particular obligation
-      description: 'Delete a particular obligation from the server.
-
-        '
+      description: Delete a particular obligation from the server.
       responses:
         '200':
           description: Obligation deleted.
@@ -88,9 +82,7 @@ paths:
       tags:
       - Admin
       summary: Get details of a all obligations
-      description: 'Get the details of all obligations from the server.
-
-        '
+      description: Get the details of all obligations from the server.
       responses:
         '200':
           description: The API information
@@ -108,9 +100,6 @@ paths:
       tags:
       - Admin
       summary: Create a new user
-      description: 'Create a new user
-
-        '
       requestBody:
         required: true
         content:
@@ -183,6 +172,8 @@ paths:
                   $ref: '#/components/schemas/User'
         default:
           $ref: '#/components/responses/defaultResponse'
+      summary: Get users
+      x-summary-source: derived
   /users/{id}:
     parameters:
     - name: id
@@ -195,9 +186,7 @@ paths:
       tags:
       - Admin
       summary: Get user by id
-      description: 'Get one single user by id
-
-        '
+      description: Get one single user by id
       responses:
         '200':
           description: User with the given id
@@ -212,9 +201,6 @@ paths:
       tags:
       - Admin
       summary: Edit user details by id
-      description: 'Edit user details by id
-
-        '
       requestBody:
         required: true
         content:
@@ -282,9 +268,7 @@ paths:
       tags:
       - Admin
       summary: Delete user by id
-      description: 'Delete a single user by id
-
-        '
+      description: Delete a single user by id
       responses:
         '202':
           description: User will be deleted
@@ -300,9 +284,6 @@ paths:
       tags:
       - Admin
       summary: Create a new REST API Token
-      description: 'Create a new REST API Token
-
-        '
       requestBody:
         required: true
         content:
@@ -345,9 +326,6 @@ paths:
       tags:
       - Admin
       summary: Get all the REST API tokens (active | expired)
-      description: 'Get all the REST API tokens (active | expired)
-
-        '
       responses:
         '200':
           description: Success
@@ -489,9 +467,7 @@ paths:
       tags:
       - Admin
       summary: Create a new folder
-      description: 'Create a new child folder with optional description
-
-        '
+      description: Create a new child folder with optional description
       parameters:
       - name: parentFolder
         in: header
@@ -546,9 +522,7 @@ paths:
       tags:
       - Admin
       summary: Delete a folder
-      description: 'Schedule a folder deletion
-
-        '
+      description: Schedule a folder deletion
       responses:
         '202':
           description: Folder scheduled to be deleted
@@ -564,9 +538,7 @@ paths:
       tags:
       - Admin
       summary: Get the Admin configuration data
-      description: 'Returns the admin configuration data from the server
-
-        '
+      description: Returns the admin configuration data from the server
       responses:
         '200':
           description: Config data
@@ -589,9 +561,7 @@ paths:
       tags:
       - Admin
       summary: Update the Admin configuration data
-      description: 'Updates the admin configuration data.
-
-        '
+      description: Updates the admin configuration data.
       requestBody:
         description: Key and value to update.
         required: true
@@ -622,9 +592,7 @@ paths:
       tags:
       - Admin
       summary: Create a new group
-      description: 'Create a new user group
-
-        '
+      description: Create a new user group
       parameters:
       - name: name
         in: header
@@ -672,9 +640,7 @@ paths:
       tags:
       - Admin
       summary: Add user to a group
-      description: 'add a new user to group
-
-        '
+      description: add a new user to group
       requestBody:
         description: Request options
         required: true
@@ -715,10 +681,8 @@ paths:
       operationId: deleteByLicenseCandidateId
       tags:
       - Admin
-      summary: Delete license candidate by id.
-      description: 'Delete a single admin-license-candidate by the given id.
-
-        '
+      summary: Delete license candidate by id
+      description: Delete a single admin-license-candidate by the given id.
       responses:
         '202':
           description: License candidate will be deleted.
@@ -753,9 +717,7 @@ paths:
       tags:
       - Admin
       summary: Verify a license as new or variant
-      description: 'Verify a license as new or variant of another license
-
-        '
+      description: Verify a license as new or variant of another license
       requestBody:
         description: The shortname of the parent license | Same name if it's to be verified as a new license
         required: true
@@ -808,9 +770,7 @@ paths:
       tags:
       - Admin
       summary: Merge a license with another
-      description: 'Merge a license to another existing license
-
-        '
+      description: Merge a license to another existing license
       requestBody:
         description: The shortname of the parent license to be merged into
         required: true
@@ -856,9 +816,7 @@ paths:
       tags:
       - Admin
       summary: Get database contents
-      description: 'Get database contents for the dashboard display.
-
-        '
+      description: Get database contents for the dashboard display.
       responses:
         '200':
           description: List of the database contents
@@ -888,9 +846,6 @@ paths:
       tags:
       - Admin
       summary: Get PHP info
-      description: 'Get PHP info
-
-        '
       responses:
         '200':
           description: PHP info
@@ -918,9 +873,6 @@ paths:
       tags:
       - Admin
       summary: Get disk usage
-      description: 'Get disk usage
-
-        '
       responses:
         '200':
           description: Disk usage response
@@ -949,10 +901,8 @@ paths:
       operationId: getSuggestedLicense
       tags:
       - Admin
-      summary: Get suggested license by reference text.
-      description: 'Get a single suggested license by the given reference text.
-
-        '
+      summary: Get suggested license by reference text
+      description: Get a single suggested license by the given reference text.
       requestBody:
         description: Reference text to get suggested license
         required: true
@@ -992,9 +942,7 @@ paths:
       tags:
       - Admin
       summary: Get database metrics
-      description: 'Get database metrics for the dashboard display.
-
-        '
+      description: Get database metrics for the dashboard display.
       responses:
         '200':
           description: List of the database metrics
@@ -1024,9 +972,7 @@ paths:
       tags:
       - Admin
       summary: Get active queries
-      description: 'Get a list of active queries from the database.
-
-        '
+      description: Get a list of active queries from the database.
       responses:
         '200':
           description: List of active queries
@@ -1052,6 +998,145 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
+    ObligationsList:
+      type: array
+      items:
+        properties:
+          id:
+            type: integer
+            example: 29
+          obligation_topic:
+            type: string
+            example: Obligation text
+    Customise:
+      description: Admin customise data object
+      type: object
+      properties:
+        key:
+          description: field key
+          type: string
+        value:
+          description: field value
+          type: string
+        type:
+          description: field type
+          type: string
+          enum:
+          - int
+          - text
+          - textarea
+          - password
+          - dropdown
+          - boolean
+        label:
+          description: field label
+          type: string
+        group_name:
+          description: group name for the field
+          type: string
+        group_order:
+          description: group order of the field
+          type: integer
+        option_value:
+          description: If type is 'dropdown', provide options in format op1{val1}|op2{val2}|...
+          type: string
+    GetPHPInfo:
+      type: object
+      properties:
+        phpVersion:
+          type: string
+          description: Version of PHP
+          example: 7.4.3-4ubuntu2.18
+        loadedExtensions:
+          type: array
+          description: List of loaded extensions in PHP
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the loaded extension
+                example: Core
+              version:
+                type: string
+                description: Version of the loaded extension
+                example: 7.4.3-4ubuntu2.18
+    GetSuggestedLicense:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The primary key of the suggested license.
+          example: 1329
+        spdxName:
+          type: string
+          description: The SPDX identifier of the suggested license.
+          example: LicenseRef-fossology-testmerge
+        shortname:
+          type: string
+          description: The short name of the suggested license.
+          example: MIT
+        fullname:
+          type: string
+          description: The full name of the suggested license.
+          example: MIT license
+        text:
+          type: string
+          description: The text content of the suggested license.
+          example: 'Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL "PROMOTIONAL SLOGAN FOR AUTHOR''S PROFESSIONAL PRACTICE"
+
+            '
+        url:
+          type: string
+          description: The URL associated with the suggested license.
+          example: https://www.google.com/
+        notes:
+          type: string
+          description: Additional notes or comments about the suggested license.
+          example: public notes
+        risk:
+          type: integer
+          description: The risk level associated with the suggested license.
+          example: 2
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/HighlightInfo'
+    Obligation:
+      description: Obligation information
+      type: object
+      properties:
+        id:
+          description: Id key
+          type: integer
+          example: 126
+        topic:
+          description: Obligation topic
+          type: string
+          example: Should preserve notice
+        type:
+          description: Type of obligation
+          type: string
+          example: Obligation
+        text:
+          description: Obligation text
+          type: string
+          example: All notices from the package should be preserved.
+        classification:
+          description: 'Level of attention this obligation should raise in the clearing process
+
+            '
+          type: string
+          enum:
+          - green
+          - white
+          - yellow
+          - red
+        comment:
+          description: Comments for the obligation
+          type: string
+          nullable: true
+          example: Please respect the obligation
     SetCustomiseInfo:
       type: object
       properties:
@@ -1114,134 +1199,25 @@ components:
         compatibility:
           type: boolean
           description: Should Compatibility Analysis be run on this upload.
-    User:
+    GetDatabaseContent:
       type: object
       properties:
-        id:
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: Users
+        total:
           type: integer
-          description: ID of the user
-        name:
+          description: The total count associated with the metric.
+          example: 2
+        lastVacuum:
           type: string
-          description: Unique username
-        description:
+          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
+          example: 'null'
+        lastAnalyze:
           type: string
-          description: Description of the user
-        email:
-          type: string
-          description: Email of the user, needs to be unique and is required
-        accessLevel:
-          type: string
-          enum:
-          - none
-          - read_only
-          - read_write
-          - clearing_admin
-          - admin
-        rootFolderId:
-          type: number
-          format: int
-          description: root folder id of the user
-        emailNotification:
-          type: boolean
-          description: enable email notification when upload scan completes
-        defaultGroup:
-          type: integer
-          description: Default group id of the user
-        agents:
-          $ref: '#/components/schemas/Analysis'
-        defaultBucketpool:
-          description: Default bucket pool id
-          type: integer
-          nullable: true
-      required:
-      - id
-    Obligation:
-      description: Obligation information
-      type: object
-      properties:
-        id:
-          description: Id key
-          type: integer
-          example: 126
-        topic:
-          description: Obligation topic
-          type: string
-          example: Should preserve notice
-        type:
-          description: Type of obligation
-          type: string
-          example: Obligation
-        text:
-          description: Obligation text
-          type: string
-          example: All notices from the package should be preserved.
-        classification:
-          description: 'Level of attention this obligation should raise in the clearing process
-
-            '
-          type: string
-          enum:
-          - green
-          - white
-          - yellow
-          - red
-        comment:
-          description: Comments for the obligation
-          type: string
-          nullable: true
-          example: Please respect the obligation
-    TokenRequest:
-      type: object
-      properties:
-        token_name:
-          type: string
-          maxLength: 40
-          description: Friendly name of the token
-        token_scope:
-          type: string
-          enum:
-          - read
-          - write
-          description: The scope of the token.
-        token_expire:
-          type: string
-          format: date
-          description: Date when the token must expire (default max 30 days).
-      required:
-      - username
-      - password
-      - token_name
-      - token_scope
-      - token_expire
-    Token:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Token Id
-        token_name:
-          type: string
-          description: Name of the Token
-        created:
-          type: string
-          format: date
-          description: Denotes when the token was created
-          example: 2022-07-11
-        token_expire:
-          type: string
-          format: date
-          description: Denotes when the token was created
-          example: 2022-07-11
-        scope:
-          type: string
-          enum:
-          - read
-          - write
-          description: Scope of the token
-        token:
-          type: string
-          description: Scope of the token
-          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
+          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
+          example: 'null'
     GetDatabaseMetric:
       type: object
       properties:
@@ -1253,76 +1229,6 @@ components:
           type: string
           description: The total count associated with the metric.
           example: '36'
-    GetPHPInfo:
-      type: object
-      properties:
-        phpVersion:
-          type: string
-          description: Version of PHP
-          example: 7.4.3-4ubuntu2.18
-        loadedExtensions:
-          type: array
-          description: List of loaded extensions in PHP
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the loaded extension
-                example: Core
-              version:
-                type: string
-                description: Version of the loaded extension
-                example: 7.4.3-4ubuntu2.18
-    ObligationsList:
-      type: array
-      items:
-        properties:
-          id:
-            type: integer
-            example: 29
-          obligation_topic:
-            type: string
-            example: Obligation text
-    GetSuggestedLicense:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The primary key of the suggested license.
-          example: 1329
-        spdxName:
-          type: string
-          description: The SPDX identifier of the suggested license.
-          example: LicenseRef-fossology-testmerge
-        shortname:
-          type: string
-          description: The short name of the suggested license.
-          example: MIT
-        fullname:
-          type: string
-          description: The full name of the suggested license.
-          example: MIT license
-        text:
-          type: string
-          description: The text content of the suggested license.
-          example: "Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL \"PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE\"\r\n"
-        url:
-          type: string
-          description: The URL associated with the suggested license.
-          example: https://www.google.com/
-        notes:
-          type: string
-          description: Additional notes or comments about the suggested license.
-          example: public notes
-        risk:
-          type: integer
-          description: The risk level associated with the suggested license.
-          example: 2
-        highlights:
-          type: array
-          items:
-            $ref: '#/components/schemas/HighlightInfo'
     DiskUsage:
       type: object
       properties:
@@ -1372,88 +1278,35 @@ components:
               type: string
               description: Fossology configuration location
               example: /usr/local/etc/fossology
-    ObligationExtended:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/Obligation'
-      properties:
-        modification:
-          type: boolean
-          description: Applies on modified text?
-        active:
-          type: boolean
-          description: Obligation is active/inactive
-        textUpdatable:
-          type: boolean
-          description: Obligation text can be updated?
-        licenses:
-          type: array
-          description: List of associated licenses with obligation
-          items:
-            type: string
-            description: Shortname of license
-        candidateLicenses:
-          type: array
-          description: List of associated candidate licenses with obligation
-          items:
-            type: string
-            description: Shortname of candidate license
-        hash:
-          type: string
-          description: MD5 hash of obligation text
-    Info:
+    Token:
       type: object
       properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
+        id:
           type: string
-          description: Message in the info
-        type:
+          description: Token Id
+        token_name:
+          type: string
+          description: Name of the Token
+        created:
+          type: string
+          format: date
+          description: Denotes when the token was created
+          example: 2022-07-11
+        token_expire:
+          type: string
+          format: date
+          description: Denotes when the token was created
+          example: 2022-07-11
+        scope:
           type: string
           enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    GetSchedulerOption:
-      type: object
-      properties:
-        jobList:
-          type: array
-          description: List of jobs
-          items:
-            type: string
-          example:
-          - scheduler
-        priorityList:
-          type: array
-          description: List of priorities
-          items:
-            type: integer
-          example:
-          - -20
-          - -19
-          - -18
-        verboseList:
-          type: array
-          description: List of verbose levels
-          items:
-            type: integer
-          example:
-          - 1
-          - 3
-        agentList:
-          type: array
-          description: List of agents
-          items:
-            type: string
-          example:
-          - clixml
-          - pkgagent
-          - maintagent
-          - deciderjob
+          - read
+          - write
+          description: Scope of the token
+        token:
+          type: string
+          description: Scope of the token
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
     HighlightInfo:
       type: object
       properties:
@@ -1505,57 +1358,22 @@ components:
             Copyright (c) <year> <copyright holders>'''
         htmlElement:
           type: string
-    GetDatabaseContent:
+    Info:
       type: object
       properties:
-        metric:
-          type: string
-          description: The metric associated with the object.
-          example: Users
-        total:
+        code:
           type: integer
-          description: The total count associated with the metric.
-          example: 2
-        lastVacuum:
+          description: HTTP status code
+          example: 200
+        message:
           type: string
-          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
-          example: 'null'
-        lastAnalyze:
-          type: string
-          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
-          example: 'null'
-    Customise:
-      description: Admin customise data object
-      type: object
-      properties:
-        key:
-          description: field key
-          type: string
-        value:
-          description: field value
-          type: string
+          description: Message in the info
         type:
-          description: field type
           type: string
           enum:
-          - int
-          - text
-          - textarea
-          - password
-          - dropdown
-          - boolean
-        label:
-          description: field label
-          type: string
-        group_name:
-          description: group name for the field
-          type: string
-        group_order:
-          description: group order of the field
-          type: integer
-        option_value:
-          description: If type is 'dropdown', provide options in format op1{val1}|op2{val2}|...
-          type: string
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
     GetActiveQuery:
       properties:
         pid:
@@ -1573,6 +1391,136 @@ components:
         elapsed:
           type: string
           example: '00:01:06.961334'
+    ObligationExtended:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/Obligation'
+      properties:
+        modification:
+          type: boolean
+          description: Applies on modified text?
+        active:
+          type: boolean
+          description: Obligation is active/inactive
+        textUpdatable:
+          type: boolean
+          description: Obligation text can be updated?
+        licenses:
+          type: array
+          description: List of associated licenses with obligation
+          items:
+            type: string
+            description: Shortname of license
+        candidateLicenses:
+          type: array
+          description: List of associated candidate licenses with obligation
+          items:
+            type: string
+            description: Shortname of candidate license
+        hash:
+          type: string
+          description: MD5 hash of obligation text
+    TokenRequest:
+      type: object
+      properties:
+        token_name:
+          type: string
+          maxLength: 40
+          description: Friendly name of the token
+        token_scope:
+          type: string
+          enum:
+          - read
+          - write
+          description: The scope of the token.
+        token_expire:
+          type: string
+          format: date
+          description: Date when the token must expire (default max 30 days).
+      required:
+      - username
+      - password
+      - token_name
+      - token_scope
+      - token_expire
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the user
+        name:
+          type: string
+          description: Unique username
+        description:
+          type: string
+          description: Description of the user
+        email:
+          type: string
+          description: Email of the user, needs to be unique and is required
+        accessLevel:
+          type: string
+          enum:
+          - none
+          - read_only
+          - read_write
+          - clearing_admin
+          - admin
+        rootFolderId:
+          type: number
+          format: int
+          description: root folder id of the user
+        emailNotification:
+          type: boolean
+          description: enable email notification when upload scan completes
+        defaultGroup:
+          type: integer
+          description: Default group id of the user
+        agents:
+          $ref: '#/components/schemas/Analysis'
+        defaultBucketpool:
+          description: Default bucket pool id
+          type: integer
+          nullable: true
+      required:
+      - id
+    GetSchedulerOption:
+      type: object
+      properties:
+        jobList:
+          type: array
+          description: List of jobs
+          items:
+            type: string
+          example:
+          - scheduler
+        priorityList:
+          type: array
+          description: List of priorities
+          items:
+            type: integer
+          example:
+          - -20
+          - -19
+          - -18
+        verboseList:
+          type: array
+          description: List of verbose levels
+          items:
+            type: integer
+          example:
+          - 1
+          - 3
+        agentList:
+          type: array
+          description: List of agents
+          items:
+            type: string
+          example:
+          - clixml
+          - pkgagent
+          - maintagent
+          - deciderjob
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

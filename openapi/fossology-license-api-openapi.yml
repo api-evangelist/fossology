@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: FOSSology Admin License API
+  title: FOSSology License API
   description: Automate your fossology instance using REST API
   version: 1.6.2
   contact:
@@ -26,9 +26,6 @@ paths:
       tags:
       - License
       summary: Import an obligation csv file
-      description: 'Import an obligation csv file
-
-        '
       requestBody:
         description: Information about delimiters, inclosure and csv file.
         required: true
@@ -79,9 +76,7 @@ paths:
       tags:
       - License
       summary: Export a csv obligation list
-      description: 'Export a csv license obligation list
-
-        '
+      description: Export a csv license obligation list
       responses:
         '200':
           description: Successfully exported
@@ -104,9 +99,6 @@ paths:
       tags:
       - License
       summary: Import an obligation json file
-      description: 'Import an obligation json file
-
-        '
       requestBody:
         description: Include the JSON file
         required: true
@@ -149,9 +141,7 @@ paths:
       tags:
       - License
       summary: Export a json obligation list
-      description: 'Export a json license obligation list
-
-        '
+      description: Export a json license obligation list
       responses:
         '200':
           description: Successfully exported
@@ -259,9 +249,7 @@ paths:
           - all
           default: all
       summary: Get all license from the database
-      description: 'Get a list of available licenses (filtered by kind or status)
-
-        '
+      description: Get a list of available licenses (filtered by kind or status)
       responses:
         '200':
           description: All licenses from database
@@ -290,9 +278,7 @@ paths:
       tags:
       - License
       summary: Create a new license
-      description: 'Add a new license to the database
-
-        '
+      description: Add a new license to the database
       requestBody:
         description: Information about new license
         required: true
@@ -330,9 +316,7 @@ paths:
       tags:
       - License
       summary: Import a csv license
-      description: 'Import a csv license to the database
-
-        '
+      description: Import a csv license to the database
       requestBody:
         description: Information about delimiters, inclosure and csv file.
         required: true
@@ -383,9 +367,6 @@ paths:
       tags:
       - License
       summary: Export a csv license
-      description: 'Export a csv license
-
-        '
       responses:
         '200':
           description: Successfully exported
@@ -408,9 +389,7 @@ paths:
       tags:
       - License
       summary: Import a json license
-      description: 'Import a json license to the database
-
-        '
+      description: Import a json license to the database
       requestBody:
         description: Include the JSON file
         required: true
@@ -453,9 +432,6 @@ paths:
       tags:
       - License
       summary: Export a json license
-      description: 'Export a json license
-
-        '
       responses:
         '200':
           description: Successfully exported
@@ -492,9 +468,7 @@ paths:
       tags:
       - License
       summary: Get a specific license
-      description: 'Get information about a specific license
-
-        '
+      description: Get information about a specific license
       responses:
         '200':
           description: License
@@ -529,9 +503,7 @@ paths:
       tags:
       - License
       summary: Update a license
-      description: 'Update information about a given license
-
-        '
+      description: Update information about a given license
       requestBody:
         description: Information to be updated
         required: true
@@ -576,9 +548,7 @@ paths:
       tags:
       - License
       summary: Get license Candidates for admin view
-      description: 'Get a list of license candidates from the database.
-
-        '
+      description: Get a list of license candidates from the database.
       responses:
         '200':
           description: Request is successful
@@ -608,10 +578,8 @@ paths:
       operationId: deleteByLicenseCandidateId
       tags:
       - License
-      summary: Delete license candidate by id.
-      description: 'Delete a single admin-license-candidate by the given id.
-
-        '
+      summary: Delete license candidate by id
+      description: Delete a single admin-license-candidate by the given id.
       responses:
         '202':
           description: License candidate will be deleted.
@@ -639,9 +607,7 @@ paths:
       tags:
       - License
       summary: Get all admin license acknowledgements
-      description: 'Get a list of the admin license acknowledgements
-
-        '
+      description: Get a list of the admin license acknowledgements
       responses:
         '200':
           description: Request is successful
@@ -664,9 +630,7 @@ paths:
       tags:
       - License
       summary: Add, Edit, Enable & Disable
-      description: 'Add, edit and toggle admin-license acknowledgement
-
-        '
+      description: Add, edit and toggle admin-license acknowledgement
       requestBody:
         required: true
         content:
@@ -698,9 +662,7 @@ paths:
       tags:
       - License
       summary: Get all standard license comments
-      description: 'Get a list of all standard license comments.
-
-        '
+      description: Get a list of all standard license comments.
       responses:
         '200':
           description: Request is successful
@@ -717,9 +679,7 @@ paths:
       tags:
       - License
       summary: Add, Edit, Enable & Disable
-      description: 'Add, edit and toggle standard comments
-
-        '
+      description: Add, edit and toggle standard comments
       requestBody:
         required: true
         content:
@@ -764,9 +724,7 @@ paths:
       tags:
       - License
       summary: Verify a license as new or variant
-      description: 'Verify a license as new or variant of another license
-
-        '
+      description: Verify a license as new or variant of another license
       requestBody:
         description: The shortname of the parent license | Same name if it's to be verified as a new license
         required: true
@@ -819,9 +777,7 @@ paths:
       tags:
       - License
       summary: Merge a license with another
-      description: 'Merge a license to another existing license
-
-        '
+      description: Merge a license to another existing license
       requestBody:
         description: The shortname of the parent license to be merged into
         required: true
@@ -866,10 +822,8 @@ paths:
       operationId: getSuggestedLicense
       tags:
       - License
-      summary: Get suggested license by reference text.
-      description: 'Get a single suggested license by the given reference text.
-
-        '
+      summary: Get suggested license by reference text
+      description: Get a single suggested license by the given reference text.
       requestBody:
         description: Reference text to get suggested license
         required: true
@@ -905,6 +859,87 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
+    GetSuggestedLicense:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The primary key of the suggested license.
+          example: 1329
+        spdxName:
+          type: string
+          description: The SPDX identifier of the suggested license.
+          example: LicenseRef-fossology-testmerge
+        shortname:
+          type: string
+          description: The short name of the suggested license.
+          example: MIT
+        fullname:
+          type: string
+          description: The full name of the suggested license.
+          example: MIT license
+        text:
+          type: string
+          description: The text content of the suggested license.
+          example: 'Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL "PROMOTIONAL SLOGAN FOR AUTHOR''S PROFESSIONAL PRACTICE"
+
+            '
+        url:
+          type: string
+          description: The URL associated with the suggested license.
+          example: https://www.google.com/
+        notes:
+          type: string
+          description: Additional notes or comments about the suggested license.
+          example: public notes
+        risk:
+          type: integer
+          description: The risk level associated with the suggested license.
+          example: 2
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/HighlightInfo'
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    LicenseCandidate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the license-candidate.
+        shortname:
+          type: string
+          description: shortname of the license-candidate.
+        spdxid:
+          type: string
+          description: SPDX ID of the license-candiate.
+        fullname:
+          type: string
+          description: fullname of the license-candidate.
+        text:
+          type: string
+          description: text of the license-candidate.
+        group_name:
+          type: string
+          description: group_name of the license-candidate.
+        group_id:
+          type: integer
+          description: group_id of the license-candidate.
     StandardComment:
       type: object
       properties:
@@ -924,6 +959,129 @@ components:
           type: boolean
           example: true
           description: Indicates whether the comment is enabled or not.
+    License:
+      description: License from the database
+      type: object
+      properties:
+        shortName:
+          description: Short name
+          type: string
+          example: MIT
+        fullName:
+          description: Full name
+          type: string
+          example: MIT License
+        text:
+          description: License text
+          type: string
+          example: MIT License Copyright (c) <year> <copyright holders> ...
+        url:
+          description: URL of the license text
+          type: string
+          example: https://opensource.org/licenses/MIT
+        risk:
+          description: Risk level
+          type: integer
+          nullable: true
+          example: 3
+        isCandidate:
+          description: Is the license a candidate?
+          type: boolean
+    AdminLicenseAcknowledgement:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The primary key of the AdminAcknowledgement
+          example: 2
+        name:
+          type: string
+          description: The name of the AdminAcknowledgement
+          example: ackupdated
+        acknowledgement:
+          type: string
+          description: The acknowledgement text of the AdminAcknowledgement
+          example: updated Ack text
+        is_enabled:
+          type: boolean
+          description: Indicates if the AdminAcknowledgement is enabled
+          example: true
+    MutateAdminAcknowledgement:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 'The ID of the acknowledgement.
+
+            Required if update is TRUE.
+
+            '
+          example: 2
+        name:
+          type: string
+          description: 'The name of the acknowledgement.
+
+            Not required if update is TRUE and toggle is set.
+
+            '
+          example: ackName
+        ack:
+          type: string
+          description: 'The acknowledgement text.
+
+            Not required if update is TRUE and toggle is set.
+
+            '
+          example: acknowledgement text
+        toggle:
+          type: boolean
+          description: A boolean indicating the toggle state.
+          example: true
+        update:
+          type: boolean
+          description: 'A boolean indicating if an update is needed.
+
+            If true, update the given admin acknowledgement.
+
+            if false, add new admin acknowledgement.
+
+            '
+          example: true
+    Obligation:
+      description: Obligation information
+      type: object
+      properties:
+        id:
+          description: Id key
+          type: integer
+          example: 126
+        topic:
+          description: Obligation topic
+          type: string
+          example: Should preserve notice
+        type:
+          description: Type of obligation
+          type: string
+          example: Obligation
+        text:
+          description: Obligation text
+          type: string
+          example: All notices from the package should be preserved.
+        classification:
+          description: 'Level of attention this obligation should raise in the clearing process
+
+            '
+          type: string
+          enum:
+          - green
+          - white
+          - yellow
+          - red
+        comment:
+          description: Comments for the obligation
+          type: string
+          nullable: true
+          example: Please respect the obligation
     HighlightInfo:
       type: object
       properties:
@@ -1016,208 +1174,6 @@ components:
 
             '
           example: true
-    MutateAdminAcknowledgement:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: 'The ID of the acknowledgement.
-
-            Required if update is TRUE.
-
-            '
-          example: 2
-        name:
-          type: string
-          description: 'The name of the acknowledgement.
-
-            Not required if update is TRUE and toggle is set.
-
-            '
-          example: ackName
-        ack:
-          type: string
-          description: 'The acknowledgement text.
-
-            Not required if update is TRUE and toggle is set.
-
-            '
-          example: acknowledgement text
-        toggle:
-          type: boolean
-          description: A boolean indicating the toggle state.
-          example: true
-        update:
-          type: boolean
-          description: 'A boolean indicating if an update is needed.
-
-            If true, update the given admin acknowledgement.
-
-            if false, add new admin acknowledgement.
-
-            '
-          example: true
-    GetSuggestedLicense:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The primary key of the suggested license.
-          example: 1329
-        spdxName:
-          type: string
-          description: The SPDX identifier of the suggested license.
-          example: LicenseRef-fossology-testmerge
-        shortname:
-          type: string
-          description: The short name of the suggested license.
-          example: MIT
-        fullname:
-          type: string
-          description: The full name of the suggested license.
-          example: MIT license
-        text:
-          type: string
-          description: The text content of the suggested license.
-          example: "Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL \"PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE\"\r\n"
-        url:
-          type: string
-          description: The URL associated with the suggested license.
-          example: https://www.google.com/
-        notes:
-          type: string
-          description: Additional notes or comments about the suggested license.
-          example: public notes
-        risk:
-          type: integer
-          description: The risk level associated with the suggested license.
-          example: 2
-        highlights:
-          type: array
-          items:
-            $ref: '#/components/schemas/HighlightInfo'
-    AdminLicenseAcknowledgement:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The primary key of the AdminAcknowledgement
-          example: 2
-        name:
-          type: string
-          description: The name of the AdminAcknowledgement
-          example: ackupdated
-        acknowledgement:
-          type: string
-          description: The acknowledgement text of the AdminAcknowledgement
-          example: updated Ack text
-        is_enabled:
-          type: boolean
-          description: Indicates if the AdminAcknowledgement is enabled
-          example: true
-    License:
-      description: License from the database
-      type: object
-      properties:
-        shortName:
-          description: Short name
-          type: string
-          example: MIT
-        fullName:
-          description: Full name
-          type: string
-          example: MIT License
-        text:
-          description: License text
-          type: string
-          example: MIT License Copyright (c) <year> <copyright holders> ...
-        url:
-          description: URL of the license text
-          type: string
-          example: https://opensource.org/licenses/MIT
-        risk:
-          description: Risk level
-          type: integer
-          nullable: true
-          example: 3
-        isCandidate:
-          description: Is the license a candidate?
-          type: boolean
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    LicenseCandidate:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the license-candidate.
-        shortname:
-          type: string
-          description: shortname of the license-candidate.
-        spdxid:
-          type: string
-          description: SPDX ID of the license-candiate.
-        fullname:
-          type: string
-          description: fullname of the license-candidate.
-        text:
-          type: string
-          description: text of the license-candidate.
-        group_name:
-          type: string
-          description: group_name of the license-candidate.
-        group_id:
-          type: integer
-          description: group_id of the license-candidate.
-    Obligation:
-      description: Obligation information
-      type: object
-      properties:
-        id:
-          description: Id key
-          type: integer
-          example: 126
-        topic:
-          description: Obligation topic
-          type: string
-          example: Should preserve notice
-        type:
-          description: Type of obligation
-          type: string
-          example: Obligation
-        text:
-          description: Obligation text
-          type: string
-          example: All notices from the package should be preserved.
-        classification:
-          description: 'Level of attention this obligation should raise in the clearing process
-
-            '
-          type: string
-          enum:
-          - green
-          - white
-          - yellow
-          - red
-        comment:
-          description: Comments for the obligation
-          type: string
-          nullable: true
-          example: Please respect the obligation
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

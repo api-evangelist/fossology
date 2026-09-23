@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: FOSSology Admin info API
+  title: FOSSology Info API
   description: Automate your fossology instance using REST API
   version: 1.6.2
   contact:
@@ -17,19 +17,17 @@ security:
 - bearerAuth: []
 - oauth: []
 tags:
-- name: info
+- name: Info
   description: Basic info about API
 paths:
   /info:
     get:
       operationId: getInfo
       tags:
-      - info
+      - Info
       security: []
       summary: Get the current API information
-      description: 'Get the current API version, supported authentication methods and description
-
-        '
+      description: Get the current API version, supported authentication methods and description
       responses:
         '200':
           description: The API information
@@ -43,12 +41,10 @@ paths:
     get:
       operationId: getOpenApi
       tags:
-      - info
+      - Info
       security: []
       summary: Get the current openapi.yaml file
-      description: 'Get the current API documentation as a response with content negotiation.
-
-        '
+      description: Get the current API documentation as a response with content negotiation.
       responses:
         '200':
           description: The API documentation
@@ -71,12 +67,10 @@ paths:
     get:
       operationId: getHealth
       tags:
-      - info
+      - Info
       security: []
       summary: Get the status of API service
-      description: 'Check if API is ready to accept requests or not
-
-        '
+      description: Check if API is ready to accept requests or not
       responses:
         '200':
           description: The API information
@@ -96,11 +90,9 @@ paths:
     get:
       operationId: getBannerMessage
       tags:
-      - info
+      - Info
       summary: Get the Banner message
-      description: 'Returns the Banner message from the server
-
-        '
+      description: Returns the Banner message from the server
       responses:
         '200':
           description: Banner message
@@ -113,28 +105,22 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    APIinfo:
-      description: Api Documentation
+    Info:
       type: object
       properties:
-        openapi:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
           type: string
-          description: version
-        info:
+          description: Message in the info
+        type:
           type: string
-          description: version info
-        servers:
-          type: string
-          description: server info
-        security:
-          type: string
-          description: security info
-        tags:
-          type: string
-          description: API tags
-        paths:
-          type: string
-          description: API endpoints
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
     HealthInfo:
       description: Health status of server
       type: object
@@ -166,22 +152,28 @@ components:
               enum:
               - OK
               - ERROR
-    Info:
+    APIinfo:
+      description: Api Documentation
       type: object
       properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
+        openapi:
           type: string
-          description: Message in the info
-        type:
+          description: version
+        info:
           type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
+          description: version info
+        servers:
+          type: string
+          description: server info
+        security:
+          type: string
+          description: security info
+        tags:
+          type: string
+          description: API tags
+        paths:
+          type: string
+          description: API endpoints
     ApiInfo:
       description: Info about the API
       type: object

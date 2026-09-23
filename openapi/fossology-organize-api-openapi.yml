@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: FOSSology Admin Organize API
+  title: FOSSology Organize API
   description: Automate your fossology instance using REST API
   version: 1.6.2
   contact:
@@ -40,9 +40,7 @@ paths:
       tags:
       - Organize
       summary: Delete upload by id
-      description: 'Delete a single upload by id
-
-        '
+      description: Delete a single upload by id
       responses:
         '202':
           description: Upload will be deleted
@@ -95,6 +93,8 @@ paths:
                 $ref: '#/components/schemas/Info'
         default:
           $ref: '#/components/responses/defaultResponse'
+      summary: Update upload by id
+      x-summary-source: derived
     put:
       operationId: moveUploadById
       tags:
@@ -140,9 +140,7 @@ paths:
       tags:
       - Organize
       summary: Create a new folder
-      description: 'Create a new child folder with optional description
-
-        '
+      description: Create a new child folder with optional description
       parameters:
       - name: parentFolder
         in: header
@@ -197,9 +195,7 @@ paths:
       tags:
       - Organize
       summary: Delete a folder
-      description: 'Schedule a folder deletion
-
-        '
+      description: Schedule a folder deletion
       responses:
         '202':
           description: Folder scheduled to be deleted
@@ -227,9 +223,7 @@ paths:
         schema:
           type: string
       summary: Edit a folder's description
-      description: 'Change a folder''s name and/or description
-
-        '
+      description: Change a folder's name and/or description
       responses:
         '200':
           description: Folder is updated
@@ -260,9 +254,7 @@ paths:
           - copy
           - move
       summary: Copy/Move a folder
-      description: 'Copy or move a folder by id
-
-        '
+      description: Copy or move a folder by id
       responses:
         '202':
           description: Folder will be copied/moved
@@ -278,9 +270,7 @@ paths:
       tags:
       - Organize
       summary: Create a new group
-      description: 'Create a new user group
-
-        '
+      description: Create a new user group
       parameters:
       - name: name
         in: header
@@ -310,13 +300,6 @@ paths:
         default:
           $ref: '#/components/responses/defaultResponse'
 components:
-  responses:
-    defaultResponse:
-      description: Some error occurred. Check the "message"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Info'
   schemas:
     Info:
       type: object
@@ -334,6 +317,13 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
   securitySchemes:
     bearerAuth:
       type: http

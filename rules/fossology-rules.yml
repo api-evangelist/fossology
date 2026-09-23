@@ -1,10 +1,10 @@
-aid: fossology:rules
-name: FOSSology API Operational Rules
+x-aid: fossology:rules
+x-name: FOSSology API Operational Rules
 description: >-
   Operational rules and constraints for working with the FOSSology REST API,
   covering authentication, scanning agents, uploads, jobs, clearing decisions,
   and SPDX/license reporting.
-modified: '2026-04-28'
+x-modified: '2026-04-28'
 rules:
   - id: auth-bearer-token
     title: Bearer Token Authentication

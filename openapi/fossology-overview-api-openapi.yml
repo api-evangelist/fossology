@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: FOSSology Admin Overview API
+  title: FOSSology Overview API
   description: Automate your fossology instance using REST API
   version: 1.6.2
   contact:
@@ -26,9 +26,7 @@ paths:
       tags:
       - Overview
       summary: Get database contents
-      description: 'Get database contents for the dashboard display.
-
-        '
+      description: Get database contents for the dashboard display.
       responses:
         '200':
           description: List of the database contents
@@ -58,9 +56,6 @@ paths:
       tags:
       - Overview
       summary: Get PHP info
-      description: 'Get PHP info
-
-        '
       responses:
         '200':
           description: PHP info
@@ -88,9 +83,6 @@ paths:
       tags:
       - Overview
       summary: Get disk usage
-      description: 'Get disk usage
-
-        '
       responses:
         '200':
           description: Disk usage response
@@ -120,9 +112,7 @@ paths:
       tags:
       - Overview
       summary: Get database metrics
-      description: 'Get database metrics for the dashboard display.
-
-        '
+      description: Get database metrics for the dashboard display.
       responses:
         '200':
           description: List of the database metrics
@@ -152,9 +142,7 @@ paths:
       tags:
       - Overview
       summary: Get active queries
-      description: 'Get a list of active queries from the database.
-
-        '
+      description: Get a list of active queries from the database.
       responses:
         '200':
           description: List of active queries
@@ -180,17 +168,60 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    GetDatabaseMetric:
+    Info:
       type: object
       properties:
-        metric:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
           type: string
-          description: The metric associated with the object.
-          example: FOSSology database size
-        total:
+          description: Message in the info
+        type:
           type: string
-          description: The total count associated with the metric.
-          example: '36'
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    GetActiveQuery:
+      properties:
+        pid:
+          type: integer
+          example: 1831
+        query:
+          type: string
+          enum:
+          - idle
+          - active
+        startTime:
+          type: string
+          format: date-time
+          example: '2023-09-28T05:15:05.227Z'
+        elapsed:
+          type: string
+          example: '00:01:06.961334'
+    GetPHPInfo:
+      type: object
+      properties:
+        phpVersion:
+          type: string
+          description: Version of PHP
+          example: 7.4.3-4ubuntu2.18
+        loadedExtensions:
+          type: array
+          description: List of loaded extensions in PHP
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the loaded extension
+                example: Core
+              version:
+                type: string
+                description: Version of the loaded extension
+                example: 7.4.3-4ubuntu2.18
     GetDatabaseContent:
       type: object
       properties:
@@ -210,6 +241,17 @@ components:
           type: string
           description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
           example: 'null'
+    GetDatabaseMetric:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: FOSSology database size
+        total:
+          type: string
+          description: The total count associated with the metric.
+          example: '36'
     DiskUsage:
       type: object
       properties:
@@ -259,60 +301,6 @@ components:
               type: string
               description: Fossology configuration location
               example: /usr/local/etc/fossology
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    GetPHPInfo:
-      type: object
-      properties:
-        phpVersion:
-          type: string
-          description: Version of PHP
-          example: 7.4.3-4ubuntu2.18
-        loadedExtensions:
-          type: array
-          description: List of loaded extensions in PHP
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the loaded extension
-                example: Core
-              version:
-                type: string
-                description: Version of the loaded extension
-                example: 7.4.3-4ubuntu2.18
-    GetActiveQuery:
-      properties:
-        pid:
-          type: integer
-          example: 1831
-        query:
-          type: string
-          enum:
-          - idle
-          - active
-        startTime:
-          type: string
-          format: date-time
-          example: '2023-09-28T05:15:05.227Z'
-        elapsed:
-          type: string
-          example: '00:01:06.961334'
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

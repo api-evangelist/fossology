@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: FOSSology Admin Groups API
+  title: FOSSology Groups API
   description: Automate your fossology instance using REST API
   version: 1.6.2
   contact:
@@ -26,9 +26,7 @@ paths:
       tags:
       - Groups
       summary: Get the list of groups
-      description: 'Returns accessible groups for a user, all groups for an admin
-
-        '
+      description: Returns accessible groups for a user, all groups for an admin
       responses:
         '200':
           description: List of groups
@@ -45,9 +43,7 @@ paths:
       tags:
       - Groups
       summary: Create a new group
-      description: 'Create a new user group
-
-        '
+      description: Create a new user group
       parameters:
       - name: name
         in: header
@@ -89,9 +85,7 @@ paths:
       tags:
       - Groups
       summary: Delete group by id
-      description: 'Deletes a single group by id.
-
-        '
+      description: Deletes a single group by id.
       responses:
         '202':
           description: User group will be deleted
@@ -120,9 +114,7 @@ paths:
       tags:
       - Groups
       summary: Delete group member by groupId and userId
-      description: 'Deletes a single group member by groupId and userId
-
-        '
+      description: Deletes a single group member by groupId and userId
       responses:
         '200':
           description: User will be removed from group.
@@ -155,9 +147,7 @@ paths:
       tags:
       - Groups
       summary: Add user to a group
-      description: 'add a new user to group
-
-        '
+      description: add a new user to group
       requestBody:
         description: Request options
         required: true
@@ -191,9 +181,7 @@ paths:
       tags:
       - Groups
       summary: Update Permission
-      description: 'Update User''s permission in group.
-
-        '
+      description: Update User's permission in group.
       requestBody:
         description: Value of the new permission
         required: true
@@ -237,9 +225,7 @@ paths:
       tags:
       - Groups
       summary: Give a list of deletable groups
-      description: 'Return a list of the groups which it is possible to delete.
-
-        '
+      description: Return a list of the groups which it is possible to delete.
       responses:
         '200':
           description: List of groups
@@ -264,9 +250,7 @@ paths:
       tags:
       - Groups
       summary: Get the users with their roles from a group
-      description: 'Returns accessible objects of users with roles from the group
-
-        '
+      description: Returns accessible objects of users with roles from the group
       responses:
         '200':
           description: List of group-user-member
@@ -280,29 +264,31 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    Group:
-      description: Group object
+    Info:
       type: object
       properties:
-        id:
-          description: Id key
+        code:
           type: integer
-          example: 126
-        name:
-          description: Name of a group
+          description: HTTP status code
+          example: 200
+        message:
           type: string
-          example: Main group
-    AddMember:
-      description: UserMember options
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    UserGroupMember:
       type: object
       properties:
-        perm:
+        user:
+          $ref: '#/components/schemas/User'
+        group_perm:
           type: integer
-          description: Default permission of the new member.
-          nullable: false
-          minimum: 0
-          maximum: 2
-          example: 0
+          description: Permission of the user in the group.
+          example: 1
     Analysis:
       type: object
       properties:
@@ -345,6 +331,29 @@ components:
         compatibility:
           type: boolean
           description: Should Compatibility Analysis be run on this upload.
+    AddMember:
+      description: UserMember options
+      type: object
+      properties:
+        perm:
+          type: integer
+          description: Default permission of the new member.
+          nullable: false
+          minimum: 0
+          maximum: 2
+          example: 0
+    Group:
+      description: Group object
+      type: object
+      properties:
+        id:
+          description: Id key
+          type: integer
+          example: 126
+        name:
+          description: Name of a group
+          type: string
+          example: Main group
     NewGroupPermission:
       description: User Group permission update
       type: object
@@ -362,22 +371,6 @@ components:
             '
           minimum: 0
           maximum: 2
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
     User:
       type: object
       properties:
@@ -419,15 +412,6 @@ components:
           nullable: true
       required:
       - id
-    UserGroupMember:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        group_perm:
-          type: integer
-          description: Permission of the user in the group.
-          example: 1
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"
