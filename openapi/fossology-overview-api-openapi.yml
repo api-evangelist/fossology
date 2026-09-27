@@ -168,39 +168,6 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    GetActiveQuery:
-      properties:
-        pid:
-          type: integer
-          example: 1831
-        query:
-          type: string
-          enum:
-          - idle
-          - active
-        startTime:
-          type: string
-          format: date-time
-          example: '2023-09-28T05:15:05.227Z'
-        elapsed:
-          type: string
-          example: '00:01:06.961334'
     GetPHPInfo:
       type: object
       properties:
@@ -222,25 +189,23 @@ components:
                 type: string
                 description: Version of the loaded extension
                 example: 7.4.3-4ubuntu2.18
-    GetDatabaseContent:
-      type: object
+    GetActiveQuery:
       properties:
-        metric:
-          type: string
-          description: The metric associated with the object.
-          example: Users
-        total:
+        pid:
           type: integer
-          description: The total count associated with the metric.
-          example: 2
-        lastVacuum:
+          example: 1831
+        query:
           type: string
-          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
-          example: 'null'
-        lastAnalyze:
+          enum:
+          - idle
+          - active
+        startTime:
           type: string
-          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
-          example: 'null'
+          format: date-time
+          example: '2023-09-28T05:15:05.227Z'
+        elapsed:
+          type: string
+          example: '00:01:06.961334'
     GetDatabaseMetric:
       type: object
       properties:
@@ -252,6 +217,22 @@ components:
           type: string
           description: The total count associated with the metric.
           example: '36'
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
     DiskUsage:
       type: object
       properties:
@@ -301,6 +282,25 @@ components:
               type: string
               description: Fossology configuration location
               example: /usr/local/etc/fossology
+    GetDatabaseContent:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: Users
+        total:
+          type: integer
+          description: The total count associated with the metric.
+          example: 2
+        lastVacuum:
+          type: string
+          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
+          example: 'null'
+        lastAnalyze:
+          type: string
+          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
+          example: 'null'
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

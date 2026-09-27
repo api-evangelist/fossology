@@ -44,7 +44,7 @@ tags:
   - Linux Foundation
   - Scanning
   - SPDX
-  - Open-Source
+  - Open Source
 tags_raw:
   - Compliance
   - Licensing
@@ -52,6 +52,7 @@ tags_raw:
   - Scanning
   - SPDX
   - Open Source
+  - Open-Source
 created: '2026-03-16'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/fossology/refs/heads/main/apis.yml
@@ -103,7 +104,7 @@ apis:
   - type: SourceCode
     url: https://github.com/fossology/fossology
 - aid: fossology:fossology-auth-api
-  name: FOSSology auth API
+  name: FOSSology Auth API
   description: Authentication endpoints
   humanURL: https://www.fossology.org/get-started/
   baseURL: http://localhost/repo/api/v1
@@ -287,7 +288,7 @@ apis:
   - type: SourceCode
     url: https://github.com/fossology/fossology
 - aid: fossology:fossology-info-api
-  name: FOSSology info API
+  name: FOSSology Info API
   description: Basic info about API
   humanURL: https://www.fossology.org/get-started/
   baseURL: http://localhost/repo/api/v1

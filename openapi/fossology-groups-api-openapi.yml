@@ -264,31 +264,6 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    UserGroupMember:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        group_perm:
-          type: integer
-          description: Permission of the user in the group.
-          example: 1
     Analysis:
       type: object
       properties:
@@ -331,6 +306,15 @@ components:
         compatibility:
           type: boolean
           description: Should Compatibility Analysis be run on this upload.
+    UserGroupMember:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        group_perm:
+          type: integer
+          description: Permission of the user in the group.
+          example: 1
     AddMember:
       description: UserMember options
       type: object
@@ -342,18 +326,6 @@ components:
           minimum: 0
           maximum: 2
           example: 0
-    Group:
-      description: Group object
-      type: object
-      properties:
-        id:
-          description: Id key
-          type: integer
-          example: 126
-        name:
-          description: Name of a group
-          type: string
-          example: Main group
     NewGroupPermission:
       description: User Group permission update
       type: object
@@ -371,6 +343,34 @@ components:
             '
           minimum: 0
           maximum: 2
+    Group:
+      description: Group object
+      type: object
+      properties:
+        id:
+          description: Id key
+          type: integer
+          example: 126
+        name:
+          description: Name of a group
+          type: string
+          example: Main group
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
     User:
       type: object
       properties:

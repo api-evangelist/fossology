@@ -859,194 +859,6 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    GetSuggestedLicense:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The primary key of the suggested license.
-          example: 1329
-        spdxName:
-          type: string
-          description: The SPDX identifier of the suggested license.
-          example: LicenseRef-fossology-testmerge
-        shortname:
-          type: string
-          description: The short name of the suggested license.
-          example: MIT
-        fullname:
-          type: string
-          description: The full name of the suggested license.
-          example: MIT license
-        text:
-          type: string
-          description: The text content of the suggested license.
-          example: 'Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL "PROMOTIONAL SLOGAN FOR AUTHOR''S PROFESSIONAL PRACTICE"
-
-            '
-        url:
-          type: string
-          description: The URL associated with the suggested license.
-          example: https://www.google.com/
-        notes:
-          type: string
-          description: Additional notes or comments about the suggested license.
-          example: public notes
-        risk:
-          type: integer
-          description: The risk level associated with the suggested license.
-          example: 2
-        highlights:
-          type: array
-          items:
-            $ref: '#/components/schemas/HighlightInfo'
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    LicenseCandidate:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the license-candidate.
-        shortname:
-          type: string
-          description: shortname of the license-candidate.
-        spdxid:
-          type: string
-          description: SPDX ID of the license-candiate.
-        fullname:
-          type: string
-          description: fullname of the license-candidate.
-        text:
-          type: string
-          description: text of the license-candidate.
-        group_name:
-          type: string
-          description: group_name of the license-candidate.
-        group_id:
-          type: integer
-          description: group_id of the license-candidate.
-    StandardComment:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 2
-          description: The primary key of the comment.
-        name:
-          type: string
-          example: firstComment
-          description: The name of the comment.
-        comment:
-          type: string
-          example: The comment's text
-          description: The text content of the comment.
-        is_enabled:
-          type: boolean
-          example: true
-          description: Indicates whether the comment is enabled or not.
-    License:
-      description: License from the database
-      type: object
-      properties:
-        shortName:
-          description: Short name
-          type: string
-          example: MIT
-        fullName:
-          description: Full name
-          type: string
-          example: MIT License
-        text:
-          description: License text
-          type: string
-          example: MIT License Copyright (c) <year> <copyright holders> ...
-        url:
-          description: URL of the license text
-          type: string
-          example: https://opensource.org/licenses/MIT
-        risk:
-          description: Risk level
-          type: integer
-          nullable: true
-          example: 3
-        isCandidate:
-          description: Is the license a candidate?
-          type: boolean
-    AdminLicenseAcknowledgement:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The primary key of the AdminAcknowledgement
-          example: 2
-        name:
-          type: string
-          description: The name of the AdminAcknowledgement
-          example: ackupdated
-        acknowledgement:
-          type: string
-          description: The acknowledgement text of the AdminAcknowledgement
-          example: updated Ack text
-        is_enabled:
-          type: boolean
-          description: Indicates if the AdminAcknowledgement is enabled
-          example: true
-    MutateAdminAcknowledgement:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: 'The ID of the acknowledgement.
-
-            Required if update is TRUE.
-
-            '
-          example: 2
-        name:
-          type: string
-          description: 'The name of the acknowledgement.
-
-            Not required if update is TRUE and toggle is set.
-
-            '
-          example: ackName
-        ack:
-          type: string
-          description: 'The acknowledgement text.
-
-            Not required if update is TRUE and toggle is set.
-
-            '
-          example: acknowledgement text
-        toggle:
-          type: boolean
-          description: A boolean indicating the toggle state.
-          example: true
-        update:
-          type: boolean
-          description: 'A boolean indicating if an update is needed.
-
-            If true, update the given admin acknowledgement.
-
-            if false, add new admin acknowledgement.
-
-            '
-          example: true
     Obligation:
       description: Obligation information
       type: object
@@ -1082,6 +894,30 @@ components:
           type: string
           nullable: true
           example: Please respect the obligation
+    LicenseCandidate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the license-candidate.
+        shortname:
+          type: string
+          description: shortname of the license-candidate.
+        spdxid:
+          type: string
+          description: SPDX ID of the license-candiate.
+        fullname:
+          type: string
+          description: fullname of the license-candidate.
+        text:
+          type: string
+          description: text of the license-candidate.
+        group_name:
+          type: string
+          description: group_name of the license-candidate.
+        group_id:
+          type: integer
+          description: group_id of the license-candidate.
     HighlightInfo:
       type: object
       properties:
@@ -1171,6 +1007,170 @@ components:
             If TRUE, update the given standard comment.
 
             if FALSE, add new standard comment.
+
+            '
+          example: true
+    GetSuggestedLicense:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The primary key of the suggested license.
+          example: 1329
+        spdxName:
+          type: string
+          description: The SPDX identifier of the suggested license.
+          example: LicenseRef-fossology-testmerge
+        shortname:
+          type: string
+          description: The short name of the suggested license.
+          example: MIT
+        fullname:
+          type: string
+          description: The full name of the suggested license.
+          example: MIT license
+        text:
+          type: string
+          description: The text content of the suggested license.
+          example: 'Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL "PROMOTIONAL SLOGAN FOR AUTHOR''S PROFESSIONAL PRACTICE"
+
+            '
+        url:
+          type: string
+          description: The URL associated with the suggested license.
+          example: https://www.google.com/
+        notes:
+          type: string
+          description: Additional notes or comments about the suggested license.
+          example: public notes
+        risk:
+          type: integer
+          description: The risk level associated with the suggested license.
+          example: 2
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/HighlightInfo'
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    AdminLicenseAcknowledgement:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The primary key of the AdminAcknowledgement
+          example: 2
+        name:
+          type: string
+          description: The name of the AdminAcknowledgement
+          example: ackupdated
+        acknowledgement:
+          type: string
+          description: The acknowledgement text of the AdminAcknowledgement
+          example: updated Ack text
+        is_enabled:
+          type: boolean
+          description: Indicates if the AdminAcknowledgement is enabled
+          example: true
+    License:
+      description: License from the database
+      type: object
+      properties:
+        shortName:
+          description: Short name
+          type: string
+          example: MIT
+        fullName:
+          description: Full name
+          type: string
+          example: MIT License
+        text:
+          description: License text
+          type: string
+          example: MIT License Copyright (c) <year> <copyright holders> ...
+        url:
+          description: URL of the license text
+          type: string
+          example: https://opensource.org/licenses/MIT
+        risk:
+          description: Risk level
+          type: integer
+          nullable: true
+          example: 3
+        isCandidate:
+          description: Is the license a candidate?
+          type: boolean
+    StandardComment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+          description: The primary key of the comment.
+        name:
+          type: string
+          example: firstComment
+          description: The name of the comment.
+        comment:
+          type: string
+          example: The comment's text
+          description: The text content of the comment.
+        is_enabled:
+          type: boolean
+          example: true
+          description: Indicates whether the comment is enabled or not.
+    MutateAdminAcknowledgement:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 'The ID of the acknowledgement.
+
+            Required if update is TRUE.
+
+            '
+          example: 2
+        name:
+          type: string
+          description: 'The name of the acknowledgement.
+
+            Not required if update is TRUE and toggle is set.
+
+            '
+          example: ackName
+        ack:
+          type: string
+          description: 'The acknowledgement text.
+
+            Not required if update is TRUE and toggle is set.
+
+            '
+          example: acknowledgement text
+        toggle:
+          type: boolean
+          description: A boolean indicating the toggle state.
+          example: true
+        update:
+          type: boolean
+          description: 'A boolean indicating if an update is needed.
+
+            If true, update the given admin acknowledgement.
+
+            if false, add new admin acknowledgement.
 
             '
           example: true

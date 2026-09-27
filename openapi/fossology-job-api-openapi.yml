@@ -549,46 +549,6 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    Reuser:
-      type: object
-      properties:
-        reuse_upload:
-          type: integer
-          description: The UploadID to reuse.
-        reuse_group:
-          type: string
-          description: The group of the reused upload
-        reuse_main:
-          type: boolean
-          description: Copy the main license from reused package?
-        reuse_enhanced:
-          type: boolean
-          description: Run enhanced reuser with diff tool (slow)
-        reuse_report:
-          type: boolean
-          description: Copy all report configuration from conf page.
-        reuse_copyright:
-          type: boolean
-          description: Copy the copyright deactivation and edits.
-      required:
-      - reuse_upload
-      - reuse_group
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
     Analysis:
       type: object
       properties:
@@ -631,38 +591,39 @@ components:
         compatibility:
           type: boolean
           description: Should Compatibility Analysis be run on this upload.
-    Job:
+    ShowJob:
+      description: History of all the jobs and the job queue info
       type: object
       properties:
-        id:
+        jobId:
           type: integer
-          description: ID of the job
-        name:
+          description: Job ID
+        jobName:
           type: string
-          description: Name of the job
-        queueDate:
-          type: string
-          description: When the job was queued
+          description: Job name (generally upload name)
+        jobQueue:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobQueue'
+          description: Jobs queued for the current job
         uploadId:
           type: integer
-          description: Upload for which the job was scheduled
-        userId:
-          type: integer
-          description: User who scheduled the job
-        groupId:
-          type: integer
-          description: Group under which the job was scheduled
-        eta:
-          type: integer
-          description: ETA of job to finish in seconds
-        status:
+          description: Upload ID to which the job belongs to.
+    GetJobStatistics:
+      type: object
+      properties:
+        agentName:
           type: string
-          enum:
-          - Completed
-          - Failed
-          - Queued
-          - Processing
-          description: Denotes the current status of the job in the queue
+          description: Name of the agent
+          example: monkbulk
+        agentDesc:
+          type: string
+          description: Description of the agent
+          example: monkbulk agent
+        firedJobs:
+          type: integer
+          description: Number of fired jobs
+          example: 23
     GetSchedulerOption:
       type: object
       properties:
@@ -700,6 +661,73 @@ components:
           - pkgagent
           - maintagent
           - deciderjob
+    ScanOptions:
+      type: object
+      properties:
+        analysis:
+          $ref: '#/components/schemas/Analysis'
+        decider:
+          $ref: '#/components/schemas/LicenseDecider'
+        reuse:
+          $ref: '#/components/schemas/Reuser'
+        scancode:
+          $ref: '#/components/schemas/Scancode'
+    Job:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the job
+        name:
+          type: string
+          description: Name of the job
+        queueDate:
+          type: string
+          description: When the job was queued
+        uploadId:
+          type: integer
+          description: Upload for which the job was scheduled
+        userId:
+          type: integer
+          description: User who scheduled the job
+        groupId:
+          type: integer
+          description: Group under which the job was scheduled
+        eta:
+          type: integer
+          description: ETA of job to finish in seconds
+        status:
+          type: string
+          enum:
+          - Completed
+          - Failed
+          - Queued
+          - Processing
+          description: Denotes the current status of the job in the queue
+    Reuser:
+      type: object
+      properties:
+        reuse_upload:
+          type: integer
+          description: The UploadID to reuse.
+        reuse_group:
+          type: string
+          description: The group of the reused upload
+        reuse_main:
+          type: boolean
+          description: Copy the main license from reused package?
+        reuse_enhanced:
+          type: boolean
+          description: Run enhanced reuser with diff tool (slow)
+        reuse_report:
+          type: boolean
+          description: Copy all report configuration from conf page.
+        reuse_copyright:
+          type: boolean
+          description: Copy the copyright deactivation and edits.
+      required:
+      - reuse_upload
+      - reuse_group
     LicenseDecider:
       type: object
       properties:
@@ -729,32 +757,53 @@ components:
         copyright_clutter_removal:
           type: boolean
           description: Deactivate false positive copyrights and remove clutter from them (experimental).
-    GetJobStatistics:
+    AllServerJobs:
       type: object
       properties:
-        agentName:
+        data:
+          type: array
+          description: List of agents
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the agent
+                example: decider
+              running:
+                type: integer
+                description: Number of running instances
+                example: 0
+              pending:
+                type: integer
+                description: Number of pending instances
+                example: 1
+              eta:
+                type: string
+                description: Estimated time of arrival
+                example: N/A
+        scheduler:
           type: string
-          description: Name of the agent
-          example: monkbulk
-        agentDesc:
-          type: string
-          description: Description of the agent
-          example: monkbulk agent
-        firedJobs:
+          description: Current scheduler status
+          enum:
+          - Running
+          - Stopped
+    Info:
+      type: object
+      properties:
+        code:
           type: integer
-          description: Number of fired jobs
-          example: 23
-    ScanOptions:
-      type: object
-      properties:
-        analysis:
-          $ref: '#/components/schemas/Analysis'
-        decider:
-          $ref: '#/components/schemas/LicenseDecider'
-        reuse:
-          $ref: '#/components/schemas/Reuser'
-        scancode:
-          $ref: '#/components/schemas/Scancode'
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
     JobQueue:
       description: Structure of jobs queue
       type: object
@@ -810,55 +859,6 @@ components:
             link:
               description: Link to download the report
               type: string
-    ShowJob:
-      description: History of all the jobs and the job queue info
-      type: object
-      properties:
-        jobId:
-          type: integer
-          description: Job ID
-        jobName:
-          type: string
-          description: Job name (generally upload name)
-        jobQueue:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobQueue'
-          description: Jobs queued for the current job
-        uploadId:
-          type: integer
-          description: Upload ID to which the job belongs to.
-    AllServerJobs:
-      type: object
-      properties:
-        data:
-          type: array
-          description: List of agents
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the agent
-                example: decider
-              running:
-                type: integer
-                description: Number of running instances
-                example: 0
-              pending:
-                type: integer
-                description: Number of pending instances
-                example: 1
-              eta:
-                type: string
-                description: Estimated time of arrival
-                example: N/A
-        scheduler:
-          type: string
-          description: Current scheduler status
-          enum:
-          - Running
-          - Stopped
     Scancode:
       type: object
       properties:

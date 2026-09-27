@@ -2046,12 +2046,6 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    SetCopyrightInfo:
-      type: object
-      properties:
-        content:
-          type: string
-          description: Copyright text
     Info:
       type: object
       properties:
@@ -2081,6 +2075,12 @@ components:
         count:
           type: integer
           description: Count of the CXs
+    SetCopyrightInfo:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Copyright text
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

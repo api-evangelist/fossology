@@ -161,66 +161,6 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    File:
-      description: Meta information about file in FOSSology
-      type: object
-      properties:
-        hash:
-          $ref: '#/components/schemas/Hash'
-        findings:
-          $ref: '#/components/schemas/Findings'
-        uploads:
-          description: Upload ID if the file was uploaded as a package
-          type: array
-          items:
-            type: integer
-            description: Upload IDs where the given file was found
-          nullable: true
-        message:
-          description: Message in case provided hash not found or error
-          type: string
-          enum:
-          - Not found
-          - Invalid keys
-          example: Not found
-          nullable: true
-      required:
-      - hash
-    Hash:
-      description: Hash information of a file
-      type: object
-      properties:
-        sha1:
-          description: SHA1 checksum of the file
-          type: string
-          example: 81fe8bfe87576c3ecb22426f8e57847382917acf
-        md5:
-          description: MD5 checksum of the file
-          type: string
-          example: e2fc714c4727ee9395f324cd2e7f331f
-        sha256:
-          description: SHA256 checksum of the file
-          type: string
-          example: 88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
-        size:
-          description: Size of the file in bytes
-          type: integer
     Upload:
       type: object
       properties:
@@ -258,6 +198,41 @@ components:
           nullable: true
         hash:
           $ref: '#/components/schemas/Hash'
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    Hash:
+      description: Hash information of a file
+      type: object
+      properties:
+        sha1:
+          description: SHA1 checksum of the file
+          type: string
+          example: 81fe8bfe87576c3ecb22426f8e57847382917acf
+        md5:
+          description: MD5 checksum of the file
+          type: string
+          example: e2fc714c4727ee9395f324cd2e7f331f
+        sha256:
+          description: SHA256 checksum of the file
+          type: string
+          example: 88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+        size:
+          description: Size of the file in bytes
+          type: integer
     Findings:
       description: License findings and conclusions of file
       type: object
@@ -296,6 +271,31 @@ components:
           example:
           - Copyright (C) 2017-2020 Free Software Foundation, Inc.
           - Copyright (C) 1991-2020 Free Software Foundation, Inc.
+    File:
+      description: Meta information about file in FOSSology
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/Hash'
+        findings:
+          $ref: '#/components/schemas/Findings'
+        uploads:
+          description: Upload ID if the file was uploaded as a package
+          type: array
+          items:
+            type: integer
+            description: Upload IDs where the given file was found
+          nullable: true
+        message:
+          description: Message in case provided hash not found or error
+          type: string
+          enum:
+          - Not found
+          - Invalid keys
+          example: Not found
+          nullable: true
+      required:
+      - hash
     SearchResults:
       type: object
       properties:
