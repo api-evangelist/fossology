@@ -355,6 +355,23 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
+    NewGroupPermission:
+      description: User Group permission update
+      type: object
+      properties:
+        perm:
+          type: integer
+          description: 'New user permission in the group.
+
+            0: User
+
+            1: Admin
+
+            2: Advisor
+
+            '
+          minimum: 0
+          maximum: 2
     Analysis:
       type: object
       properties:
@@ -397,46 +414,35 @@ components:
         compatibility:
           type: boolean
           description: Should Compatibility Analysis be run on this upload.
-    TokenRequest:
+    Token:
       type: object
       properties:
+        id:
+          type: string
+          description: Token Id
         token_name:
           type: string
-          maxLength: 40
-          description: Friendly name of the token
-        token_scope:
+          description: Name of the Token
+        created:
+          type: string
+          format: date
+          description: Denotes when the token was created
+          example: 2022-07-11
+        token_expire:
+          type: string
+          format: date
+          description: Denotes when the token was created
+          example: 2022-07-11
+        scope:
           type: string
           enum:
           - read
           - write
-          description: The scope of the token.
-        token_expire:
+          description: Scope of the token
+        token:
           type: string
-          format: date
-          description: Date when the token must expire (default max 30 days).
-      required:
-      - username
-      - password
-      - token_name
-      - token_scope
-      - token_expire
-    NewGroupPermission:
-      description: User Group permission update
-      type: object
-      properties:
-        perm:
-          type: integer
-          description: 'New user permission in the group.
-
-            0: User
-
-            1: Admin
-
-            2: Advisor
-
-            '
-          minimum: 0
-          maximum: 2
+          description: Scope of the token
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
     Info:
       type: object
       properties:
@@ -494,35 +500,29 @@ components:
           nullable: true
       required:
       - id
-    Token:
+    TokenRequest:
       type: object
       properties:
-        id:
-          type: string
-          description: Token Id
         token_name:
           type: string
-          description: Name of the Token
-        created:
-          type: string
-          format: date
-          description: Denotes when the token was created
-          example: 2022-07-11
-        token_expire:
-          type: string
-          format: date
-          description: Denotes when the token was created
-          example: 2022-07-11
-        scope:
+          maxLength: 40
+          description: Friendly name of the token
+        token_scope:
           type: string
           enum:
           - read
           - write
-          description: Scope of the token
-        token:
+          description: The scope of the token.
+        token_expire:
           type: string
-          description: Scope of the token
-          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
+          format: date
+          description: Date when the token must expire (default max 30 days).
+      required:
+      - username
+      - password
+      - token_name
+      - token_scope
+      - token_expire
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

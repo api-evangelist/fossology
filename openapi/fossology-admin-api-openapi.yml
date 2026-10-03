@@ -998,6 +998,210 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
+    Customise:
+      description: Admin customise data object
+      type: object
+      properties:
+        key:
+          description: field key
+          type: string
+        value:
+          description: field value
+          type: string
+        type:
+          description: field type
+          type: string
+          enum:
+          - int
+          - text
+          - textarea
+          - password
+          - dropdown
+          - boolean
+        label:
+          description: field label
+          type: string
+        group_name:
+          description: group name for the field
+          type: string
+        group_order:
+          description: group order of the field
+          type: integer
+        option_value:
+          description: If type is 'dropdown', provide options in format op1{val1}|op2{val2}|...
+          type: string
+    GetSchedulerOption:
+      type: object
+      properties:
+        jobList:
+          type: array
+          description: List of jobs
+          items:
+            type: string
+          example:
+          - scheduler
+        priorityList:
+          type: array
+          description: List of priorities
+          items:
+            type: integer
+          example:
+          - -20
+          - -19
+          - -18
+        verboseList:
+          type: array
+          description: List of verbose levels
+          items:
+            type: integer
+          example:
+          - 1
+          - 3
+        agentList:
+          type: array
+          description: List of agents
+          items:
+            type: string
+          example:
+          - clixml
+          - pkgagent
+          - maintagent
+          - deciderjob
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the user
+        name:
+          type: string
+          description: Unique username
+        description:
+          type: string
+          description: Description of the user
+        email:
+          type: string
+          description: Email of the user, needs to be unique and is required
+        accessLevel:
+          type: string
+          enum:
+          - none
+          - read_only
+          - read_write
+          - clearing_admin
+          - admin
+        rootFolderId:
+          type: number
+          format: int
+          description: root folder id of the user
+        emailNotification:
+          type: boolean
+          description: enable email notification when upload scan completes
+        defaultGroup:
+          type: integer
+          description: Default group id of the user
+        agents:
+          $ref: '#/components/schemas/Analysis'
+        defaultBucketpool:
+          description: Default bucket pool id
+          type: integer
+          nullable: true
+      required:
+      - id
+    TokenRequest:
+      type: object
+      properties:
+        token_name:
+          type: string
+          maxLength: 40
+          description: Friendly name of the token
+        token_scope:
+          type: string
+          enum:
+          - read
+          - write
+          description: The scope of the token.
+        token_expire:
+          type: string
+          format: date
+          description: Date when the token must expire (default max 30 days).
+      required:
+      - username
+      - password
+      - token_name
+      - token_scope
+      - token_expire
+    GetDatabaseMetric:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: FOSSology database size
+        total:
+          type: string
+          description: The total count associated with the metric.
+          example: '36'
+    GetDatabaseContent:
+      type: object
+      properties:
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: Users
+        total:
+          type: integer
+          description: The total count associated with the metric.
+          example: 2
+        lastVacuum:
+          type: string
+          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
+          example: 'null'
+        lastAnalyze:
+          type: string
+          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
+          example: 'null'
+    GetSuggestedLicense:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The primary key of the suggested license.
+          example: 1329
+        spdxName:
+          type: string
+          description: The SPDX identifier of the suggested license.
+          example: LicenseRef-fossology-testmerge
+        shortname:
+          type: string
+          description: The short name of the suggested license.
+          example: MIT
+        fullname:
+          type: string
+          description: The full name of the suggested license.
+          example: MIT license
+        text:
+          type: string
+          description: The text content of the suggested license.
+          example: 'Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL "PROMOTIONAL SLOGAN FOR AUTHOR''S PROFESSIONAL PRACTICE"
+
+            '
+        url:
+          type: string
+          description: The URL associated with the suggested license.
+          example: https://www.google.com/
+        notes:
+          type: string
+          description: Additional notes or comments about the suggested license.
+          example: public notes
+        risk:
+          type: integer
+          description: The risk level associated with the suggested license.
+          example: 2
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/HighlightInfo'
     Analysis:
       type: object
       properties:
@@ -1040,6 +1244,76 @@ components:
         compatibility:
           type: boolean
           description: Should Compatibility Analysis be run on this upload.
+    GetPHPInfo:
+      type: object
+      properties:
+        phpVersion:
+          type: string
+          description: Version of PHP
+          example: 7.4.3-4ubuntu2.18
+        loadedExtensions:
+          type: array
+          description: List of loaded extensions in PHP
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the loaded extension
+                example: Core
+              version:
+                type: string
+                description: Version of the loaded extension
+                example: 7.4.3-4ubuntu2.18
+    DiskUsage:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of filesystem information
+          items:
+            type: object
+            properties:
+              filesystem:
+                type: string
+                description: Filesystem path
+                example: /dev/nvme0n1p6
+              capacity:
+                type: string
+                description: Total capacity of the filesystem
+                example: 192G
+              used:
+                type: string
+                description: Used space in the filesystem
+                example: 173G
+              available:
+                type: string
+                description: Available space in the filesystem
+                example: 8.8G
+              percentFull:
+                type: string
+                description: Percentage of the filesystem used
+                example: 96%
+              mountPoint:
+                type: string
+                description: Mount point of the filesystem
+                example: /
+        notes:
+          type: object
+          description: Additional notes
+          properties:
+            database:
+              type: string
+              description: Database location
+              example: /var/lib/postgresql/12/main
+            repository:
+              type: string
+              description: Repository location
+              example: /srv/fossology/repository
+            fossologyConfig:
+              type: string
+              description: Fossology configuration location
+              example: /usr/local/etc/fossology
     HighlightInfo:
       type: object
       properties:
@@ -1091,104 +1365,15 @@ components:
             Copyright (c) <year> <copyright holders>'''
         htmlElement:
           type: string
-    GetSuggestedLicense:
+    SetCustomiseInfo:
       type: object
       properties:
-        id:
-          type: integer
-          description: The primary key of the suggested license.
-          example: 1329
-        spdxName:
+        key:
           type: string
-          description: The SPDX identifier of the suggested license.
-          example: LicenseRef-fossology-testmerge
-        shortname:
+          description: Key of the field to be updated
+        value:
           type: string
-          description: The short name of the suggested license.
-          example: MIT
-        fullname:
-          type: string
-          description: The full name of the suggested license.
-          example: MIT license
-        text:
-          type: string
-          description: The text content of the suggested license.
-          example: 'Copyright (c) 2002 by AUTHOR PROFESSIONAL IDENTIFICATION * URL "PROMOTIONAL SLOGAN FOR AUTHOR''S PROFESSIONAL PRACTICE"
-
-            '
-        url:
-          type: string
-          description: The URL associated with the suggested license.
-          example: https://www.google.com/
-        notes:
-          type: string
-          description: Additional notes or comments about the suggested license.
-          example: public notes
-        risk:
-          type: integer
-          description: The risk level associated with the suggested license.
-          example: 2
-        highlights:
-          type: array
-          items:
-            $ref: '#/components/schemas/HighlightInfo'
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the user
-        name:
-          type: string
-          description: Unique username
-        description:
-          type: string
-          description: Description of the user
-        email:
-          type: string
-          description: Email of the user, needs to be unique and is required
-        accessLevel:
-          type: string
-          enum:
-          - none
-          - read_only
-          - read_write
-          - clearing_admin
-          - admin
-        rootFolderId:
-          type: number
-          format: int
-          description: root folder id of the user
-        emailNotification:
-          type: boolean
-          description: enable email notification when upload scan completes
-        defaultGroup:
-          type: integer
-          description: Default group id of the user
-        agents:
-          $ref: '#/components/schemas/Analysis'
-        defaultBucketpool:
-          description: Default bucket pool id
-          type: integer
-          nullable: true
-      required:
-      - id
+          description: Value of the field to be updated
     ObligationsList:
       type: array
       items:
@@ -1199,36 +1384,17 @@ components:
           obligation_topic:
             type: string
             example: Obligation text
-    GetDatabaseContent:
+    AddMember:
+      description: UserMember options
       type: object
       properties:
-        metric:
-          type: string
-          description: The metric associated with the object.
-          example: Users
-        total:
+        perm:
           type: integer
-          description: The total count associated with the metric.
-          example: 2
-        lastVacuum:
-          type: string
-          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
-          example: 'null'
-        lastAnalyze:
-          type: string
-          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
-          example: 'null'
-    GetDatabaseMetric:
-      type: object
-      properties:
-        metric:
-          type: string
-          description: The metric associated with the object.
-          example: FOSSology database size
-        total:
-          type: string
-          description: The total count associated with the metric.
-          example: '36'
+          description: Default permission of the new member.
+          nullable: false
+          minimum: 0
+          maximum: 2
+          example: 0
     Token:
       type: object
       properties:
@@ -1258,47 +1424,68 @@ components:
           type: string
           description: Scope of the token
           example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
-    Customise:
-      description: Admin customise data object
-      type: object
+    GetActiveQuery:
       properties:
-        key:
-          description: field key
-          type: string
-        value:
-          description: field value
-          type: string
-        type:
-          description: field type
+        pid:
+          type: integer
+          example: 1831
+        query:
           type: string
           enum:
-          - int
-          - text
-          - textarea
-          - password
-          - dropdown
-          - boolean
-        label:
-          description: field label
+          - idle
+          - active
+        startTime:
           type: string
-        group_name:
-          description: group name for the field
+          format: date-time
+          example: '2023-09-28T05:15:05.227Z'
+        elapsed:
           type: string
-        group_order:
-          description: group order of the field
-          type: integer
-        option_value:
-          description: If type is 'dropdown', provide options in format op1{val1}|op2{val2}|...
-          type: string
-    SetCustomiseInfo:
+          example: '00:01:06.961334'
+    Info:
       type: object
       properties:
-        key:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
           type: string
-          description: Key of the field to be updated
-        value:
+          description: Message in the info
+        type:
           type: string
-          description: Value of the field to be updated
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    ObligationExtended:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/Obligation'
+      properties:
+        modification:
+          type: boolean
+          description: Applies on modified text?
+        active:
+          type: boolean
+          description: Obligation is active/inactive
+        textUpdatable:
+          type: boolean
+          description: Obligation text can be updated?
+        licenses:
+          type: array
+          description: List of associated licenses with obligation
+          items:
+            type: string
+            description: Shortname of license
+        candidateLicenses:
+          type: array
+          description: List of associated candidate licenses with obligation
+          items:
+            type: string
+            description: Shortname of candidate license
+        hash:
+          type: string
+          description: MD5 hash of obligation text
     Obligation:
       description: Obligation information
       type: object
@@ -1334,193 +1521,6 @@ components:
           type: string
           nullable: true
           example: Please respect the obligation
-    GetPHPInfo:
-      type: object
-      properties:
-        phpVersion:
-          type: string
-          description: Version of PHP
-          example: 7.4.3-4ubuntu2.18
-        loadedExtensions:
-          type: array
-          description: List of loaded extensions in PHP
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the loaded extension
-                example: Core
-              version:
-                type: string
-                description: Version of the loaded extension
-                example: 7.4.3-4ubuntu2.18
-    ObligationExtended:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/Obligation'
-      properties:
-        modification:
-          type: boolean
-          description: Applies on modified text?
-        active:
-          type: boolean
-          description: Obligation is active/inactive
-        textUpdatable:
-          type: boolean
-          description: Obligation text can be updated?
-        licenses:
-          type: array
-          description: List of associated licenses with obligation
-          items:
-            type: string
-            description: Shortname of license
-        candidateLicenses:
-          type: array
-          description: List of associated candidate licenses with obligation
-          items:
-            type: string
-            description: Shortname of candidate license
-        hash:
-          type: string
-          description: MD5 hash of obligation text
-    GetActiveQuery:
-      properties:
-        pid:
-          type: integer
-          example: 1831
-        query:
-          type: string
-          enum:
-          - idle
-          - active
-        startTime:
-          type: string
-          format: date-time
-          example: '2023-09-28T05:15:05.227Z'
-        elapsed:
-          type: string
-          example: '00:01:06.961334'
-    TokenRequest:
-      type: object
-      properties:
-        token_name:
-          type: string
-          maxLength: 40
-          description: Friendly name of the token
-        token_scope:
-          type: string
-          enum:
-          - read
-          - write
-          description: The scope of the token.
-        token_expire:
-          type: string
-          format: date
-          description: Date when the token must expire (default max 30 days).
-      required:
-      - username
-      - password
-      - token_name
-      - token_scope
-      - token_expire
-    AddMember:
-      description: UserMember options
-      type: object
-      properties:
-        perm:
-          type: integer
-          description: Default permission of the new member.
-          nullable: false
-          minimum: 0
-          maximum: 2
-          example: 0
-    GetSchedulerOption:
-      type: object
-      properties:
-        jobList:
-          type: array
-          description: List of jobs
-          items:
-            type: string
-          example:
-          - scheduler
-        priorityList:
-          type: array
-          description: List of priorities
-          items:
-            type: integer
-          example:
-          - -20
-          - -19
-          - -18
-        verboseList:
-          type: array
-          description: List of verbose levels
-          items:
-            type: integer
-          example:
-          - 1
-          - 3
-        agentList:
-          type: array
-          description: List of agents
-          items:
-            type: string
-          example:
-          - clixml
-          - pkgagent
-          - maintagent
-          - deciderjob
-    DiskUsage:
-      type: object
-      properties:
-        data:
-          type: array
-          description: List of filesystem information
-          items:
-            type: object
-            properties:
-              filesystem:
-                type: string
-                description: Filesystem path
-                example: /dev/nvme0n1p6
-              capacity:
-                type: string
-                description: Total capacity of the filesystem
-                example: 192G
-              used:
-                type: string
-                description: Used space in the filesystem
-                example: 173G
-              available:
-                type: string
-                description: Available space in the filesystem
-                example: 8.8G
-              percentFull:
-                type: string
-                description: Percentage of the filesystem used
-                example: 96%
-              mountPoint:
-                type: string
-                description: Mount point of the filesystem
-                example: /
-        notes:
-          type: object
-          description: Additional notes
-          properties:
-            database:
-              type: string
-              description: Database location
-              example: /var/lib/postgresql/12/main
-            repository:
-              type: string
-              description: Repository location
-              example: /srv/fossology/repository
-            fossologyConfig:
-              type: string
-              description: Fossology configuration location
-              example: /usr/local/etc/fossology
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

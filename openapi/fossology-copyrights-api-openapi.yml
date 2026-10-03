@@ -2062,6 +2062,12 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
+    SetCopyrightInfo:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Copyright text
     GetFileCopyrights:
       description: CX details of a file
       type: object
@@ -2075,12 +2081,6 @@ components:
         count:
           type: integer
           description: Count of the CXs
-    SetCopyrightInfo:
-      type: object
-      properties:
-        content:
-          type: string
-          description: Copyright text
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

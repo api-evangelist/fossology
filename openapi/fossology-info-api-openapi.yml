@@ -127,6 +127,37 @@ components:
         paths:
           type: string
           description: API endpoints
+    HealthInfo:
+      description: Health status of server
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - OK
+          - WARN
+          - ERROR
+          description: Status of service
+        scheduler:
+          type: object
+          description: Scheduler information
+          properties:
+            status:
+              type: string
+              description: Health status of scheduler
+              enum:
+              - OK
+              - ERROR
+        db:
+          type: object
+          description: DB connection status
+          properties:
+            status:
+              type: string
+              description: Health status of DB connection
+              enum:
+              - OK
+              - ERROR
     ApiInfo:
       description: Info about the API
       type: object
@@ -207,37 +238,6 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
-    HealthInfo:
-      description: Health status of server
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - OK
-          - WARN
-          - ERROR
-          description: Status of service
-        scheduler:
-          type: object
-          description: Scheduler information
-          properties:
-            status:
-              type: string
-              description: Health status of scheduler
-              enum:
-              - OK
-              - ERROR
-        db:
-          type: object
-          description: DB connection status
-          properties:
-            status:
-              type: string
-              description: Health status of DB connection
-              enum:
-              - OK
-              - ERROR
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"
