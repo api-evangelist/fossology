@@ -740,6 +740,9 @@ apis:
   - type: SourceCode
     url: https://github.com/fossology/fossology
 common:
+  - type: CapabilityMap
+    url: capabilities/fossology-capability-edges.yml
+    name: FOSSology Business Capability Map
   - type: Website
     url: https://www.fossology.org/
   - type: IssueTracker

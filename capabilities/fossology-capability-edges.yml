@@ -1,0 +1,67 @@
+slug: fossology
+provider: FOSSology
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: License
+  spec_file: fossology-license-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.85
+  evidence: '''Get all license from the database'', ''Create a new license'', ''Export a csv obligation
+    list'', schemas ''Obligation'', ''LicenseCandidate'', ''AdminLicenseAcknowledgement'''
+  reason: Operations maintain the open-source license and license-obligation reference data used to clear
+    scanned code, which is the inbound open-source use / obligation stewardship capability. Vendor description
+    confirms 'manage their open source license obligations'.
+- tag: Upload
+  spec_file: fossology-upload-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.8
+  evidence: '''Get licenses found by agent'', ''Get copyrights found on the upload'', schemas ''ClearingDecision'',
+    ''ClearingProgressInfo'', ''LicenseHistogram'', ''SetMainLicense'''
+  reason: Beyond file upload, the operations expose scan results (licenses, copyrights) and human clearing
+    decisions on source packages — the core inbound open-source license clearance capability. Discounted
+    slightly because part of the tag is file-upload/permission plumbing.
+- tag: Groups
+  spec_file: fossology-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: '''Add user to a group'', ''Update Permission'', ''Get the users with their roles from a group'''
+  reason: The surface manages groups, group membership and per-group permissions/roles — access administration,
+    i.e. Identity & Access Management. It is not an OSS-compliance capability itself, just the authorisation
+    model around it.
+- tag: Report
+  spec_file: fossology-report-api-openapi.yml
+  capability_id: BC-4200.60
+  capability_id_l1: BC-4200
+  capability_name: Open Source Stewardship
+  confidence: 0.7
+  evidence: '''Get the reports for a given upload'', ''Import a report to an existing upload'', schema
+    ''SpdxRdfImport'''
+  reason: The reports are the SPDX/compliance artefacts for scanned open-source uploads, i.e. the supply-chain
+    artefact side of open source stewardship. Small surface, so confidence is tempered.
+- tag: User
+  spec_file: fossology-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '''Create a new user'', ''Edit user details by id'', ''Delete user by id'', ''Update Permission'',
+    schema ''Token'''
+  reason: User account lifecycle plus permission updates and API token issuance for the instance — access
+    administration. These are tool users, not customers or employees, so IAM rather than HR or CRM.
