@@ -239,17 +239,6 @@ components:
           type: boolean
           description: Add the copyright information as text findings
           default: false
-    DecisionImporter:
-      description: Information required by Decision Importer agent
-      type: object
-      properties:
-        importerUser:
-          type: integer
-          description: User ID on which to tag imported decisions. Use '0' for self.
-          default: 0
-          example: 3
-      required:
-      - importerUser
     Info:
       type: object
       properties:
@@ -266,6 +255,17 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
+    DecisionImporter:
+      description: Information required by Decision Importer agent
+      type: object
+      properties:
+        importerUser:
+          type: integer
+          description: User ID on which to tag imported decisions. Use '0' for self.
+          default: 0
+          example: 3
+      required:
+      - importerUser
   securitySchemes:
     bearerAuth:
       type: http

@@ -1888,17 +1888,140 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    ClearingProgressInfo:
+    File:
+      description: Meta information about file in FOSSology
       type: object
       properties:
-        totalFilesOfInterest:
-          description: Total number of targeted files to be cleared
+        hash:
+          $ref: '#/components/schemas/Hash'
+        findings:
+          $ref: '#/components/schemas/Findings'
+        uploads:
+          description: Upload ID if the file was uploaded as a package
+          type: array
+          items:
+            type: integer
+            description: Upload IDs where the given file was found
+          nullable: true
+        message:
+          description: Message in case provided hash not found or error
+          type: string
+          enum:
+          - Not found
+          - Invalid keys
+          example: Not found
+          nullable: true
+      required:
+      - hash
+    ClearingDecision:
+      description: Clearing decision information
+      type: object
+      properties:
+        decisionType:
           type: integer
-          example: 234
-        totalFilesCleared:
-          description: Total number of files cleared
-          type: integer
-          example: 200
+          description: 'Type of decision.
+
+            0: WIP
+
+            3: To be discussed
+
+            4: Irrelevant
+
+            5: Identified
+
+            6: Do not use
+
+            7: Non functional
+
+            '
+          example: 3
+          enum:
+          - 0
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+        globalDecision:
+          type: boolean
+          description: 'Is the decision global?
+
+            If true, the decision is applied to all occurrence of the file on the server!
+
+            '
+    SetMainLicense:
+      description: Set Main License information
+      type: object
+      properties:
+        shortName:
+          type: string
+          description: short name of the license
+          example: MIT
+    GetReuseReportSummary:
+      description: Information required by Reuse Report Summary for an upload
+      type: object
+      properties:
+        declearedLicense:
+          type: string
+          description: Decleared license
+          example: MIT
+        clearedLicense:
+          type: string
+          description: Cleared license
+          example: MIT, BSD-3-Clause
+        unusedLicense:
+          type: string
+          description: Unused license
+          example: AAL
+        missingLicense:
+          type: string
+          description: Missing license
+          example: MIT, BSD-3-Clause
+    ScheduleBulkScan:
+      type: object
+      properties:
+        bulkActions:
+          type: array
+          items:
+            type: object
+            properties:
+              licenseShortName:
+                type: string
+                example: MIT
+              licenseText:
+                type: string
+                example: License text
+              acknowledgement:
+                type: string
+                example: Acknowledgement text
+              comment:
+                type: string
+                example: Comment text
+              licenseAction:
+                type: string
+                enum:
+                - ADD
+                - REMOVE
+        refText:
+          type: string
+          example: reference text
+        bulkScope:
+          type: string
+          enum:
+          - folder
+          - upload
+        forceDecision:
+          type: boolean
+          example: false
+        ignoreIrre:
+          type: boolean
+          example: false
+        delimiters:
+          type: string
+          example: DEFAULT
+        scanOnlyFindings:
+          type: boolean
+          example: false
     TreeViewModel:
       type: object
       properties:
@@ -1997,225 +2120,6 @@ components:
               type: integer
               description: The total count of files.
               example: 99
-    LicenseDecider:
-      type: object
-      properties:
-        nomos_monk:
-          type: boolean
-          description: Scanners matches if all Nomos findings are within the Monk findings.
-        bulk_reused:
-          type: boolean
-          description: Bulk phrases from reused packages.
-        new_scanner:
-          type: boolean
-          description: New scanner results, i.e., decisions were marked as work in progress if new scanner finds additional licenses.
-        ojo_decider:
-          type: boolean
-          description: Scanners matches if Ojo or REUSE.Software findings are no contradiction with other findings.
-        conclude_license_type:
-          type: string
-          description: 'Auto conclude license if they are of provided type.
-
-            Omit the field or keep as empty string to not use this option.
-
-            '
-          example: Permissive
-        copyright_deactivation:
-          type: boolean
-          description: Deactivate false positive copyrights (experimental).
-        copyright_clutter_removal:
-          type: boolean
-          description: Deactivate false positive copyrights and remove clutter from them (experimental).
-    LicenseHistogram:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 357
-        name:
-          type: string
-          example: ACE
-        scannerCount:
-          type: integer
-          example: 0
-        concludedCount:
-          type: integer
-          example: 1
-    Fileinfo:
-      type: object
-      properties:
-        view_info:
-          type: object
-          description: viewinfo of the file
-        meta_info:
-          type: object
-          description: Display display meta info of the file
-        package_info:
-          type: object
-          description: Shows package info of the file
-        tag_info:
-          type: object
-          description: Provides tag related information
-        reuse_info:
-          type: object
-          description: Reuse info of the file.
-    SetMainLicense:
-      description: Set Main License information
-      type: object
-      properties:
-        shortName:
-          type: string
-          description: short name of the license
-          example: MIT
-    ClearingDecision:
-      description: Clearing decision information
-      type: object
-      properties:
-        decisionType:
-          type: integer
-          description: 'Type of decision.
-
-            0: WIP
-
-            3: To be discussed
-
-            4: Irrelevant
-
-            5: Identified
-
-            6: Do not use
-
-            7: Non functional
-
-            '
-          example: 3
-          enum:
-          - 0
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-        globalDecision:
-          type: boolean
-          description: 'Is the decision global?
-
-            If true, the decision is applied to all occurrence of the file on the server!
-
-            '
-    UploadPermGroups:
-      description: Groups with their respective permissions for a upload
-      type: object
-      properties:
-        publicPerm:
-          type: string
-          description: Public permission for the upload
-        permGroups:
-          type: array
-          description: Indexed Object of GroupIds with their respective permissions for a upload
-          items:
-            type: object
-            properties:
-              perm:
-                type: string
-              group_pk:
-                type: string
-              group_name:
-                type: string
-    SetConfInfo:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Key of the field to be updated
-        value:
-          type: string
-          description: 'Value of the field to be updated. If value is a JSON, it should be
-
-            sent as an encoded string.
-
-            '
-    VcsUpload:
-      description: To create an upload from a version control system
-      type: object
-      properties:
-        vcsType:
-          description: VCS type
-          type: string
-          enum:
-          - svn
-          - git
-        vcsUrl:
-          description: URL of the repository
-          type: string
-        vcsBranch:
-          description: Branch to checkout for analysis (for Git only)
-          type: string
-        vcsName:
-          description: Display name of the upload
-          type: string
-        vcsUsername:
-          description: Username for the VCS
-          type: string
-        vcsPassword:
-          description: Password for the VCS
-          type: string
-      required:
-      - vcsType
-      - vcsUrl
-    ScanOptions:
-      type: object
-      properties:
-        analysis:
-          $ref: '#/components/schemas/Analysis'
-        decider:
-          $ref: '#/components/schemas/LicenseDecider'
-        reuse:
-          $ref: '#/components/schemas/Reuser'
-        scancode:
-          $ref: '#/components/schemas/Scancode'
-    Analysis:
-      type: object
-      properties:
-        bucket:
-          type: boolean
-          description: Should bucket analysis be run on this upload
-        copyright_email_author:
-          type: boolean
-          description: Should Copyright/Email/URL/Author Analysis be run on this upload.
-        ecc:
-          type: boolean
-          description: Should ECC Analysis be run on this upload.
-        patent:
-          type: boolean
-          description: Should IPRA Analysis be run on this upload.
-        keyword:
-          type: boolean
-          description: Should keyword Analysis be run on this upload.
-        mime:
-          type: boolean
-          description: Should MIME Analysis be run on this upload.
-        monk:
-          type: boolean
-          description: Should Monk Analysis be run on this upload.
-        nomos:
-          type: boolean
-          description: Should Nomos Analysis be run on this upload.
-        ojo:
-          type: boolean
-          description: Should OJO Analysis be run on this upload.
-        package:
-          type: boolean
-          description: Should Package Analysis be run on this upload.
-        reso:
-          type: boolean
-          description: Should REUSE.Software Analysis be run on this upload.
-        heritage:
-          type: boolean
-          description: Should Software Heritage Analysis be run on this upload.
-        compatibility:
-          type: boolean
-          description: Should Compatibility Analysis be run on this upload.
     LicenseDecision:
       description: Extended License model with additional fields
       allOf:
@@ -2266,198 +2170,54 @@ components:
           description: Is the license removed?
           type: boolean
           example: false
-    Reuser:
+    ScanOptions:
       type: object
       properties:
-        reuse_upload:
-          type: integer
-          description: The UploadID to reuse.
-        reuse_group:
-          type: string
-          description: The group of the reused upload
-        reuse_main:
-          type: boolean
-          description: Copy the main license from reused package?
-        reuse_enhanced:
-          type: boolean
-          description: Run enhanced reuser with diff tool (slow)
-        reuse_report:
-          type: boolean
-          description: Copy all report configuration from conf page.
-        reuse_copyright:
-          type: boolean
-          description: Copy the copyright deactivation and edits.
-      required:
-      - reuse_upload
-      - reuse_group
-    HighlightInfo:
+        analysis:
+          $ref: '#/components/schemas/Analysis'
+        decider:
+          $ref: '#/components/schemas/LicenseDecider'
+        reuse:
+          $ref: '#/components/schemas/Reuser'
+        scancode:
+          $ref: '#/components/schemas/Scancode'
+    Upload:
       type: object
       properties:
-        start:
+        folderid:
           type: integer
-          description: Start position of the highlight in file
-          example: 68
-        end:
-          type: integer
-          description: End position of the highlight in file
-          example: 70
-        type:
+          description: The folder id, where the upload is located
+        foldername:
           type: string
-          description: Type of highlight
-          enum:
-          - M
-          - MC
-          - MA
-          - MD
-          - S
-          - K
-          - B
-          - C
-          - U
-          - E
-          - A
-          - I
-          - X
-          - KW
-          - any
-        shortName:
-          type: string
-          description: License shortname
-          example: MIT
-        refStart:
-          type: integer
-          description: Start of monk diff highlight (relative)
-          example: 0
-        refEnd:
-          type: integer
-          description: End of monk diff highlight (relative)
-          example: 53
-        infoText:
-          type: string
-          description: Tooltip text
-          example: 'MIT: ''MIT License
-
-
-            Copyright (c) <year> <copyright holders>'''
-        htmlElement:
-          type: string
-    Hash:
-      description: Hash information of a file
-      type: object
-      properties:
-        sha1:
-          description: SHA1 checksum of the file
-          type: string
-          example: 81fe8bfe87576c3ecb22426f8e57847382917acf
-        md5:
-          description: MD5 checksum of the file
-          type: string
-          example: e2fc714c4727ee9395f324cd2e7f331f
-        sha256:
-          description: SHA256 checksum of the file
-          type: string
-          example: 88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
-        size:
-          description: Size of the file in bytes
-          type: integer
-    AgentOfUpload:
-      type: object
-      properties:
-        successfulAgents:
-          type: array
-          items:
-            properties:
-              agent_id:
-                type: integer
-                example: 20
-              agent_rev:
-                type: string
-                example: 4.1.0.282-rc1.ffb851
-              agent_name:
-                type: string
-                example: reso
-        uploadId:
-          type: integer
-          example: 10
-        agentName:
-          type: string
-          example: reso
-        currentAgentId:
-          type: integer
-          example: 20
-        currentAgentRev:
-          type: string
-          example: 4.1.0.282-rc1.ffb851
-        isAgentRunning:
-          type: boolean
-          example: false
-    ServerUpload:
-      description: To create an upload from a server
-      type: object
-      properties:
-        path:
-          description: File path to be uploaded (reccursive, support *)
-          type: string
-        name:
-          description: Viewable name for this file or directory
-          type: string
-      required:
-      - path
-    GetClearingHistory:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-          description: Date of the clearing history
-          example: '2023-06-15'
-        username:
-          type: string
-          description: Username of the user who created the decision.
-          example: fossy
-        scope:
-          type: string
-          description: Scope of the clearing
-          enum:
-          - local
-          - package
-          - global
-        type:
-          type: string
-          description: Type of the clearing
-          enum:
-          - TO_BE_DISCUSSED
-          - IRRELEVANT
-          - IDENTIFIED
-          - DO_NOT_USE
-          - NON_FUNCTIONAL
-        addedLicenses:
-          type: array
-          description: List of license shortnames added to the decision
-          items:
-            type: string
-            example: MIT
-        removedLicenses:
-          type: array
-          description: List of license shortnames removed from the decision
-          items:
-            type: string
-            example: GPL-2.0
-    EditedLicense:
-      type: object
-      properties:
+          description: The name of the folder where the upload is located
         id:
           type: integer
-          example: 29
-        shortName:
+          description: Upload id of the upload.
+        description:
           type: string
-          example: Apache-2.0
-        count:
+          description: Description of the upload.
+        uploadname:
+          type: string
+          description: Display name of the upload.
+        uploaddate:
+          type: string
+          description: Date, when the file was uploaded.
+        assignee:
           type: integer
-          example: 1
-        spdx_id:
+          description: assignee id of the upload.
+          nullable: true
+        assigneeDate:
           type: string
-          example: LicenseRef-fossology-ACE
+          format: date-time
+          description: Date, when a user was assigned to the upload.
+          nullable: true
+        closingDate:
+          type: string
+          format: date-time
+          description: Date, when the upload was closed or rejected.
+          nullable: true
+        hash:
+          $ref: '#/components/schemas/Hash'
     ScannedLicense:
       type: object
       properties:
@@ -2481,217 +2241,6 @@ components:
           type: string
           description: SPDX name associated with the license
           example: Apache-2.0
-    UrlUpload:
-      description: To create an upload from a URL
-      type: object
-      properties:
-        url:
-          description: URL for file/folder to be uploaded
-          type: string
-        name:
-          description: Viewable name for this file or directory
-          type: string
-        accept:
-          description: 'Comma-separated lists of file name suffixes or patterns to accpet
-
-            '
-          type: string
-        reject:
-          description: 'Comma-separated lists of file name suffixes or patterns to reject
-
-            '
-          type: string
-        maxRecursionDepth:
-          description: Maximum recursion depth for folders (0 for infinite)
-          type: integer
-      required:
-      - url
-    GetPrevNextItem:
-      type: object
-      properties:
-        prevItemId:
-          description: Previous item Id
-          type: integer
-          example: 1
-        nextItemId:
-          description: Next item Id
-          type: integer
-          example: 3
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    GetReuseReportSummary:
-      description: Information required by Reuse Report Summary for an upload
-      type: object
-      properties:
-        declearedLicense:
-          type: string
-          description: Decleared license
-          example: MIT
-        clearedLicense:
-          type: string
-          description: Cleared license
-          example: MIT, BSD-3-Clause
-        unusedLicense:
-          type: string
-          description: Unused license
-          example: AAL
-        missingLicense:
-          type: string
-          description: Missing license
-          example: MIT, BSD-3-Clause
-    OneShotInfo:
-      type: object
-      properties:
-        data:
-          description: Data found during scan, e.g. Licenses, Copyrights
-          type: array
-        highlights:
-          type: array
-          items:
-            $ref: '#/components/schemas/HighlightInfo'
-    ScheduleBulkScan:
-      type: object
-      properties:
-        bulkActions:
-          type: array
-          items:
-            type: object
-            properties:
-              licenseShortName:
-                type: string
-                example: MIT
-              licenseText:
-                type: string
-                example: License text
-              acknowledgement:
-                type: string
-                example: Acknowledgement text
-              comment:
-                type: string
-                example: Comment text
-              licenseAction:
-                type: string
-                enum:
-                - ADD
-                - REMOVE
-        refText:
-          type: string
-          example: reference text
-        bulkScope:
-          type: string
-          enum:
-          - folder
-          - upload
-        forceDecision:
-          type: boolean
-          example: false
-        ignoreIrre:
-          type: boolean
-          example: false
-        delimiters:
-          type: string
-          example: DEFAULT
-        scanOnlyFindings:
-          type: boolean
-          example: false
-    UploadLicenses:
-      type: array
-      items:
-        type: object
-        properties:
-          filePath:
-            description: Relative file path
-            type: string
-            example: path/to/LICENSE
-          findings:
-            $ref: '#/components/schemas/Findings'
-          clearing_status:
-            type: string
-            example: Do not use
-    License:
-      description: License from the database
-      type: object
-      properties:
-        shortName:
-          description: Short name
-          type: string
-          example: MIT
-        fullName:
-          description: Full name
-          type: string
-          example: MIT License
-        text:
-          description: License text
-          type: string
-          example: MIT License Copyright (c) <year> <copyright holders> ...
-        url:
-          description: URL of the license text
-          type: string
-          example: https://opensource.org/licenses/MIT
-        risk:
-          description: Risk level
-          type: integer
-          nullable: true
-          example: 3
-        isCandidate:
-          description: Is the license a candidate?
-          type: boolean
-    UploadCopyrights:
-      type: array
-      items:
-        type: object
-        properties:
-          copyright:
-            description: Copyright Information
-            type: string
-            example: Copyright (C) 2017-2020 Free Software Foundation, Inc.
-          filePath:
-            description: Path of the files for which the copyright information is provided
-            type: array
-            items:
-              type: string
-            example:
-            - path/to/file1
-            - path/to/file2
-    File:
-      description: Meta information about file in FOSSology
-      type: object
-      properties:
-        hash:
-          $ref: '#/components/schemas/Hash'
-        findings:
-          $ref: '#/components/schemas/Findings'
-        uploads:
-          description: Upload ID if the file was uploaded as a package
-          type: array
-          items:
-            type: integer
-            description: Upload IDs where the given file was found
-          nullable: true
-        message:
-          description: Message in case provided hash not found or error
-          type: string
-          enum:
-          - Not found
-          - Invalid keys
-          example: Not found
-          nullable: true
-      required:
-      - hash
     Scancode:
       type: object
       properties:
@@ -2707,44 +2256,6 @@ components:
         url:
           type: boolean
           description: URL(s) present in the scan code file.
-    Findings:
-      description: License findings and conclusions of file
-      type: object
-      properties:
-        scanner:
-          description: Licenses finding by scanner
-          type: array
-          items:
-            type: string
-            description: Name of license found
-            nullable: true
-          example:
-          - MIT
-          - BSD-3-Clause
-        conclusion:
-          description: 'Licenses concluded by user or main license in case of package
-
-            '
-          type: array
-          items:
-            type: string
-            description: Name of license concluded
-            nullable: true
-          example:
-          - MIT
-          - GPL-2.0
-        copyright:
-          description: 'Copyright findings for the file
-
-            '
-          type: array
-          items:
-            type: string
-            description: Copyright finding
-            nullable: true
-          example:
-          - Copyright (C) 2017-2020 Free Software Foundation, Inc.
-          - Copyright (C) 1991-2020 Free Software Foundation, Inc.
     ConfResponse:
       type: object
       properties:
@@ -2834,43 +2345,101 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
-    Upload:
+    AgentOfUpload:
       type: object
       properties:
-        folderid:
+        successfulAgents:
+          type: array
+          items:
+            properties:
+              agent_id:
+                type: integer
+                example: 20
+              agent_rev:
+                type: string
+                example: 4.1.0.282-rc1.ffb851
+              agent_name:
+                type: string
+                example: reso
+        uploadId:
           type: integer
-          description: The folder id, where the upload is located
-        foldername:
+          example: 10
+        agentName:
           type: string
-          description: The name of the folder where the upload is located
-        id:
+          example: reso
+        currentAgentId:
           type: integer
-          description: Upload id of the upload.
-        description:
+          example: 20
+        currentAgentRev:
           type: string
-          description: Description of the upload.
-        uploadname:
+          example: 4.1.0.282-rc1.ffb851
+        isAgentRunning:
+          type: boolean
+          example: false
+    AddEditDeleteLicenseDecision:
+      type: object
+      properties:
+        shortName:
           type: string
-          description: Display name of the upload.
-        uploaddate:
+          description: Short name of the license
+          example: MIT
+        add:
+          type: boolean
+          description: 'If true, add the license if not on the list, otherwise update it''s properties.
+
+            If false, remove the license from the list.
+
+            '
+          example: true
+        text:
           type: string
-          description: Date, when the file was uploaded.
-        assignee:
+          description: Clearing info text
+          example: This is a license decision text
+        ack:
+          type: string
+          description: Acknowledgement of license decision
+          example: This is a license decision acknowledgement text
+        comment:
+          type: string
+          description: Comment for the license decision
+          example: This is a license decision comment
+    ServerUpload:
+      description: To create an upload from a server
+      type: object
+      properties:
+        path:
+          description: File path to be uploaded (reccursive, support *)
+          type: string
+        name:
+          description: Viewable name for this file or directory
+          type: string
+      required:
+      - path
+    UrlUpload:
+      description: To create an upload from a URL
+      type: object
+      properties:
+        url:
+          description: URL for file/folder to be uploaded
+          type: string
+        name:
+          description: Viewable name for this file or directory
+          type: string
+        accept:
+          description: 'Comma-separated lists of file name suffixes or patterns to accpet
+
+            '
+          type: string
+        reject:
+          description: 'Comma-separated lists of file name suffixes or patterns to reject
+
+            '
+          type: string
+        maxRecursionDepth:
+          description: Maximum recursion depth for folders (0 for infinite)
           type: integer
-          description: assignee id of the upload.
-          nullable: true
-        assigneeDate:
-          type: string
-          format: date-time
-          description: Date, when a user was assigned to the upload.
-          nullable: true
-        closingDate:
-          type: string
-          format: date-time
-          description: Date, when the upload was closed or rejected.
-          nullable: true
-        hash:
-          $ref: '#/components/schemas/Hash'
+      required:
+      - url
     UploadSummary:
       type: object
       properties:
@@ -2916,18 +2485,227 @@ components:
         copyrightCount:
           type: integer
           description: No. of copyrights found in the upload.
-    AgentsRevision:
+    LicenseDecider:
+      type: object
+      properties:
+        nomos_monk:
+          type: boolean
+          description: Scanners matches if all Nomos findings are within the Monk findings.
+        bulk_reused:
+          type: boolean
+          description: Bulk phrases from reused packages.
+        new_scanner:
+          type: boolean
+          description: New scanner results, i.e., decisions were marked as work in progress if new scanner finds additional licenses.
+        ojo_decider:
+          type: boolean
+          description: Scanners matches if Ojo or REUSE.Software findings are no contradiction with other findings.
+        conclude_license_type:
+          type: string
+          description: 'Auto conclude license if they are of provided type.
+
+            Omit the field or keep as empty string to not use this option.
+
+            '
+          example: Permissive
+        copyright_deactivation:
+          type: boolean
+          description: Deactivate false positive copyrights (experimental).
+        copyright_clutter_removal:
+          type: boolean
+          description: Deactivate false positive copyrights and remove clutter from them (experimental).
+    Fileinfo:
+      type: object
+      properties:
+        view_info:
+          type: object
+          description: viewinfo of the file
+        meta_info:
+          type: object
+          description: Display display meta info of the file
+        package_info:
+          type: object
+          description: Shows package info of the file
+        tag_info:
+          type: object
+          description: Provides tag related information
+        reuse_info:
+          type: object
+          description: Reuse info of the file.
+    EditedLicense:
       type: object
       properties:
         id:
           type: integer
-          example: 68
-        name:
+          example: 29
+        shortName:
           type: string
-          example: monk
-        revision:
+          example: Apache-2.0
+        count:
+          type: integer
+          example: 1
+        spdx_id:
           type: string
-          example: '"4.1.0.283-rc1".705d4b'
+          example: LicenseRef-fossology-ACE
+    Reuser:
+      type: object
+      properties:
+        reuse_upload:
+          type: integer
+          description: The UploadID to reuse.
+        reuse_group:
+          type: string
+          description: The group of the reused upload
+        reuse_main:
+          type: boolean
+          description: Copy the main license from reused package?
+        reuse_enhanced:
+          type: boolean
+          description: Run enhanced reuser with diff tool (slow)
+        reuse_report:
+          type: boolean
+          description: Copy all report configuration from conf page.
+        reuse_copyright:
+          type: boolean
+          description: Copy the copyright deactivation and edits.
+      required:
+      - reuse_upload
+      - reuse_group
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    License:
+      description: License from the database
+      type: object
+      properties:
+        shortName:
+          description: Short name
+          type: string
+          example: MIT
+        fullName:
+          description: Full name
+          type: string
+          example: MIT License
+        text:
+          description: License text
+          type: string
+          example: MIT License Copyright (c) <year> <copyright holders> ...
+        url:
+          description: URL of the license text
+          type: string
+          example: https://opensource.org/licenses/MIT
+        risk:
+          description: Risk level
+          type: integer
+          nullable: true
+          example: 3
+        isCandidate:
+          description: Is the license a candidate?
+          type: boolean
+    VcsUpload:
+      description: To create an upload from a version control system
+      type: object
+      properties:
+        vcsType:
+          description: VCS type
+          type: string
+          enum:
+          - svn
+          - git
+        vcsUrl:
+          description: URL of the repository
+          type: string
+        vcsBranch:
+          description: Branch to checkout for analysis (for Git only)
+          type: string
+        vcsName:
+          description: Display name of the upload
+          type: string
+        vcsUsername:
+          description: Username for the VCS
+          type: string
+        vcsPassword:
+          description: Password for the VCS
+          type: string
+      required:
+      - vcsType
+      - vcsUrl
+    OneShotInfo:
+      type: object
+      properties:
+        data:
+          description: Data found during scan, e.g. Licenses, Copyrights
+          type: array
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/HighlightInfo'
+    GetClearingHistory:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of the clearing history
+          example: '2023-06-15'
+        username:
+          type: string
+          description: Username of the user who created the decision.
+          example: fossy
+        scope:
+          type: string
+          description: Scope of the clearing
+          enum:
+          - local
+          - package
+          - global
+        type:
+          type: string
+          description: Type of the clearing
+          enum:
+          - TO_BE_DISCUSSED
+          - IRRELEVANT
+          - IDENTIFIED
+          - DO_NOT_USE
+          - NON_FUNCTIONAL
+        addedLicenses:
+          type: array
+          description: List of license shortnames added to the decision
+          items:
+            type: string
+            example: MIT
+        removedLicenses:
+          type: array
+          description: List of license shortnames removed from the decision
+          items:
+            type: string
+            example: GPL-2.0
+    SetConfInfo:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Key of the field to be updated
+        value:
+          type: string
+          description: 'Value of the field to be updated. If value is a JSON, it should be
+
+            sent as an encoded string.
+
+            '
     GetBulkHistory:
       type: object
       properties:
@@ -2963,33 +2741,255 @@ components:
           items:
             type: string
             example: GPL-2.0
-    AddEditDeleteLicenseDecision:
+    Analysis:
       type: object
       properties:
-        shortName:
-          type: string
-          description: Short name of the license
-          example: MIT
-        add:
+        bucket:
           type: boolean
-          description: 'If true, add the license if not on the list, otherwise update it''s properties.
-
-            If false, remove the license from the list.
+          description: Should bucket analysis be run on this upload
+        copyright_email_author:
+          type: boolean
+          description: Should Copyright/Email/URL/Author Analysis be run on this upload.
+        ecc:
+          type: boolean
+          description: Should ECC Analysis be run on this upload.
+        patent:
+          type: boolean
+          description: Should IPRA Analysis be run on this upload.
+        keyword:
+          type: boolean
+          description: Should keyword Analysis be run on this upload.
+        mime:
+          type: boolean
+          description: Should MIME Analysis be run on this upload.
+        monk:
+          type: boolean
+          description: Should Monk Analysis be run on this upload.
+        nomos:
+          type: boolean
+          description: Should Nomos Analysis be run on this upload.
+        ojo:
+          type: boolean
+          description: Should OJO Analysis be run on this upload.
+        package:
+          type: boolean
+          description: Should Package Analysis be run on this upload.
+        reso:
+          type: boolean
+          description: Should REUSE.Software Analysis be run on this upload.
+        heritage:
+          type: boolean
+          description: Should Software Heritage Analysis be run on this upload.
+        compatibility:
+          type: boolean
+          description: Should Compatibility Analysis be run on this upload.
+    ClearingProgressInfo:
+      type: object
+      properties:
+        totalFilesOfInterest:
+          description: Total number of targeted files to be cleared
+          type: integer
+          example: 234
+        totalFilesCleared:
+          description: Total number of files cleared
+          type: integer
+          example: 200
+    UploadLicenses:
+      type: array
+      items:
+        type: object
+        properties:
+          filePath:
+            description: Relative file path
+            type: string
+            example: path/to/LICENSE
+          findings:
+            $ref: '#/components/schemas/Findings'
+          clearing_status:
+            type: string
+            example: Do not use
+    Hash:
+      description: Hash information of a file
+      type: object
+      properties:
+        sha1:
+          description: SHA1 checksum of the file
+          type: string
+          example: 81fe8bfe87576c3ecb22426f8e57847382917acf
+        md5:
+          description: MD5 checksum of the file
+          type: string
+          example: e2fc714c4727ee9395f324cd2e7f331f
+        sha256:
+          description: SHA256 checksum of the file
+          type: string
+          example: 88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589
+        size:
+          description: Size of the file in bytes
+          type: integer
+    Findings:
+      description: License findings and conclusions of file
+      type: object
+      properties:
+        scanner:
+          description: Licenses finding by scanner
+          type: array
+          items:
+            type: string
+            description: Name of license found
+            nullable: true
+          example:
+          - MIT
+          - BSD-3-Clause
+        conclusion:
+          description: 'Licenses concluded by user or main license in case of package
 
             '
-          example: true
-        text:
+          type: array
+          items:
+            type: string
+            description: Name of license concluded
+            nullable: true
+          example:
+          - MIT
+          - GPL-2.0
+        copyright:
+          description: 'Copyright findings for the file
+
+            '
+          type: array
+          items:
+            type: string
+            description: Copyright finding
+            nullable: true
+          example:
+          - Copyright (C) 2017-2020 Free Software Foundation, Inc.
+          - Copyright (C) 1991-2020 Free Software Foundation, Inc.
+    LicenseHistogram:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 357
+        name:
           type: string
-          description: Clearing info text
-          example: This is a license decision text
-        ack:
+          example: ACE
+        scannerCount:
+          type: integer
+          example: 0
+        concludedCount:
+          type: integer
+          example: 1
+    HighlightInfo:
+      type: object
+      properties:
+        start:
+          type: integer
+          description: Start position of the highlight in file
+          example: 68
+        end:
+          type: integer
+          description: End position of the highlight in file
+          example: 70
+        type:
           type: string
-          description: Acknowledgement of license decision
-          example: This is a license decision acknowledgement text
-        comment:
+          description: Type of highlight
+          enum:
+          - M
+          - MC
+          - MA
+          - MD
+          - S
+          - K
+          - B
+          - C
+          - U
+          - E
+          - A
+          - I
+          - X
+          - KW
+          - any
+        shortName:
           type: string
-          description: Comment for the license decision
-          example: This is a license decision comment
+          description: License shortname
+          example: MIT
+        refStart:
+          type: integer
+          description: Start of monk diff highlight (relative)
+          example: 0
+        refEnd:
+          type: integer
+          description: End of monk diff highlight (relative)
+          example: 53
+        infoText:
+          type: string
+          description: Tooltip text
+          example: 'MIT: ''MIT License
+
+
+            Copyright (c) <year> <copyright holders>'''
+        htmlElement:
+          type: string
+    GetPrevNextItem:
+      type: object
+      properties:
+        prevItemId:
+          description: Previous item Id
+          type: integer
+          example: 1
+        nextItemId:
+          description: Next item Id
+          type: integer
+          example: 3
+    UploadCopyrights:
+      type: array
+      items:
+        type: object
+        properties:
+          copyright:
+            description: Copyright Information
+            type: string
+            example: Copyright (C) 2017-2020 Free Software Foundation, Inc.
+          filePath:
+            description: Path of the files for which the copyright information is provided
+            type: array
+            items:
+              type: string
+            example:
+            - path/to/file1
+            - path/to/file2
+    UploadPermGroups:
+      description: Groups with their respective permissions for a upload
+      type: object
+      properties:
+        publicPerm:
+          type: string
+          description: Public permission for the upload
+        permGroups:
+          type: array
+          description: Indexed Object of GroupIds with their respective permissions for a upload
+          items:
+            type: object
+            properties:
+              perm:
+                type: string
+              group_pk:
+                type: string
+              group_name:
+                type: string
+    AgentsRevision:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 68
+        name:
+          type: string
+          example: monk
+        revision:
+          type: string
+          example: '"4.1.0.283-rc1".705d4b'
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

@@ -300,6 +300,13 @@ paths:
         default:
           $ref: '#/components/responses/defaultResponse'
 components:
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
   schemas:
     Info:
       type: object
@@ -317,13 +324,6 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
-  responses:
-    defaultResponse:
-      description: Some error occurred. Check the "message"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Info'
   securitySchemes:
     bearerAuth:
       type: http

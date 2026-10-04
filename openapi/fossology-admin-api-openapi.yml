@@ -1030,107 +1030,6 @@ components:
         option_value:
           description: If type is 'dropdown', provide options in format op1{val1}|op2{val2}|...
           type: string
-    GetSchedulerOption:
-      type: object
-      properties:
-        jobList:
-          type: array
-          description: List of jobs
-          items:
-            type: string
-          example:
-          - scheduler
-        priorityList:
-          type: array
-          description: List of priorities
-          items:
-            type: integer
-          example:
-          - -20
-          - -19
-          - -18
-        verboseList:
-          type: array
-          description: List of verbose levels
-          items:
-            type: integer
-          example:
-          - 1
-          - 3
-        agentList:
-          type: array
-          description: List of agents
-          items:
-            type: string
-          example:
-          - clixml
-          - pkgagent
-          - maintagent
-          - deciderjob
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the user
-        name:
-          type: string
-          description: Unique username
-        description:
-          type: string
-          description: Description of the user
-        email:
-          type: string
-          description: Email of the user, needs to be unique and is required
-        accessLevel:
-          type: string
-          enum:
-          - none
-          - read_only
-          - read_write
-          - clearing_admin
-          - admin
-        rootFolderId:
-          type: number
-          format: int
-          description: root folder id of the user
-        emailNotification:
-          type: boolean
-          description: enable email notification when upload scan completes
-        defaultGroup:
-          type: integer
-          description: Default group id of the user
-        agents:
-          $ref: '#/components/schemas/Analysis'
-        defaultBucketpool:
-          description: Default bucket pool id
-          type: integer
-          nullable: true
-      required:
-      - id
-    TokenRequest:
-      type: object
-      properties:
-        token_name:
-          type: string
-          maxLength: 40
-          description: Friendly name of the token
-        token_scope:
-          type: string
-          enum:
-          - read
-          - write
-          description: The scope of the token.
-        token_expire:
-          type: string
-          format: date
-          description: Date when the token must expire (default max 30 days).
-      required:
-      - username
-      - password
-      - token_name
-      - token_scope
-      - token_expire
     GetDatabaseMetric:
       type: object
       properties:
@@ -1142,25 +1041,38 @@ components:
           type: string
           description: The total count associated with the metric.
           example: '36'
-    GetDatabaseContent:
+    GetPHPInfo:
       type: object
       properties:
-        metric:
+        phpVersion:
           type: string
-          description: The metric associated with the object.
-          example: Users
-        total:
+          description: Version of PHP
+          example: 7.4.3-4ubuntu2.18
+        loadedExtensions:
+          type: array
+          description: List of loaded extensions in PHP
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the loaded extension
+                example: Core
+              version:
+                type: string
+                description: Version of the loaded extension
+                example: 7.4.3-4ubuntu2.18
+    AddMember:
+      description: UserMember options
+      type: object
+      properties:
+        perm:
           type: integer
-          description: The total count associated with the metric.
-          example: 2
-        lastVacuum:
-          type: string
-          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
-          example: 'null'
-        lastAnalyze:
-          type: string
-          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
-          example: 'null'
+          description: Default permission of the new member.
+          nullable: false
+          minimum: 0
+          maximum: 2
+          example: 0
     GetSuggestedLicense:
       type: object
       properties:
@@ -1202,69 +1114,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HighlightInfo'
-    Analysis:
-      type: object
-      properties:
-        bucket:
-          type: boolean
-          description: Should bucket analysis be run on this upload
-        copyright_email_author:
-          type: boolean
-          description: Should Copyright/Email/URL/Author Analysis be run on this upload.
-        ecc:
-          type: boolean
-          description: Should ECC Analysis be run on this upload.
-        patent:
-          type: boolean
-          description: Should IPRA Analysis be run on this upload.
-        keyword:
-          type: boolean
-          description: Should keyword Analysis be run on this upload.
-        mime:
-          type: boolean
-          description: Should MIME Analysis be run on this upload.
-        monk:
-          type: boolean
-          description: Should Monk Analysis be run on this upload.
-        nomos:
-          type: boolean
-          description: Should Nomos Analysis be run on this upload.
-        ojo:
-          type: boolean
-          description: Should OJO Analysis be run on this upload.
-        package:
-          type: boolean
-          description: Should Package Analysis be run on this upload.
-        reso:
-          type: boolean
-          description: Should REUSE.Software Analysis be run on this upload.
-        heritage:
-          type: boolean
-          description: Should Software Heritage Analysis be run on this upload.
-        compatibility:
-          type: boolean
-          description: Should Compatibility Analysis be run on this upload.
-    GetPHPInfo:
-      type: object
-      properties:
-        phpVersion:
-          type: string
-          description: Version of PHP
-          example: 7.4.3-4ubuntu2.18
-        loadedExtensions:
-          type: array
-          description: List of loaded extensions in PHP
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the loaded extension
-                example: Core
-              version:
-                type: string
-                description: Version of the loaded extension
-                example: 7.4.3-4ubuntu2.18
     DiskUsage:
       type: object
       properties:
@@ -1314,6 +1163,257 @@ components:
               type: string
               description: Fossology configuration location
               example: /usr/local/etc/fossology
+    ObligationsList:
+      type: array
+      items:
+        properties:
+          id:
+            type: integer
+            example: 29
+          obligation_topic:
+            type: string
+            example: Obligation text
+    TokenRequest:
+      type: object
+      properties:
+        token_name:
+          type: string
+          maxLength: 40
+          description: Friendly name of the token
+        token_scope:
+          type: string
+          enum:
+          - read
+          - write
+          description: The scope of the token.
+        token_expire:
+          type: string
+          format: date
+          description: Date when the token must expire (default max 30 days).
+      required:
+      - username
+      - password
+      - token_name
+      - token_scope
+      - token_expire
+    Token:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Token Id
+        token_name:
+          type: string
+          description: Name of the Token
+        created:
+          type: string
+          format: date
+          description: Denotes when the token was created
+          example: 2022-07-11
+        token_expire:
+          type: string
+          format: date
+          description: Denotes when the token was created
+          example: 2022-07-11
+        scope:
+          type: string
+          enum:
+          - read
+          - write
+          description: Scope of the token
+        token:
+          type: string
+          description: Scope of the token
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the user
+        name:
+          type: string
+          description: Unique username
+        description:
+          type: string
+          description: Description of the user
+        email:
+          type: string
+          description: Email of the user, needs to be unique and is required
+        accessLevel:
+          type: string
+          enum:
+          - none
+          - read_only
+          - read_write
+          - clearing_admin
+          - admin
+        rootFolderId:
+          type: number
+          format: int
+          description: root folder id of the user
+        emailNotification:
+          type: boolean
+          description: enable email notification when upload scan completes
+        defaultGroup:
+          type: integer
+          description: Default group id of the user
+        agents:
+          $ref: '#/components/schemas/Analysis'
+        defaultBucketpool:
+          description: Default bucket pool id
+          type: integer
+          nullable: true
+      required:
+      - id
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    Obligation:
+      description: Obligation information
+      type: object
+      properties:
+        id:
+          description: Id key
+          type: integer
+          example: 126
+        topic:
+          description: Obligation topic
+          type: string
+          example: Should preserve notice
+        type:
+          description: Type of obligation
+          type: string
+          example: Obligation
+        text:
+          description: Obligation text
+          type: string
+          example: All notices from the package should be preserved.
+        classification:
+          description: 'Level of attention this obligation should raise in the clearing process
+
+            '
+          type: string
+          enum:
+          - green
+          - white
+          - yellow
+          - red
+        comment:
+          description: Comments for the obligation
+          type: string
+          nullable: true
+          example: Please respect the obligation
+    Analysis:
+      type: object
+      properties:
+        bucket:
+          type: boolean
+          description: Should bucket analysis be run on this upload
+        copyright_email_author:
+          type: boolean
+          description: Should Copyright/Email/URL/Author Analysis be run on this upload.
+        ecc:
+          type: boolean
+          description: Should ECC Analysis be run on this upload.
+        patent:
+          type: boolean
+          description: Should IPRA Analysis be run on this upload.
+        keyword:
+          type: boolean
+          description: Should keyword Analysis be run on this upload.
+        mime:
+          type: boolean
+          description: Should MIME Analysis be run on this upload.
+        monk:
+          type: boolean
+          description: Should Monk Analysis be run on this upload.
+        nomos:
+          type: boolean
+          description: Should Nomos Analysis be run on this upload.
+        ojo:
+          type: boolean
+          description: Should OJO Analysis be run on this upload.
+        package:
+          type: boolean
+          description: Should Package Analysis be run on this upload.
+        reso:
+          type: boolean
+          description: Should REUSE.Software Analysis be run on this upload.
+        heritage:
+          type: boolean
+          description: Should Software Heritage Analysis be run on this upload.
+        compatibility:
+          type: boolean
+          description: Should Compatibility Analysis be run on this upload.
+    ObligationExtended:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/Obligation'
+      properties:
+        modification:
+          type: boolean
+          description: Applies on modified text?
+        active:
+          type: boolean
+          description: Obligation is active/inactive
+        textUpdatable:
+          type: boolean
+          description: Obligation text can be updated?
+        licenses:
+          type: array
+          description: List of associated licenses with obligation
+          items:
+            type: string
+            description: Shortname of license
+        candidateLicenses:
+          type: array
+          description: List of associated candidate licenses with obligation
+          items:
+            type: string
+            description: Shortname of candidate license
+        hash:
+          type: string
+          description: MD5 hash of obligation text
+    SetCustomiseInfo:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Key of the field to be updated
+        value:
+          type: string
+          description: Value of the field to be updated
+    GetActiveQuery:
+      properties:
+        pid:
+          type: integer
+          example: 1831
+        query:
+          type: string
+          enum:
+          - idle
+          - active
+        startTime:
+          type: string
+          format: date-time
+          example: '2023-09-28T05:15:05.227Z'
+        elapsed:
+          type: string
+          example: '00:01:06.961334'
     HighlightInfo:
       type: object
       properties:
@@ -1365,162 +1465,62 @@ components:
             Copyright (c) <year> <copyright holders>'''
         htmlElement:
           type: string
-    SetCustomiseInfo:
+    GetSchedulerOption:
       type: object
       properties:
-        key:
-          type: string
-          description: Key of the field to be updated
-        value:
-          type: string
-          description: Value of the field to be updated
-    ObligationsList:
-      type: array
-      items:
-        properties:
-          id:
+        jobList:
+          type: array
+          description: List of jobs
+          items:
+            type: string
+          example:
+          - scheduler
+        priorityList:
+          type: array
+          description: List of priorities
+          items:
             type: integer
-            example: 29
-          obligation_topic:
-            type: string
-            example: Obligation text
-    AddMember:
-      description: UserMember options
-      type: object
-      properties:
-        perm:
-          type: integer
-          description: Default permission of the new member.
-          nullable: false
-          minimum: 0
-          maximum: 2
-          example: 0
-    Token:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Token Id
-        token_name:
-          type: string
-          description: Name of the Token
-        created:
-          type: string
-          format: date
-          description: Denotes when the token was created
-          example: 2022-07-11
-        token_expire:
-          type: string
-          format: date
-          description: Denotes when the token was created
-          example: 2022-07-11
-        scope:
-          type: string
-          enum:
-          - read
-          - write
-          description: Scope of the token
-        token:
-          type: string
-          description: Scope of the token
-          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
-    GetActiveQuery:
-      properties:
-        pid:
-          type: integer
-          example: 1831
-        query:
-          type: string
-          enum:
-          - idle
-          - active
-        startTime:
-          type: string
-          format: date-time
-          example: '2023-09-28T05:15:05.227Z'
-        elapsed:
-          type: string
-          example: '00:01:06.961334'
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    ObligationExtended:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/Obligation'
-      properties:
-        modification:
-          type: boolean
-          description: Applies on modified text?
-        active:
-          type: boolean
-          description: Obligation is active/inactive
-        textUpdatable:
-          type: boolean
-          description: Obligation text can be updated?
-        licenses:
+          example:
+          - -20
+          - -19
+          - -18
+        verboseList:
           type: array
-          description: List of associated licenses with obligation
+          description: List of verbose levels
+          items:
+            type: integer
+          example:
+          - 1
+          - 3
+        agentList:
+          type: array
+          description: List of agents
           items:
             type: string
-            description: Shortname of license
-        candidateLicenses:
-          type: array
-          description: List of associated candidate licenses with obligation
-          items:
-            type: string
-            description: Shortname of candidate license
-        hash:
-          type: string
-          description: MD5 hash of obligation text
-    Obligation:
-      description: Obligation information
+          example:
+          - clixml
+          - pkgagent
+          - maintagent
+          - deciderjob
+    GetDatabaseContent:
       type: object
       properties:
-        id:
-          description: Id key
+        metric:
+          type: string
+          description: The metric associated with the object.
+          example: Users
+        total:
           type: integer
-          example: 126
-        topic:
-          description: Obligation topic
+          description: The total count associated with the metric.
+          example: 2
+        lastVacuum:
           type: string
-          example: Should preserve notice
-        type:
-          description: Type of obligation
+          description: The date and time of the last vacuum operation. If null, no vacuum operation has been performed.
+          example: 'null'
+        lastAnalyze:
           type: string
-          example: Obligation
-        text:
-          description: Obligation text
-          type: string
-          example: All notices from the package should be preserved.
-        classification:
-          description: 'Level of attention this obligation should raise in the clearing process
-
-            '
-          type: string
-          enum:
-          - green
-          - white
-          - yellow
-          - red
-        comment:
-          description: Comments for the obligation
-          type: string
-          nullable: true
-          example: Please respect the obligation
+          description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
+          example: 'null'
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

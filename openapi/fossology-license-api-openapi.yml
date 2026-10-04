@@ -858,13 +858,6 @@ paths:
         default:
           $ref: '#/components/responses/defaultResponse'
 components:
-  responses:
-    defaultResponse:
-      description: Some error occurred. Check the "message"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Info'
   schemas:
     GetSuggestedLicense:
       type: object
@@ -907,6 +900,115 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/HighlightInfo'
+    MutateStdComment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 'The ID of the standard comment.
+
+            Required if update is TRUE.
+
+            '
+          example: 2
+        name:
+          type: string
+          description: 'The name of the standard comment.
+
+            Required if update is FALSE.
+
+            '
+          example: commentName
+        comment:
+          type: string
+          description: 'The standard comment text.
+
+            Required if update is FALSE.
+
+            '
+          example: comment text
+        toggle:
+          type: boolean
+          description: A boolean indicating the toggle state.
+          example: true
+        update:
+          type: boolean
+          description: 'A boolean indicating if an update is needed.
+
+            If TRUE, update the given standard comment.
+
+            if FALSE, add new standard comment.
+
+            '
+          example: true
+    Info:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        message:
+          type: string
+          description: Message in the info
+        type:
+          type: string
+          enum:
+          - INFO
+          - ERROR
+          description: Denotes if info was created on error
+    LicenseCandidate:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the license-candidate.
+        shortname:
+          type: string
+          description: shortname of the license-candidate.
+        spdxid:
+          type: string
+          description: SPDX ID of the license-candiate.
+        fullname:
+          type: string
+          description: fullname of the license-candidate.
+        text:
+          type: string
+          description: text of the license-candidate.
+        group_name:
+          type: string
+          description: group_name of the license-candidate.
+        group_id:
+          type: integer
+          description: group_id of the license-candidate.
+    License:
+      description: License from the database
+      type: object
+      properties:
+        shortName:
+          description: Short name
+          type: string
+          example: MIT
+        fullName:
+          description: Full name
+          type: string
+          example: MIT License
+        text:
+          description: License text
+          type: string
+          example: MIT License Copyright (c) <year> <copyright holders> ...
+        url:
+          description: URL of the license text
+          type: string
+          example: https://opensource.org/licenses/MIT
+        risk:
+          description: Risk level
+          type: integer
+          nullable: true
+          example: 3
+        isCandidate:
+          description: Is the license a candidate?
+          type: boolean
     StandardComment:
       type: object
       properties:
@@ -926,6 +1028,76 @@ components:
           type: boolean
           example: true
           description: Indicates whether the comment is enabled or not.
+    HighlightInfo:
+      type: object
+      properties:
+        start:
+          type: integer
+          description: Start position of the highlight in file
+          example: 68
+        end:
+          type: integer
+          description: End position of the highlight in file
+          example: 70
+        type:
+          type: string
+          description: Type of highlight
+          enum:
+          - M
+          - MC
+          - MA
+          - MD
+          - S
+          - K
+          - B
+          - C
+          - U
+          - E
+          - A
+          - I
+          - X
+          - KW
+          - any
+        shortName:
+          type: string
+          description: License shortname
+          example: MIT
+        refStart:
+          type: integer
+          description: Start of monk diff highlight (relative)
+          example: 0
+        refEnd:
+          type: integer
+          description: End of monk diff highlight (relative)
+          example: 53
+        infoText:
+          type: string
+          description: Tooltip text
+          example: 'MIT: ''MIT License
+
+
+            Copyright (c) <year> <copyright holders>'''
+        htmlElement:
+          type: string
+    AdminLicenseAcknowledgement:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The primary key of the AdminAcknowledgement
+          example: 2
+        name:
+          type: string
+          description: The name of the AdminAcknowledgement
+          example: ackupdated
+        acknowledgement:
+          type: string
+          description: The acknowledgement text of the AdminAcknowledgement
+          example: updated Ack text
+        is_enabled:
+          type: boolean
+          description: Indicates if the AdminAcknowledgement is enabled
+          example: true
     MutateAdminAcknowledgement:
       type: object
       properties:
@@ -1002,185 +1174,13 @@ components:
           type: string
           nullable: true
           example: Please respect the obligation
-    MutateStdComment:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: 'The ID of the standard comment.
-
-            Required if update is TRUE.
-
-            '
-          example: 2
-        name:
-          type: string
-          description: 'The name of the standard comment.
-
-            Required if update is FALSE.
-
-            '
-          example: commentName
-        comment:
-          type: string
-          description: 'The standard comment text.
-
-            Required if update is FALSE.
-
-            '
-          example: comment text
-        toggle:
-          type: boolean
-          description: A boolean indicating the toggle state.
-          example: true
-        update:
-          type: boolean
-          description: 'A boolean indicating if an update is needed.
-
-            If TRUE, update the given standard comment.
-
-            if FALSE, add new standard comment.
-
-            '
-          example: true
-    Info:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-          example: 200
-        message:
-          type: string
-          description: Message in the info
-        type:
-          type: string
-          enum:
-          - INFO
-          - ERROR
-          description: Denotes if info was created on error
-    AdminLicenseAcknowledgement:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The primary key of the AdminAcknowledgement
-          example: 2
-        name:
-          type: string
-          description: The name of the AdminAcknowledgement
-          example: ackupdated
-        acknowledgement:
-          type: string
-          description: The acknowledgement text of the AdminAcknowledgement
-          example: updated Ack text
-        is_enabled:
-          type: boolean
-          description: Indicates if the AdminAcknowledgement is enabled
-          example: true
-    HighlightInfo:
-      type: object
-      properties:
-        start:
-          type: integer
-          description: Start position of the highlight in file
-          example: 68
-        end:
-          type: integer
-          description: End position of the highlight in file
-          example: 70
-        type:
-          type: string
-          description: Type of highlight
-          enum:
-          - M
-          - MC
-          - MA
-          - MD
-          - S
-          - K
-          - B
-          - C
-          - U
-          - E
-          - A
-          - I
-          - X
-          - KW
-          - any
-        shortName:
-          type: string
-          description: License shortname
-          example: MIT
-        refStart:
-          type: integer
-          description: Start of monk diff highlight (relative)
-          example: 0
-        refEnd:
-          type: integer
-          description: End of monk diff highlight (relative)
-          example: 53
-        infoText:
-          type: string
-          description: Tooltip text
-          example: 'MIT: ''MIT License
-
-
-            Copyright (c) <year> <copyright holders>'''
-        htmlElement:
-          type: string
-    LicenseCandidate:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the license-candidate.
-        shortname:
-          type: string
-          description: shortname of the license-candidate.
-        spdxid:
-          type: string
-          description: SPDX ID of the license-candiate.
-        fullname:
-          type: string
-          description: fullname of the license-candidate.
-        text:
-          type: string
-          description: text of the license-candidate.
-        group_name:
-          type: string
-          description: group_name of the license-candidate.
-        group_id:
-          type: integer
-          description: group_id of the license-candidate.
-    License:
-      description: License from the database
-      type: object
-      properties:
-        shortName:
-          description: Short name
-          type: string
-          example: MIT
-        fullName:
-          description: Full name
-          type: string
-          example: MIT License
-        text:
-          description: License text
-          type: string
-          example: MIT License Copyright (c) <year> <copyright holders> ...
-        url:
-          description: URL of the license text
-          type: string
-          example: https://opensource.org/licenses/MIT
-        risk:
-          description: Risk level
-          type: integer
-          nullable: true
-          example: 3
-        isCandidate:
-          description: Is the license a candidate?
-          type: boolean
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
   securitySchemes:
     bearerAuth:
       type: http

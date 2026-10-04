@@ -264,70 +264,6 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
-    AddMember:
-      description: UserMember options
-      type: object
-      properties:
-        perm:
-          type: integer
-          description: Default permission of the new member.
-          nullable: false
-          minimum: 0
-          maximum: 2
-          example: 0
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the user
-        name:
-          type: string
-          description: Unique username
-        description:
-          type: string
-          description: Description of the user
-        email:
-          type: string
-          description: Email of the user, needs to be unique and is required
-        accessLevel:
-          type: string
-          enum:
-          - none
-          - read_only
-          - read_write
-          - clearing_admin
-          - admin
-        rootFolderId:
-          type: number
-          format: int
-          description: root folder id of the user
-        emailNotification:
-          type: boolean
-          description: enable email notification when upload scan completes
-        defaultGroup:
-          type: integer
-          description: Default group id of the user
-        agents:
-          $ref: '#/components/schemas/Analysis'
-        defaultBucketpool:
-          description: Default bucket pool id
-          type: integer
-          nullable: true
-      required:
-      - id
-    Group:
-      description: Group object
-      type: object
-      properties:
-        id:
-          description: Id key
-          type: integer
-          example: 126
-        name:
-          description: Name of a group
-          type: string
-          example: Main group
     Analysis:
       type: object
       properties:
@@ -396,6 +332,59 @@ components:
           type: integer
           description: Permission of the user in the group.
           example: 1
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the user
+        name:
+          type: string
+          description: Unique username
+        description:
+          type: string
+          description: Description of the user
+        email:
+          type: string
+          description: Email of the user, needs to be unique and is required
+        accessLevel:
+          type: string
+          enum:
+          - none
+          - read_only
+          - read_write
+          - clearing_admin
+          - admin
+        rootFolderId:
+          type: number
+          format: int
+          description: root folder id of the user
+        emailNotification:
+          type: boolean
+          description: enable email notification when upload scan completes
+        defaultGroup:
+          type: integer
+          description: Default group id of the user
+        agents:
+          $ref: '#/components/schemas/Analysis'
+        defaultBucketpool:
+          description: Default bucket pool id
+          type: integer
+          nullable: true
+      required:
+      - id
+    Group:
+      description: Group object
+      type: object
+      properties:
+        id:
+          description: Id key
+          type: integer
+          example: 126
+        name:
+          description: Name of a group
+          type: string
+          example: Main group
     Info:
       type: object
       properties:
@@ -412,6 +401,17 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
+    AddMember:
+      description: UserMember options
+      type: object
+      properties:
+        perm:
+          type: integer
+          description: Default permission of the new member.
+          nullable: false
+          minimum: 0
+          maximum: 2
+          example: 0
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"
