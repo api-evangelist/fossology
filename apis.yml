@@ -740,6 +740,12 @@ apis:
   - type: SourceCode
     url: https://github.com/fossology/fossology
 common:
+  - type: Plans
+    url: plans/fossology-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/fossology-rate-limits.yml
+  - type: FinOps
+    url: finops/fossology-finops.yml
   - type: CapabilityMap
     url: capabilities/fossology-capability-edges.yml
     name: FOSSology Business Capability Map
