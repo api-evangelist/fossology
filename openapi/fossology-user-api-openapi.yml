@@ -384,6 +384,23 @@ components:
           type: string
           description: Scope of the token
           example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTg5NDY1OTksIm5iZiI6MTY1NzkwOTgwMCwianRpIjoiTnk0eiIsInNjb3BlIjoid3JpdGUifQ.Yqwdt7Fzx-Qw3megYix_OYu1mqBOoz4Rrc1cgJasmJA
+    NewGroupPermission:
+      description: User Group permission update
+      type: object
+      properties:
+        perm:
+          type: integer
+          description: 'New user permission in the group.
+
+            0: User
+
+            1: Admin
+
+            2: Advisor
+
+            '
+          minimum: 0
+          maximum: 2
     Analysis:
       type: object
       properties:
@@ -426,23 +443,6 @@ components:
         compatibility:
           type: boolean
           description: Should Compatibility Analysis be run on this upload.
-    NewGroupPermission:
-      description: User Group permission update
-      type: object
-      properties:
-        perm:
-          type: integer
-          description: 'New user permission in the group.
-
-            0: User
-
-            1: Admin
-
-            2: Advisor
-
-            '
-          minimum: 0
-          maximum: 2
     User:
       type: object
       properties:

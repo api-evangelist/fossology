@@ -167,6 +167,13 @@ paths:
         default:
           $ref: '#/components/responses/defaultResponse'
 components:
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
   schemas:
     DiskUsage:
       type: object
@@ -217,6 +224,27 @@ components:
               type: string
               description: Fossology configuration location
               example: /usr/local/etc/fossology
+    GetPHPInfo:
+      type: object
+      properties:
+        phpVersion:
+          type: string
+          description: Version of PHP
+          example: 7.4.3-4ubuntu2.18
+        loadedExtensions:
+          type: array
+          description: List of loaded extensions in PHP
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the loaded extension
+                example: Core
+              version:
+                type: string
+                description: Version of the loaded extension
+                example: 7.4.3-4ubuntu2.18
     Info:
       type: object
       properties:
@@ -280,34 +308,6 @@ components:
           type: string
           description: The date and time of the last analyze operation. If null, no analyze operation has been performed.
           example: 'null'
-    GetPHPInfo:
-      type: object
-      properties:
-        phpVersion:
-          type: string
-          description: Version of PHP
-          example: 7.4.3-4ubuntu2.18
-        loadedExtensions:
-          type: array
-          description: List of loaded extensions in PHP
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the loaded extension
-                example: Core
-              version:
-                type: string
-                description: Version of the loaded extension
-                example: 7.4.3-4ubuntu2.18
-  responses:
-    defaultResponse:
-      description: Some error occurred. Check the "message"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Info'
   securitySchemes:
     bearerAuth:
       type: http

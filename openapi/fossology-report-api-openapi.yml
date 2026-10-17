@@ -196,14 +196,18 @@ paths:
         default:
           $ref: '#/components/responses/defaultResponse'
 components:
-  responses:
-    defaultResponse:
-      description: Some error occurred. Check the "message"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Info'
   schemas:
+    DecisionImporter:
+      description: Information required by Decision Importer agent
+      type: object
+      properties:
+        importerUser:
+          type: integer
+          description: User ID on which to tag imported decisions. Use '0' for self.
+          default: 0
+          example: 3
+      required:
+      - importerUser
     SpdxRdfImport:
       description: Information required by SPDX RDF report import agent.
       type: object
@@ -255,17 +259,13 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
-    DecisionImporter:
-      description: Information required by Decision Importer agent
-      type: object
-      properties:
-        importerUser:
-          type: integer
-          description: User ID on which to tag imported decisions. Use '0' for self.
-          default: 0
-          example: 3
-      required:
-      - importerUser
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
   securitySchemes:
     bearerAuth:
       type: http

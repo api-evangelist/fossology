@@ -549,6 +549,113 @@ paths:
           $ref: '#/components/responses/defaultResponse'
 components:
   schemas:
+    JobQueue:
+      description: Structure of jobs queue
+      type: object
+      properties:
+        jobQueueId:
+          description: Job queue id
+          type: integer
+        jobQueueType:
+          description: Job queue type (generally agent name)
+          type: string
+        startTime:
+          description: Job queue start time
+          type: string
+        endTime:
+          description: Job queue end time
+          type: string
+        status:
+          description: Job queue completion status
+          type: string
+        itemsProcessed:
+          description: Number of items processed
+          type: integer
+        log:
+          description: Location of log file if exists
+          type: string
+          nullable: true
+        dependencies:
+          description: List of dependent job queue ids
+          type: array
+          items:
+            type: integer
+        itemsPerSec:
+          description: Number of items processed per second
+          type: number
+          format: float
+        canDoActions:
+          description: Job can accept new actions like pause and cancel
+          type: boolean
+        isInProgress:
+          description: Checks if the job queue is still in progress
+          type: boolean
+        isReady:
+          description: Is the job ready
+          type: boolean
+        download:
+          description: Report download information
+          type: object
+          nullable: true
+          properties:
+            text:
+              description: Text for download link
+              type: string
+            link:
+              description: Link to download the report
+              type: string
+    GetSchedulerOption:
+      type: object
+      properties:
+        jobList:
+          type: array
+          description: List of jobs
+          items:
+            type: string
+          example:
+          - scheduler
+        priorityList:
+          type: array
+          description: List of priorities
+          items:
+            type: integer
+          example:
+          - -20
+          - -19
+          - -18
+        verboseList:
+          type: array
+          description: List of verbose levels
+          items:
+            type: integer
+          example:
+          - 1
+          - 3
+        agentList:
+          type: array
+          description: List of agents
+          items:
+            type: string
+          example:
+          - clixml
+          - pkgagent
+          - maintagent
+          - deciderjob
+    GetJobStatistics:
+      type: object
+      properties:
+        agentName:
+          type: string
+          description: Name of the agent
+          example: monkbulk
+        agentDesc:
+          type: string
+          description: Description of the agent
+          example: monkbulk agent
+        firedJobs:
+          type: integer
+          description: Number of fired jobs
+          example: 23
     Job:
       type: object
       properties:
@@ -581,37 +688,17 @@ components:
           - Queued
           - Processing
           description: Denotes the current status of the job in the queue
-    AllServerJobs:
+    ScanOptions:
       type: object
       properties:
-        data:
-          type: array
-          description: List of agents
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the agent
-                example: decider
-              running:
-                type: integer
-                description: Number of running instances
-                example: 0
-              pending:
-                type: integer
-                description: Number of pending instances
-                example: 1
-              eta:
-                type: string
-                description: Estimated time of arrival
-                example: N/A
-        scheduler:
-          type: string
-          description: Current scheduler status
-          enum:
-          - Running
-          - Stopped
+        analysis:
+          $ref: '#/components/schemas/Analysis'
+        decider:
+          $ref: '#/components/schemas/LicenseDecider'
+        reuse:
+          $ref: '#/components/schemas/Reuser'
+        scancode:
+          $ref: '#/components/schemas/Scancode'
     Analysis:
       type: object
       properties:
@@ -694,76 +781,21 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
-    JobQueue:
-      description: Structure of jobs queue
+    Scancode:
       type: object
       properties:
-        jobQueueId:
-          description: Job queue id
-          type: integer
-        jobQueueType:
-          description: Job queue type (generally agent name)
-          type: string
-        startTime:
-          description: Job queue start time
-          type: string
-        endTime:
-          description: Job queue end time
-          type: string
-        status:
-          description: Job queue completion status
-          type: string
-        itemsProcessed:
-          description: Number of items processed
-          type: integer
-        log:
-          description: Location of log file if exists
-          type: string
-          nullable: true
-        dependencies:
-          description: List of dependent job queue ids
-          type: array
-          items:
-            type: integer
-        itemsPerSec:
-          description: Number of items processed per second
-          type: number
-          format: float
-        canDoActions:
-          description: Job can accept new actions like pause and cancel
+        license:
           type: boolean
-        isInProgress:
-          description: Checks if the job queue is still in progress
+          description: A full comparison between the database of licenses present in ScanCode and the code uploaded by users based approach.
+        copyright:
           type: boolean
-        isReady:
-          description: Is the job ready
+          description: Copyright along with copyright holder/author information.
+        email:
           type: boolean
-        download:
-          description: Report download information
-          type: object
-          nullable: true
-          properties:
-            text:
-              description: Text for download link
-              type: string
-            link:
-              description: Link to download the report
-              type: string
-    GetJobStatistics:
-      type: object
-      properties:
-        agentName:
-          type: string
-          description: Name of the agent
-          example: monkbulk
-        agentDesc:
-          type: string
-          description: Description of the agent
-          example: monkbulk agent
-        firedJobs:
-          type: integer
-          description: Number of fired jobs
-          example: 23
+          description: Email(s) present in the scan code file.
+        url:
+          type: boolean
+          description: URL(s) present in the scan code file.
     ShowJob:
       description: History of all the jobs and the job queue info
       type: object
@@ -782,54 +814,6 @@ components:
         uploadId:
           type: integer
           description: Upload ID to which the job belongs to.
-    ScanOptions:
-      type: object
-      properties:
-        analysis:
-          $ref: '#/components/schemas/Analysis'
-        decider:
-          $ref: '#/components/schemas/LicenseDecider'
-        reuse:
-          $ref: '#/components/schemas/Reuser'
-        scancode:
-          $ref: '#/components/schemas/Scancode'
-    GetSchedulerOption:
-      type: object
-      properties:
-        jobList:
-          type: array
-          description: List of jobs
-          items:
-            type: string
-          example:
-          - scheduler
-        priorityList:
-          type: array
-          description: List of priorities
-          items:
-            type: integer
-          example:
-          - -20
-          - -19
-          - -18
-        verboseList:
-          type: array
-          description: List of verbose levels
-          items:
-            type: integer
-          example:
-          - 1
-          - 3
-        agentList:
-          type: array
-          description: List of agents
-          items:
-            type: string
-          example:
-          - clixml
-          - pkgagent
-          - maintagent
-          - deciderjob
     LicenseDecider:
       type: object
       properties:
@@ -859,21 +843,37 @@ components:
         copyright_clutter_removal:
           type: boolean
           description: Deactivate false positive copyrights and remove clutter from them (experimental).
-    Scancode:
+    AllServerJobs:
       type: object
       properties:
-        license:
-          type: boolean
-          description: A full comparison between the database of licenses present in ScanCode and the code uploaded by users based approach.
-        copyright:
-          type: boolean
-          description: Copyright along with copyright holder/author information.
-        email:
-          type: boolean
-          description: Email(s) present in the scan code file.
-        url:
-          type: boolean
-          description: URL(s) present in the scan code file.
+        data:
+          type: array
+          description: List of agents
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the agent
+                example: decider
+              running:
+                type: integer
+                description: Number of running instances
+                example: 0
+              pending:
+                type: integer
+                description: Number of pending instances
+                example: 1
+              eta:
+                type: string
+                description: Estimated time of arrival
+                example: N/A
+        scheduler:
+          type: string
+          description: Current scheduler status
+          enum:
+          - Running
+          - Stopped
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"

@@ -2045,14 +2045,13 @@ paths:
         default:
           $ref: '#/components/responses/defaultResponse'
 components:
-  responses:
-    defaultResponse:
-      description: Some error occurred. Check the "message"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Info'
   schemas:
+    SetCopyrightInfo:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Copyright text
     GetFileCopyrights:
       description: CX details of a file
       type: object
@@ -2066,12 +2065,6 @@ components:
         count:
           type: integer
           description: Count of the CXs
-    SetCopyrightInfo:
-      type: object
-      properties:
-        content:
-          type: string
-          description: Copyright text
     Info:
       type: object
       properties:
@@ -2088,6 +2081,13 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
+  responses:
+    defaultResponse:
+      description: Some error occurred. Check the "message"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Info'
   securitySchemes:
     bearerAuth:
       type: http

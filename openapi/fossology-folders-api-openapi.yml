@@ -304,6 +304,21 @@ components:
         removable:
           type: boolean
           description: Is the folder removable.
+    Folder:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id of the folder.
+        name:
+          type: string
+          description: Name of the folder.
+        description:
+          type: string
+          description: Description of the folder.
+        parent:
+          type: integer
+          description: Id of the parent folder (if any, null otherwise).
     Info:
       type: object
       properties:
@@ -320,21 +335,6 @@ components:
           - INFO
           - ERROR
           description: Denotes if info was created on error
-    Folder:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Id of the folder.
-        name:
-          type: string
-          description: Name of the folder.
-        description:
-          type: string
-          description: Description of the folder.
-        parent:
-          type: integer
-          description: Id of the parent folder (if any, null otherwise).
   responses:
     defaultResponse:
       description: Some error occurred. Check the "message"
