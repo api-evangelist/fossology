@@ -1,0 +1,42 @@
+edges:
+- partner_name: SPDX (Linux Foundation)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  category: SBOM standard (SPDX)
+  evidence: https://spdx.dev/use/spdx-tools/
+  contract_reference:
+    register: SPDX Tools (spdx.dev/use/spdx-tools)
+    standard: SPDX (ISO/IEC 5962)
+    spec_file: null
+    role: spdx-tool
+    registered_name: FOSSology
+    tools:
+    - FOSSology
+    website: https://www.fossology.org/
+    matched_domain: fossology.org
+    matched_by: domain
+    classification: Consume/Diff  , Consume/View  , Produce/Analyze  , Transform/Merge  , Transform/Tool Support  ,
+      Transform/Translate
+    version_support: 2.1  , 2.2  , 3.0 Complete
+    spdx_member: false
+    signal_note: 'participation only: a listed tool ships SPDX support; classification and versions are context'
+    detected_by: sweep-software-supply-chain.py
+    detected: '2026-10-18'
+  detected_by: sweep-software-supply-chain.py
+  first_seen: '2026-10-18'
+generated: '2026-10-18'
+method: searched
+source:
+- https://raw.githubusercontent.com/ossf/ossf-landscape/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
+- https://cyclonedx.org/tool-center/
+- https://spdx.dev/use/spdx-tools/
+- https://www.openchainproject.org/community-of-conformance
+checked:
+- https://cyclonedx.org/tool-center/
+- https://raw.githubusercontent.com/ossf/ossf-landscape/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
+- https://spdx.dev/use/spdx-tools/
+- https://www.openchainproject.org/community-of-conformance
